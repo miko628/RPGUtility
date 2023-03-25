@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RPGUtility.View.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPGUtility.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="backButton" Grid.Column="0" Grid.Row="1" FontSize="18" Content="Cofnij"/>
+        <Button x:Name="battleButton" Grid.Column="1" Grid.Row="2" FontSize="18" Content="Walka"/>
+        <Button x:Name="testButton" Grid.Column="1" Grid.Row="4" FontSize="18" Content="Test umiejętności"/>
+        <Button x:Name="manageButton" Grid.Column="1" Grid.Row="6" FontSize="18" Content="Zarządzaj postaciami"/>
+        <Button x:Name="spellButton" Grid.Column="1" Grid.Row="8" FontSize="18" Content="Zaklęcia"/>
+
+    </Grid>
+</UserControl>
