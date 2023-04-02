@@ -33,15 +33,21 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <!--Button x:Name="loadButton" Grid.Column="1" Grid.Row="4" FontSize="18" Content="Wczytaj" Command="{Binding }"/-->
-        <Button x:Name="settingsButton" Grid.Column="1" Grid.Row="6" FontSize="18" Content="Ustawienia"  Background="Black" Foreground="White" BorderBrush="Black">
+        <Button x:Name="loadButton" Grid.Column="1" Grid.Row="4" FontSize="18" Content="Jak grać?"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateHowCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="exitButton" Grid.Column="1" Grid.Row="8" FontSize="18" Content="Zakończ" Background="Black" Foreground="White" BorderBrush="Black">
+        <Button x:Name="settingsButton" Grid.Column="1" Grid.Row="6" FontSize="18" Content="Ustawienia"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateSettingsCommand}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="exitButton" Grid.Column="1" Grid.Row="8" FontSize="18" Content="Zakończ" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding ExitCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGUtility.ViewModel
 {
-    class HomeViewModel:ViewModelBase
+    internal class SettingsViewModel : ViewModelBase
     {
-        public HomeViewModel()
-        {
-            
-        }
     }
 }

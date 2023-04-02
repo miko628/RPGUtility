@@ -16,6 +16,12 @@
             <DataTemplate DataType="{x:Type ViewModels:MenuViewModel}">
                 <Views:MenuView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:SettingsViewModel}">
+                <Views:SettingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:HowViewModel}">
+                <Views:HowView/>
+            </DataTemplate>
         </ContentControl.Resources>
         </ContentControl>
 </Window>

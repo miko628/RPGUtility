@@ -12,17 +12,63 @@ namespace RPGUtility.ViewModel
         private readonly NavigationState _navigationState;
         public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
 
-        public ICommand NavigateMenuCommand {  get; }
+        public RelayCommand NavigateMenuCommand {  get; }
+        public RelayCommand NavigateSettingsCommand { get; }
+
+        public RelayCommand NavigateHowCommand { get; }
+        public RelayCommand ExitCommand { get; }
         public MainViewModel(NavigationState state)
         {
            // CurrentViewModel =  new MenuViewModel();
             _navigationState = state;
             _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
-            NavigateMenuCommand = new NavigateHome(state);
+            NavigateMenuCommand = new RelayCommand(ExecuteMenu, CanExecuteMyCommand);
+            NavigateSettingsCommand = new RelayCommand(ExecuteSettings, CanExecuteMyCommand);
+            NavigateHowCommand = new RelayCommand(ExecuteHow, CanExecuteMyCommand);
+            ExitCommand = new RelayCommand(ExecuteExit, CanExecuteMyCommand);
+        }
+        private void ExecuteMenu(object parameter)
+        {
+            NavigationState pom = _navigationState;
+            _navigationState.CurrentViewModel = new MenuViewModel(pom); //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
+                                                                        //viewmodel musi dziedziczyc z viewmodelbase
+                                                                        // System.Windows.Application.Current.Shutdown(); konczenie dzialania programu
+                                                                        // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+        }
+        private void ExecuteSettings(object parameter)
+        {
+            NavigationState pom = _navigationState;
+            _navigationState.CurrentViewModel = new SettingsViewModel(); //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
+                                                                        //viewmodel musi dziedziczyc z viewmodelbase
+                                                                        // System.Windows.Application.Current.Shutdown(); konczenie dzialania programu
+                                                                        // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+                                                                        // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+        }
+
+        private void ExecuteHow(object parameter)
+        {
+            NavigationState pom = _navigationState;
+            _navigationState.CurrentViewModel = new HowViewModel(); //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
+                                                                         //viewmodel musi dziedziczyc z viewmodelbase
+                                                                         // System.Windows.Application.Current.Shutdown(); konczenie dzialania programu
+                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+        }
+        private void ExecuteExit(object parameter)
+        {
+         
+        System.Windows.Application.Current.Shutdown();// konczenie dzialania programu
+                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
         }
         private void OnCurrentViewModelChange()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
+        }
+        private bool CanExecuteMyCommand(object parameter)
+        {
+            // Tutaj wpisz kod, który sprawdzi, czy przycisk jest aktywny
+            return true;
         }
     }
 }

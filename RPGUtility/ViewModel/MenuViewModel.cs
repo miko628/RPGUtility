@@ -9,8 +9,28 @@ namespace RPGUtility.ViewModel
 {
     class MenuViewModel : ViewModelBase
     {
-        public string Welcome => "welocme to d";
-
-        public ICommand NavigateCommand { get; set; }
+        private readonly NavigationState _navigationState;
+        public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
+        public RelayCommand NavigateBackCommand { get; }
+        public MenuViewModel(NavigationState state)
+        {
+            _navigationState = state;
+            _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
+            NavigateBackCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
+        }
+        private void OnCurrentViewModelChange()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
+        }
+        private void ExecuteBack(object parameter)
+        {
+            NavigationState pom = _navigationState;
+            _navigationState.CurrentViewModel = new MainViewModel(pom);
+        }
+        private bool CanExecuteMyCommand(object parameter)
+        {
+            // Tutaj wpisz kod, który sprawdzi, czy przycisk jest aktywny
+            return true;
+        }
     }
 }
