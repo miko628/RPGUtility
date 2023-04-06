@@ -38,7 +38,7 @@ namespace RPGUtility.ViewModel
         private void ExecuteSettings(object parameter)
         {
             NavigationState pom = _navigationState;
-            _navigationState.CurrentViewModel = new SettingsViewModel(); //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
+            _navigationState.CurrentViewModel = new SettingsViewModel(pom); //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
                                                                         //viewmodel musi dziedziczyc z viewmodelbase
                                                                         // System.Windows.Application.Current.Shutdown(); konczenie dzialania programu
                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
@@ -48,11 +48,13 @@ namespace RPGUtility.ViewModel
         private void ExecuteHow(object parameter)
         {
             NavigationState pom = _navigationState;
-            _navigationState.CurrentViewModel = new HowViewModel(); //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
-                                                                         //viewmodel musi dziedziczyc z viewmodelbase
-                                                                         // System.Windows.Application.Current.Shutdown(); konczenie dzialania programu
-                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
-                                                                         // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+            _navigationState.CurrentViewModel = new HowViewModel(pom);
+            //_navigationState.CurrentViewModel = new CharacterCreatorViewModel();
+            //ustawianie view i viewmodelu jakie uzywamy w glownym oknie
+            //viewmodel musi dziedziczyc z viewmodelbase
+            // System.Windows.Application.Current.Shutdown(); konczenie dzialania programu
+            // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
+            // Tutaj wpisz kod, który ma być wykonany po kliknięciu przycisku
         }
         private void ExecuteExit(object parameter)
         {

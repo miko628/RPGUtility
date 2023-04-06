@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtility
+namespace RPGUtility.Model
 {
-    internal class Player : Character
+    internal class CharacterModel
     {
-        public Player(string name) : base()
-        {
-        }
     }
 }

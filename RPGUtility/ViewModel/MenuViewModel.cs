@@ -12,11 +12,16 @@ namespace RPGUtility.ViewModel
         private readonly NavigationState _navigationState;
         public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
         public RelayCommand NavigateBackCommand { get; }
+        public RelayCommand NavigateCharacterCommand { get; }
+        public RelayCommand NavigateBattleCommand { get; }
+        public RelayCommand NavigateTestCommand { get; }
+        public RelayCommand NavigateSpellsCommand { get; }
         public MenuViewModel(NavigationState state)
         {
             _navigationState = state;
             _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
+            NavigateCharacterCommand = new RelayCommand(ExecuteCharacter, CanExecuteMyCommand);
         }
         private void OnCurrentViewModelChange()
         {
@@ -26,6 +31,13 @@ namespace RPGUtility.ViewModel
         {
             NavigationState pom = _navigationState;
             _navigationState.CurrentViewModel = new MainViewModel(pom);
+        }
+
+        private void ExecuteCharacter(object parameter)
+        {
+            NavigationState pom = _navigationState;
+            _navigationState.CurrentViewModel = new CharacterCreatorViewModel();
+            //_navigationState.CurrentViewModel = new CharacterViewModel();
         }
         private bool CanExecuteMyCommand(object parameter)
         {
