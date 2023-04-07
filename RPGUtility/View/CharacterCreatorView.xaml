@@ -56,24 +56,24 @@
             </Border>
             <TextBlock  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="Bohater" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="Nazwa postaci:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CharacterName}"/>
             <TextBlock  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="Rasa postaci:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Race}"/>
             <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Obecna profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CurrentCarrer}"/>
             <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Poprzednia profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding PreviousCarrer}"/>
 
 
             <TextBlock  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Text="Gracz" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
-            <TextBlock  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Text="Nazwa postaci:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
-            <TextBlock  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Text="Rasa postaci:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
-            <TextBlock  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Text="Obecna profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
-            <TextBlock  Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Poprzednia profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBlock  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Text="Imię Gracza:" FontSize="18" Margin="20,20,20,20"/>
+            <TextBox Name="PlayerName" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding PlayerName}"/>
+            <TextBlock  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Text="Mistrz Gry:" FontSize="18" Margin="20,20,20,10"/>
+            <TextBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding GameMaster}"/>
+            <TextBlock  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Text="Kampania :" FontSize="18" Margin="20,20,20,10"/>
+            <TextBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Campaign}"/>
+            <TextBlock  Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Rok Kampanii:" FontSize="18" Margin="20,20,20,10"/>
+            <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Year}"/>
 
             <Border MinWidth="50" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#555A57">
                 <Border.Resources>
@@ -113,12 +113,12 @@
                 </Border.Resources>
             </Border>
 
-            <Image  Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="2">
+            <Image  Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="2" Source="{Binding Image}">
                 <Image.Resources>
                   
                 </Image.Resources>
             </Image>
-            <Button Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="16" Content="Prześlij" >
+            <Button Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="16" Content="Prześlij" Command="{Binding ImageCommand}" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="25"/>
@@ -147,7 +147,7 @@
 
 
 
-            <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="26" Content="Anuluj" >
+            <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="26" Content="Anuluj"  Command="{Binding CancelCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="25"/>
@@ -155,7 +155,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Grid.Column="4"  Grid.ColumnSpan="2" Grid.Row="26" Content="Zapisz" >
+            <Button Grid.Column="4"  Grid.ColumnSpan="2" Grid.Row="26" Content="Zapisz" Command="{Binding SaveCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="25"/>

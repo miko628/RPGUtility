@@ -36,7 +36,7 @@ namespace RPGUtility.ViewModel
         private void ExecuteCharacter(object parameter)
         {
             NavigationState pom = _navigationState;
-            _navigationState.CurrentViewModel = new CharacterCreatorViewModel();
+            _navigationState.CurrentViewModel = new CharacterCreatorViewModel(pom);
             //_navigationState.CurrentViewModel = new CharacterViewModel();
         }
         private bool CanExecuteMyCommand(object parameter)
