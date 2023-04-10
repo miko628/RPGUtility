@@ -49,7 +49,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="testButton" Grid.Column="4"  Grid.ColumnSpan="4" Grid.Row="4" FontSize="18" Content="Test umiejętności" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateTestCommand}">
+        <Button x:Name="testButton" Grid.Column="4"  Grid.ColumnSpan="4" Grid.Row="4" FontSize="18" Content="Scenariusz" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateTestCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

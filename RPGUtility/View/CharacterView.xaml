@@ -5,8 +5,132 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#C190C6">
     <Grid>
-        <Label Content="Characters"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
+                <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        
+        <Border MinWidth="50" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="#555A57">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Border.Resources>
+        </Border>
+        <Image Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" Source="{Binding Image}" Stretch="Fill"></Image>
+        <TextBlock Text="Nazwa_postaci(dodaj tu binding)" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" FontSize="18" HorizontalAlignment="Center"/>
+
+        <Border MinWidth="50" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4" Background="#555A57">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Border.Resources>
+        </Border>
+        <TextBlock Text="Dziennik zdarzeń" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+
+        <Button Content="Ekwipunek" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2" Margin="10,0,10,0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Tworzenie przedmiotów" Grid.Column="7" Grid.Row="6"  Grid.ColumnSpan="2" Command="{Binding ItemCreation}" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                   
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button Content="Handel" Grid.Column="5" Grid.Row="7"  Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Wymiana" Grid.Column="7" Grid.Row="7"  Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Edycja/Rozwój" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Test Umiejętności" Grid.Column="5" Grid.Row="9"  Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Zaklęcia" Grid.Column="7" Grid.Row="8"  Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Content="Testy Przeciwstawne" Grid.Column="5" Grid.Row="8"  Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button Content="Rzut kością" Grid.Column="7" Grid.Row="9" Grid.ColumnSpan="2">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </UserControl>

@@ -28,6 +28,9 @@
             <DataTemplate DataType="{x:Type ViewModels:CharacterCreatorViewModel}">
                     <Views:CharacterCreatorView/>
                 </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:ItemCreatorViewModel}">
+                <Views:ItemCreatorView/>
+            </DataTemplate>
         </ContentControl.Resources>
         </ContentControl>
 </Window>
