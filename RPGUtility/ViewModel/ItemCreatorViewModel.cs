@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,9 @@ namespace RPGUtility.ViewModel
         //public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
         public ObservableCollection<String> ItemType { get { return _itemModel.ItemType; } set { _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot", "Broń", "Pancerz" }; } }
         public RelayCommand NavigateBackCommand { get; }
+
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand SaveCommand { get; }
         public ItemCreatorViewModel(NavigationState state,string _previousstate)
         {
             _itemModel = new ItemModel();
@@ -37,10 +41,18 @@ namespace RPGUtility.ViewModel
 
             _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
+            SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
         }
         private void OnCurrentViewModelChange()
         {
             OnPropertyChanged(nameof(_navigationState.CurrentViewModel));
+        }
+        private void ExecuteSave(object parameter)
+        {
+            //tutaj dodaj zapisywanie do bazy danych przedmiotu
+            Trace.WriteLine("pomyslnie dodano przedmiot");
+            _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
         }
         private void ExecuteBack(object parameter)
         {
