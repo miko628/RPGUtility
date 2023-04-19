@@ -16,7 +16,8 @@ namespace RPGUtility
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationState state=new NavigationState();
-            state.CurrentViewModel = new MainViewModel(state);
+            NavigationService navigation = new NavigationService(state);
+            state.CurrentViewModel = new HomeViewModel(navigation);
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(state)

@@ -5,6 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>hnet.com-image.ico</ApplicationIcon>
+    <StartupObject>RPGUtility.App</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="hnet.com-image.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="7.0.2" />
+    <PackageReference Include="Npgsql.Json.NET" Version="7.0.2" />
+  </ItemGroup>
 
 </Project>

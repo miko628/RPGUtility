@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RPGUtility
+{
+    class Dice
+    {
+        private Random rand;
+        public Dice()
+        {
+            rand = new Random();
+        }
+        // k20
+        // k12
+        //k10 z 0
+        //k10 z 00
+        //k8
+        //k6
+        //k4
+        public int k20()
+        { 
+            return rand.Next(1,20);
+        }
+    }
+}

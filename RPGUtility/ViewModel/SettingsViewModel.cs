@@ -8,26 +8,14 @@ namespace RPGUtility.ViewModel
 {
     internal class SettingsViewModel : ViewModelBase
     {
-        private readonly NavigationState _navigationState;
-        public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
+        private readonly NavigationService _navigationService;
         public RelayCommand NavigateBackCommand { get; }
-        public SettingsViewModel(NavigationState state)
+        public SettingsViewModel(NavigationService navigation)
         {
-            _navigationState = state;
-            _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
-            NavigateBackCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
+            _navigationService = navigation;
+            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HomeViewModel(_navigationService)); }, CanExecuteMyCommand);
             //NavigateCharacterCommand = new RelayCommand(ExecuteCharacter, CanExecuteMyCommand);
         }
-        private void OnCurrentViewModelChange()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
-        private void ExecuteBack(object parameter)
-        {
-            NavigationState pom = _navigationState;
-            _navigationState.CurrentViewModel = new MainViewModel(pom);
-        }
-
         private bool CanExecuteMyCommand(object parameter)
         {
             // Tutaj wpisz kod, który sprawdzi, czy przycisk jest aktywny

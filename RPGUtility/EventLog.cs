@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGUtility.Model
+namespace RPGUtility
 {
-    class EquipmentModel
+    class EventLog
     {
-        public EquipmentModel()
+        public EventLog()
         {
             
         }

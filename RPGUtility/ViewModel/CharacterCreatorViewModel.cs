@@ -12,7 +12,7 @@ namespace RPGUtility.ViewModel
 {
     class CharacterCreatorViewModel: ViewModelBase
     {
-        private readonly NavigationState _navigationState;
+        private readonly NavigationService _navigationService;
         private CharacterCreatorModel _characterCreatorModel;
         public string CharacterName
         {
@@ -114,26 +114,21 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Image");
             }
         }
-        public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
         public RelayCommand SaveCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand ImageCommand { get; }
-        public CharacterCreatorViewModel(NavigationState state)
+        public CharacterCreatorViewModel(NavigationService navigation)
         {
+
+           _navigationService=navigation;
             _characterCreatorModel = new CharacterCreatorModel();
-            _navigationState = state;
-            _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
-            CancelCommand = new RelayCommand(ExecuteCancel, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
             ImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
-        }
-        private void OnCurrentViewModelChange()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
         }
         private void ExecuteSave(object parameter)
         {
-            NavigationState pom = _navigationState;
+           // NavigationState pom = _navigationState;
             Trace.WriteLine("pomyslnie dodano postac");
             //dodaj zapisywanie do bazy danych
             Trace.WriteLine(CharacterName);
@@ -141,13 +136,9 @@ namespace RPGUtility.ViewModel
             Trace.WriteLine(CurrentCarrer);
             Trace.WriteLine(PreviousCarrer);
             Trace.WriteLine(PlayerName);
-            _navigationState.CurrentViewModel = new MenuViewModel(pom);
+            _navigationService.Navigate(() => new MenuViewModel(_navigationService));
+            //_navigationState.CurrentViewModel = new MenuViewModel(pom);
 
-        }
-        private void ExecuteCancel(object parameter)
-        {
-            NavigationState pom = _navigationState;
-            _navigationState.CurrentViewModel = new MenuViewModel(pom);
         }
         private void ExecuteImage(object parameter)
         {

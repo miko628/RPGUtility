@@ -12,7 +12,7 @@ namespace RPGUtility.ViewModel
     internal class ItemCreatorViewModel:ViewModelBase
     {
         private ItemModel _itemModel;
-        private readonly NavigationState _navigationState;
+        private readonly NavigationService _navigationService;
        string _prev;
         private string _selectedOption;
         public string SelectedOption
@@ -30,39 +30,38 @@ namespace RPGUtility.ViewModel
 
         public RelayCommand CancelCommand { get; }
         public RelayCommand SaveCommand { get; }
-        public ItemCreatorViewModel(NavigationState state,string _previousstate)
+        public ItemCreatorViewModel(NavigationService navigation,string _previousstate)
         {
             _itemModel = new ItemModel();
             _selectedOption= _itemModel.ItemType[0];
             //SelectedOption = _itemModel.ItemType[0];
             // _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot","Broń","Pancerz"};   
-            _navigationState = state;
+            _navigationService = navigation;
             _prev = _previousstate;
 
-            _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
             CancelCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
-        }
-        private void OnCurrentViewModelChange()
-        {
-            OnPropertyChanged(nameof(_navigationState.CurrentViewModel));
         }
         private void ExecuteSave(object parameter)
         {
             //tutaj dodaj zapisywanie do bazy danych przedmiotu
             Trace.WriteLine("pomyslnie dodano przedmiot");
-            _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
+            _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); 
+            //_navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
         }
         private void ExecuteBack(object parameter)
         {
             switch(_prev)
             {
                 case ("Character"):
-                    _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
+                    _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); 
+                 //   _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
                     break;
                 default:
-                    _navigationState.CurrentViewModel = new MenuViewModel(_navigationState);
+                    _navigationService.Navigate(() => new MenuViewModel(_navigationService));
+
+                    //  _navigationState.CurrentViewModel = new MenuViewModel(_navigationState);
                     break;
             }
         }

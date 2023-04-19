@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPGUtility
 {
-    class NavigationState
+    public class NavigationState
     {
         public event Action CurrentViewModelChange;
 

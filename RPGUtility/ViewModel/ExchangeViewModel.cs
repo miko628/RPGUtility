@@ -10,38 +10,29 @@ namespace RPGUtility.ViewModel
 {
     class ExchangeViewModel:ViewModelBase
     {
-        private readonly NavigationState _navigationState;
+        private readonly NavigationService _navigationService;
+
         private ExchangeModel _exchangeModel;
-        public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
         public RelayCommand CancelCommand { get; }
         public RelayCommand SaveCommand { get; }
         public RelayCommand NavigateBackCommand { get; }
 
         public RelayCommand ChooseSecondCharacterCommand { get; }
         public RelayCommand ChooseFirstCharacterCommand { get; }
-        public ExchangeViewModel(NavigationState state)
+        public ExchangeViewModel(NavigationService navigation)
         {
             _exchangeModel = new ExchangeModel();
-            _navigationState = state;
-            _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
-            NavigateBackCommand =new RelayCommand(ExecuteBack, CanExecuteMyCommand);
-            CancelCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
+            _navigationService = navigation;
+            NavigateBackCommand =new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
         }
         private void ExecuteSave(object parameter)
         {
             //tutaj dodaj zapisywanie do bazy danych przedmiotu
             Trace.WriteLine("pomyslnie dokonano wymiany");
-            _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
-        }
-        private void OnCurrentViewModelChange()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
-        private void ExecuteBack(object parameter)
-        {
-            
-            _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
+            _navigationService.Navigate(() => new HomeViewModel(_navigationService));
+           // _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
         }
         private bool CanExecuteMyCommand(object parameter)
         {
