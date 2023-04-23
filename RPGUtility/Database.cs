@@ -6,32 +6,55 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Npgsql;
 namespace RPGUtility
 {
     internal class Database
     {
-        private string ConnectionDB = "Server=localhost; port=5433; userid=postgres; password=DB`D5ARG}$r[>zu\\Jd7H5/vAVqs+B[3L; database=RPGUtility;";
+       // private string ConnectionDB = "Server=localhost; port=5433; userid=postgres; password=DB`D5ARG}$r[>zu\\Jd7H5/vAVqs+B[3L; database=RPGUtility;";
         NpgsqlConnection Con;
-        NpgsqlCommand CommandDB;
-        public Database()
+        NpgsqlCommand? CommandDB;
+        private static Database? _instance;
+        private static readonly object _lock = new object();
+
+        private Database()
         {
-            Connect();
+           string _connectionString = "Server=localhost; port=5433; userid=postgres; password=DB`D5ARG}$r[>zu\\Jd7H5/vAVqs+B[3L; database=RPGUtility;";
+           Con= new NpgsqlConnection(_connectionString);
+            if (Con.State != ConnectionState.Open) { Con.Open(); }
+
+            Trace.WriteLine("pomyslnie polaczono");
+           // Connect();
+        }
+        public static Database GetInstance()
+        {
+            if(_instance ==null)
+            {
+                lock(_lock)
+                    if (_instance == null)
+                    {
+                        _instance = new Database();
+                    }
+               // _instance.Value = 1;
+            }
+            return _instance;
         }
         private void Connect()
         {
             Con = new NpgsqlConnection();
-            Con.ConnectionString = ConnectionDB;
+           // Con.ConnectionString = ConnectionDB;
             if (Con.State != ConnectionState.Open) { Con.Open(); }
            
             Trace.WriteLine("pomyslnie polaczono");
 
         }
-        public string get(string sql)
+        public string read()
         {
             //string dt =new DataTable();
             string dt="a";
-            Connect();
+            string sql = "Select * from \"Campaign\"";
+            //Connect();
             CommandDB = new NpgsqlCommand(sql); 
             CommandDB.Connection = Con;
             CommandDB.CommandText = sql;
@@ -46,15 +69,30 @@ namespace RPGUtility
             //dt = dr.GetString();
             return dt;
         }
-
-        static void Main(string[] args)
+        public void Insert()
         {
-            Database bd=new Database();
+
+        }
+        public void Update()
+        {
+
+        }
+        public void Delete()
+        {
+        }
+        public void Close()
+        {
+            Con.Close();
+        }
+      /*  static void Main(string[] args)
+        {
+            Database bd=Database.GetInstance();
            
-            Trace.WriteLine(bd.get("Select * from \"Campaign\"")); 
+            //Trace.WriteLine(); 
+            bd.Close();
             // Display the number of command line arguments.
             // Console.WriteLine(args.Length);
             
-        }
+        }*/
     }
 }

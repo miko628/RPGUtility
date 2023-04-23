@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGUtility
 {
-    internal class Player : Character
+    class Stats
     {
-        public Player(string name) : base()
-        {
-        }
     }
 }

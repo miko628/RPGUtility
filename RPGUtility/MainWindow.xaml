@@ -34,8 +34,8 @@
             <DataTemplate DataType="{x:Type ViewModels:ExchangeViewModel}">
                 <Views:ExchangeView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:EquipmentViewModel}">
-                <Views:EquipmentView/>
+            <DataTemplate DataType="{x:Type ViewModels:InventoryViewModel}">
+                <Views:InventoryView/>
             </DataTemplate>
         </ContentControl.Resources>
         </ContentControl>

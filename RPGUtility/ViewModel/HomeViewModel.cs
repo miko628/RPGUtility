@@ -17,10 +17,7 @@ namespace RPGUtility.ViewModel
 
         public RelayCommand NavigateHowCommand { get; }
         public RelayCommand ExitCommand { get; }
-        private MenuViewModel createViewModel()
-        {
-            return new MenuViewModel(_navigationService);
-        }
+    
         public HomeViewModel(NavigationService state)
         {
             // CurrentViewModel =  new MenuViewModel();
@@ -33,7 +30,7 @@ namespace RPGUtility.ViewModel
             //NavigateMenuCommand = new RelayCommand(ExecuteMenu, CanExecuteMyCommand);
             NavigateSettingsCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new SettingsViewModel(_navigationService)); }, CanExecuteMyCommand);
             NavigateHowCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HowViewModel(_navigationService)); }, CanExecuteMyCommand); 
-            ExitCommand = new RelayCommand(ExecuteExit, CanExecuteMyCommand);
+            ExitCommand = new RelayCommand((object parameter) => { System.Windows.Application.Current.Shutdown(); }, CanExecuteMyCommand);
         }
         private void ExecuteMenu(object parameter) 
         { _navigationService.Navigate(()=>new MenuViewModel(_navigationService)); }

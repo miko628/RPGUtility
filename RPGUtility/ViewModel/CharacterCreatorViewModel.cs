@@ -89,7 +89,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Campaign");
             }
         }
-        public string Year
+        public int Year
         {
             get
             {
@@ -100,6 +100,136 @@ namespace RPGUtility.ViewModel
             {
                 _characterCreatorModel.Year = value;
                 OnPropertyChanged("Year");
+            }
+        }
+        public int Age
+        {
+            get
+            {
+                Trace.WriteLine("Age");
+                return _characterCreatorModel.Age;
+            }
+            set
+            {
+                _characterCreatorModel.Age = value;
+                OnPropertyChanged("Age");
+            }
+        }
+        public string Gender
+        {
+            get
+            {
+                Trace.WriteLine("Gender");
+                return _characterCreatorModel.Gender;
+            }
+            set
+            {
+                _characterCreatorModel.Gender = value;
+                OnPropertyChanged("Gender");
+            }
+        }
+        public string Eyes
+        {
+            get
+            {
+                Trace.WriteLine("Eyes");
+                return _characterCreatorModel.Eyes;
+            }
+            set
+            {
+                _characterCreatorModel.Eyes = value;
+                OnPropertyChanged("Eyes");
+            }
+        }
+        public float Weight
+        {
+            get
+            {
+                Trace.WriteLine("Weight");
+                return _characterCreatorModel.Weight;
+            }
+            set
+            {
+                _characterCreatorModel.Weight = value;
+                OnPropertyChanged("Weight");
+            }
+        }
+        public string Hair
+        {
+            get
+            {
+                Trace.WriteLine("Hair");
+                return _characterCreatorModel.Hair;
+            }
+            set
+            {
+                _characterCreatorModel.Hair = value;
+                OnPropertyChanged("Hair");
+            }
+        }
+        public float Height
+        {
+            get
+            {
+                Trace.WriteLine("Height");
+                return _characterCreatorModel.Height;
+            }
+            set
+            {
+                _characterCreatorModel.Height = value;
+                OnPropertyChanged("Height");
+            }
+        }
+        public string Star
+        {
+            get
+            {
+                Trace.WriteLine("Star");
+                return _characterCreatorModel.Star;
+            }
+            set
+            {
+                _characterCreatorModel.Star = value;
+                OnPropertyChanged("Star");
+            }
+        }
+        public string Relatives
+        {
+            get
+            {
+                Trace.WriteLine("Relatives");
+                return _characterCreatorModel.Relatives;
+            }
+            set
+            {
+                _characterCreatorModel.Relatives = value;
+                OnPropertyChanged("Relatives");
+            }
+        }
+        public string BirthPlace
+        {
+            get
+            {
+                Trace.WriteLine("BirthPlace");
+                return _characterCreatorModel.BirthPlace;
+            }
+            set
+            {
+                _characterCreatorModel.BirthPlace = value;
+                OnPropertyChanged("BirthPlace");
+            }
+        }
+        public string Characteristics
+        {
+            get
+            {
+                Trace.WriteLine("Characteristics");
+                return _characterCreatorModel.Characteristics;
+            }
+            set
+            {
+                _characterCreatorModel.Characteristics = value;
+                OnPropertyChanged("Characteristics");
             }
         }
         public BitmapImage Image
@@ -128,14 +258,17 @@ namespace RPGUtility.ViewModel
         }
         private void ExecuteSave(object parameter)
         {
-           // NavigationState pom = _navigationState;
+            // NavigationState pom = _navigationState;
+            _characterCreatorModel.Save();
             Trace.WriteLine("pomyslnie dodano postac");
             //dodaj zapisywanie do bazy danych
+            //Character _character=new Character(CharacterName,Race,Gender,"ok",Year,height,)
             Trace.WriteLine(CharacterName);
             Trace.WriteLine(Race);
             Trace.WriteLine(CurrentCarrer);
             Trace.WriteLine(PreviousCarrer);
             Trace.WriteLine(PlayerName);
+
             _navigationService.Navigate(() => new MenuViewModel(_navigationService));
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);
 

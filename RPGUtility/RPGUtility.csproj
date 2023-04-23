@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>hnet.com-image.ico</ApplicationIcon>
-    <StartupObject>RPGUtility.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

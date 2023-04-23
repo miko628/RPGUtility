@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace RPGUtility
 {
-    internal class Weapon
+    internal class Weapon:Item
     {
-        int id;
-        string name;
+        public Weapon(string name,int quantity,string description):base(name,quantity,description)
+        {
+          ///  this.name = name;
+          //  this.quantity=quantity;
+          //  this.description=description;
+        }
     }
 }

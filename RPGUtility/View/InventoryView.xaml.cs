@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RPGUtility.View
 {
     /// <summary>
-    /// Interaction logic for EquipmentView.xaml
+    /// Interaction logic for InventoryView.xaml
     /// </summary>
-    public partial class EquipmentView : UserControl
+    public partial class InventoryView : UserControl
     {
-        public EquipmentView()
+        public InventoryView()
         {
             InitializeComponent();
         }

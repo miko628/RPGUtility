@@ -11,7 +11,7 @@ namespace RPGUtility.ViewModel
 {
     internal class ItemCreatorViewModel:ViewModelBase
     {
-        private ItemModel _itemModel;
+        private ItemCreationModel _itemModel;
         private readonly NavigationService _navigationService;
        string _prev;
         private string _selectedOption;
@@ -32,7 +32,7 @@ namespace RPGUtility.ViewModel
         public RelayCommand SaveCommand { get; }
         public ItemCreatorViewModel(NavigationService navigation,string _previousstate)
         {
-            _itemModel = new ItemModel();
+            _itemModel = new ItemCreationModel();
             _selectedOption= _itemModel.ItemType[0];
             //SelectedOption = _itemModel.ItemType[0];
             // _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot","Broń","Pancerz"};   

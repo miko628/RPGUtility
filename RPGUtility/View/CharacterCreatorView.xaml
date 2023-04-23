@@ -85,25 +85,25 @@
         
             <TextBlock  Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Text="Opis Postaci" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Wiek:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Age}"/>
             <TextBlock  Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="3" Text="Płeć:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Gender}"/>
             <TextBlock  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor oczu:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Eyes}"/>
             <TextBlock  Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="3" Text="Waga:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Weight}"/>
             <TextBlock  Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor włosów:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Hair}"/>
             <TextBlock  Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="3" Text="Wzrost:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Height}"/>
             <TextBlock  Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Text="Znak Gwiezdny:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Star}"/>
             <TextBlock  Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="3" Text="Rodzeństwo:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Relatives}"/>
             <TextBlock  Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3" Text="Miejsce urodzenia:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding BirthPlace}"/>
             <TextBlock  Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="3" Text="Znaki szczególne:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"/>
+            <TextBox Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Characteristics}"/>
 
             <Border MinWidth="50" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
                 <Border.Resources>
