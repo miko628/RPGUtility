@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace RPGUtility;
 
-public partial class Weapon
+public partial class Armor
 {
-    public int WeaponId { get; set; }
+    public int ArmorId { get; set; }
 
     public string? Type { get; set; }
 
@@ -13,7 +13,13 @@ public partial class Weapon
 
     public string? Description { get; set; }
 
-    public double? Damage { get; set; }
+    public double? Head { get; set; }
+
+    public double? Chestplate { get; set; }
+
+    public double? Leggings { get; set; }
+
+    public double? Boots { get; set; }
 
     public int? CharacterId { get; set; }
 

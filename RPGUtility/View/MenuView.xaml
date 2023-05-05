@@ -8,62 +8,62 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="#fff2cc">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"  />
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"  />
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"  />
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"  />
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button x:Name="backButton" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="45"/>
-                    
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="battleButton" Grid.Column="4"  Grid.ColumnSpan="4" Grid.Row="2" FontSize="18" Content="Walka" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBattleCommand}" >
+        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="testButton" Grid.Column="4"  Grid.ColumnSpan="4" Grid.Row="4" FontSize="18" Content="Scenariusz" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateTestCommand}">
+
+        <Button x:Name="battleButton" Grid.Column="3"  Grid.ColumnSpan="4" Grid.Row="3" FontSize="18" Content="Walka" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBattleCommand}" Click="battleButton_Click" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="manageButton" Grid.Column="4"  Grid.ColumnSpan="4" Grid.Row="6" FontSize="18" Content="Zarządzaj postaciami" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateCharacterCommand}">
+        <Button x:Name="CampaignButton" Grid.Column="3"  Grid.ColumnSpan="4" Grid.Row="5" FontSize="18" Content="Scenariusz" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateCampaignCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="spellButton" Grid.Column="4"  Grid.ColumnSpan="4" Grid.Row="8" FontSize="18" Content="Zaklęcia" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateSpellsCommand}">
+        <Button x:Name="manageButton" Grid.Column="3"  Grid.ColumnSpan="4" Grid.Row="7" FontSize="18" Content="Zarządzaj postaciami" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateCharacterCommand}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="spellButton" Grid.Column="3"  Grid.ColumnSpan="4" Grid.Row="9" FontSize="18" Content="Zaklęcia" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateSpellsCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

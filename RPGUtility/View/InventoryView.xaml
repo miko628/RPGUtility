@@ -42,7 +42,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Border Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="3" Grid.RowSpan="10" Background="Gray">
+        <Border Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="4" Grid.RowSpan="9" Background="Gray">
             <Border.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="30"/>
@@ -51,7 +51,7 @@
         </Border>
         
         <TextBlock  FontSize="20" FontWeight="Bold" Margin="5" />
-        <ScrollViewer Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="3" Grid.RowSpan="10" VerticalScrollBarVisibility="Auto" >
+        <ScrollViewer Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="4" Grid.RowSpan="9" VerticalScrollBarVisibility="Auto" >
             <ItemsControl Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="3" Grid.RowSpan="10" ItemsSource="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -61,9 +61,27 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="15" >
-                            <Image Width="200" Height="200"  Source="{Binding image}" />
-                            <TextBlock Text="{Binding name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
-                            <TextBlock Text="{Binding description}" Padding="5,5,5,5" HorizontalAlignment="Center" />
+                            <Grid>
+                            <Image Width="200" Height="200"  Source="{Binding image}"  />
+                                <TextBlock Text="{Binding quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+                            </Grid>
+
+
+
+    <TextBlock Text="{Binding name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
+                            
+                            <StackPanel.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                        <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding description}"/>
+                                        <TextBlock/>
+                                        <StackPanel Orientation="Horizontal">
+                                        <Button Content="Edytuj"/>
+                                        <Button Content="Usuń"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </ToolTip>
+                            </StackPanel.ToolTip>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -76,5 +94,12 @@
                 </Style>
             </Border.Resources>
         </Border>
+        <Button Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="8" Content="Dodaj" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding AddCommand}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </UserControl>

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace RPGUtility.View
 {
     /// <summary>
-    /// Interaction logic for MenuView.xaml
+    /// Interaction logic for CampaignView.xaml
     /// </summary>
-    public partial class MenuView : UserControl
+    public partial class CampaignView : UserControl
     {
-        public MenuView()
+        public CampaignView()
         {
             InitializeComponent();
-        }
-
-        private void battleButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

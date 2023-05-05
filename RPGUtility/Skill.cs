@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RPGUtility
+namespace RPGUtility;
+
+public partial class Skill
 {
-    internal class Skill
-    {
-        int id;
-        string name;
-    }
+    public int SkillId { get; set; }
+
+    public string? Description { get; set; }
+
+    public int? CharacterId { get; set; }
+
+    public virtual Character? Character { get; set; }
 }

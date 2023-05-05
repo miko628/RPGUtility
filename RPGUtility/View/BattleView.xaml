@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RPGUtility.View.HowView"
+﻿<UserControl x:Class="RPGUtility.View.BattleView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -42,6 +42,5 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Label Grid.Column="1" Grid.Row="4" FontSize="38" Content="How to play???"/>
     </Grid>
 </UserControl>

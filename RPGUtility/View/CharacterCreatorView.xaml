@@ -39,12 +39,28 @@
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
-                <RowDefinition Height="15"/>
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
                 <RowDefinition Height="15"/>
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition Height="15"/>
+               
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                
+                <RowDefinition Height="15"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+                
+                <RowDefinition Height="15"/>
+                <RowDefinition MinHeight="100" MaxHeight="300"/>
+
+
             </Grid.RowDefinitions>
 
             <Border MinWidth="50" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Background="#555A57">
@@ -58,9 +74,10 @@
             <TextBlock  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="Nazwa postaci:" FontSize="18" Margin="20,20,20,20"/>
             <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CharacterName}"/>
             <TextBlock  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="Rasa postaci:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Race}"/>
+            <!--TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Race}"/-->
+            <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding Race}" Text="Race" />
             <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Obecna profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CurrentCarrer}"/>
+            <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CurrentCarrer}" />
             <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Poprzednia profesja:" FontSize="18" Margin="20,20,20,10"/>
             <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding PreviousCarrer}"/>
 
@@ -113,7 +130,7 @@
                 </Border.Resources>
             </Border>
 
-            <Image  Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="2" Source="{Binding Image}">
+            <Image  Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="2" Source="{Binding Image}" UseLayoutRounding="True" Width="400" Height="600" Stretch="Fill" Margin="10">
                 <Image.Resources>
                   
                 </Image.Resources>
@@ -127,7 +144,7 @@
                 </Button.Resources>
             </Button>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#555A57">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -135,19 +152,199 @@
                 </Border.Resources>
             </Border>
             <TextBlock  Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="5" Text="Cechy specjalne" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+            <Grid Grid.Row="19" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="5" Margin="15" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Walka Wręcz" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="US" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Krzepa"/>
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Odporność"/>
+                <TextBlock  Grid.Row="1" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <TextBlock  Grid.Row="2" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <TextBlock  Grid.Row="3" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <TextBox Grid.Row="1" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="NumberFullWidth"/>
+                <TextBox Grid.Row="2" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="22" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+                <TextBlock Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Zręczność"/>
+                <TextBlock Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Inteligencja"/>
+                <TextBlock Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Siła Woli"/>
+                <TextBlock Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ogłada"/>
+
+                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="2" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="3" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+
+                <Button Grid.Row="1" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Row="3" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="A" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="A" />
+                <TextBlock Grid.Row="5" Grid.Column="2" Text="Żyw" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Żywotność" />
+                <TextBlock Grid.Row="5" Grid.Column="3" Text="S" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Siła"/>
+                <TextBlock Grid.Row="5" Grid.Column="4" Text="Wt" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Witalność"/>
+                <TextBlock Grid.Row="5" Grid.Column="6" Text="Sz" TextAlignment="Center" Padding="5,5,20,0" FontSize="18" FontWeight="SemiBold" ToolTip="Szybkość"/>
+                <TextBlock Grid.Row="5" Grid.Column="7" Text="Mag" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Magia"/>
+                <TextBlock Grid.Row="5" Grid.Column="8" Text="PO" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Obłędu"/>
+                <TextBlock Grid.Row="5" Grid.Column="9" Text="PP" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Przeznaczenia"/>
+                
+                <TextBlock  Grid.Row="6" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <TextBlock  Grid.Row="7" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <TextBlock  Grid.Row="8" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                
+                <TextBox Grid.Row="6" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="NumberFullWidth"/>
+                <TextBox Grid.Row="7" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+
+                <TextBox Grid.Row="6" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="7" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="8" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+
+                <Button Grid.Row="6" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Row="7" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Row="8" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+
+            
+           
+        
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="25" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+                <Border.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="30"/>
+                        <!-- Tutaj bendzie kiedys combobox ok ok -->
+                    </Style>
+                </Border.Resources>
+            </Border>
+            <TextBlock  Grid.Row="25" Grid.Column="1" Grid.ColumnSpan="5" Text="Umiejętności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+
+           
+
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="29" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
                     </Style>
                 </Border.Resources>
             </Border>
-            <TextBlock  Grid.Row="22" Grid.Column="1" Grid.ColumnSpan="5" Text="Umiejętności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
 
+            <TextBlock  Grid.Row="29" Grid.Column="1" Grid.ColumnSpan="5" Text=" Zdolności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+        
+            
 
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="33" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+                <Border.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="30"/>
+                    </Style>
+                </Border.Resources>
+            </Border>
+        
+            <TextBlock  Grid.Row="33" Grid.Column="1" Grid.ColumnSpan="5" Text="Pieniądze" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+        
+            
 
-            <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="26" Content="Anuluj"  Command="{Binding CancelCommand}">
+            <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="37" Content="Anuluj"  Command="{Binding CancelCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="25"/>
@@ -155,7 +352,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Grid.Column="4"  Grid.ColumnSpan="2" Grid.Row="26" Content="Zapisz" Command="{Binding SaveCommand}">
+            <Button Grid.Column="4"  Grid.ColumnSpan="2" Grid.Row="37" Content="Zapisz" Command="{Binding SaveCommand}">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="25"/>

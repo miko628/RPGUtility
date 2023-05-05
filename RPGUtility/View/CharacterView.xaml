@@ -33,13 +33,13 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-                <Button.Resources>
+            <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        
+
         <Border MinWidth="50" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" Background="#555A57">
             <Border.Resources>
                 <Style TargetType="Border">
@@ -70,7 +70,7 @@
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
-                   
+
                 </Style>
             </Button.Resources>
         </Button>
@@ -133,4 +133,4 @@
             </Button.Resources>
         </Button>
     </Grid>
-</UserControl>
+</UserControl >

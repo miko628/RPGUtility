@@ -10,7 +10,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -21,31 +23,39 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Frame x:Name="mainFrame"/>
-        <Button x:Name="backButton" Grid.Column="1" Grid.Row="1" FontSize="18" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
+        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
+                    <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Border Grid.Column="3" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="9" Background="#555A57">
+
+        <Border Grid.Column="3" Grid.ColumnSpan="7" Grid.Row="1" Grid.RowSpan="12" Background="#555A57">
             <Border.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="30"/>
                 </Style>
             </Border.Resources>
+            
         </Border>
+        
         <Label Grid.Column="3" Grid.ColumnSpan="5" Grid.Row="3" Grid.RowSpan="9" FontSize="98" Content="Settings" HorizontalAlignment="Center"/>
+        <CheckBox Name="FullscreenCheckBox" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="6" VerticalAlignment="Center" Content="Pełny ekran" FontSize="30" />
+
+
     </Grid>
 </UserControl>

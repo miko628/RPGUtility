@@ -14,7 +14,7 @@ namespace RPGUtility.ViewModel
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand NavigateCharacterCommand { get; }
         public RelayCommand NavigateBattleCommand { get; }
-        public RelayCommand NavigateTestCommand { get; }
+        public RelayCommand NavigateCampaignCommand { get; }
         public RelayCommand NavigateSpellsCommand { get; }
         public MenuViewModel(NavigationService navigation)
         {
@@ -22,7 +22,8 @@ namespace RPGUtility.ViewModel
             //_navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HomeViewModel(_navigationService)); }, CanExecuteMyCommand);
             NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NavigateTestCommand = new RelayCommand(ExecuteTest, CanExecuteMyCommand);
+            NavigateCampaignCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
+            NavigateBattleCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignCreatorViewModel(_navigationService)); }, CanExecuteMyCommand);
         }
 
         private void ExecuteBack(object parameter)

@@ -16,28 +16,28 @@ namespace RPGUtility.ViewModel
         private readonly NavigationService _navigationService;
         private InventoryModel _inventoryModel;
         public RelayCommand NavigateBackCommand { get; }
+        public RelayCommand AddCommand { get; }
         //private ObservableCollection<Item> _items;
-        public event PropertyChangedEventHandler PropertyChanged;
        
         public ObservableCollection<Item> Items { get; set; }
 
         private void LoadData()
         {
-            List<Item> dbItems = _inventoryModel.getItems();
+            /*List<Item> dbItems = _inventoryModel.getItems();
             foreach (var item in dbItems)
             {
                 // Id = itemData.Id,
                 var it = new Item(item.name, item.quantity, item.description);
-               /* {
+               *//* {
                     name = item.name,
                     quantity = item.quantity,
                     description = item.description
-                };*/
+                };*//*
                 Items.Add(item);
                 Trace.WriteLine(item.name);
                 Trace.WriteLine(item.quantity);
                 Trace.WriteLine(item.description);
-            }
+            }*/
                
             
         }
@@ -54,9 +54,6 @@ namespace RPGUtility.ViewModel
         { 
             return true;
         }
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+      
     }
 }

@@ -24,7 +24,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("CharacterName");
             }
         }
-        public string Race
+        /*public string Race
         {
             get { Trace.WriteLine("Race");
                 return _characterCreatorModel.Race; }
@@ -32,7 +32,7 @@ namespace RPGUtility.ViewModel
                 _characterCreatorModel.Race = value;
                 OnPropertyChanged("Race");
             }
-        }
+        }*/
         public string CurrentCarrer
         {
             get { Trace.WriteLine("CurrentCarrer");
@@ -232,6 +232,19 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Characteristics");
             }
         }
+        public string Background
+        {
+            get
+            {
+                Trace.WriteLine("Background");
+                return _characterCreatorModel.Background;
+            }
+            set
+            {
+                _characterCreatorModel.Background = value;
+                OnPropertyChanged("Background");
+            }
+        }
         public BitmapImage Image
         {
             get
@@ -260,14 +273,14 @@ namespace RPGUtility.ViewModel
         {
             // NavigationState pom = _navigationState;
             _characterCreatorModel.Save();
+            //tutaj dodaj jeszcze sprawdzenie czy wszystkie wymagane pola są git określone
+            //Character character = new Character(CharacterName,Race,Gender,null,Year,Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,null,null,CurrentCarrer,"oko",PreviousCarrer);
             Trace.WriteLine("pomyslnie dodano postac");
             //dodaj zapisywanie do bazy danych
             //Character _character=new Character(CharacterName,Race,Gender,"ok",Year,height,)
-            Trace.WriteLine(CharacterName);
-            Trace.WriteLine(Race);
-            Trace.WriteLine(CurrentCarrer);
-            Trace.WriteLine(PreviousCarrer);
-            Trace.WriteLine(PlayerName);
+            //Trace.WriteLine(character.name);
+           // Trace.WriteLine(character.race);
+            
 
             _navigationService.Navigate(() => new MenuViewModel(_navigationService));
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);

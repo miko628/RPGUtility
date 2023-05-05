@@ -8,6 +8,7 @@
         xmlns:ViewModels="clr-namespace:RPGUtility.ViewModel"
         mc:Ignorable="d"
         Title="RPGUtility" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
@@ -36,6 +37,18 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:InventoryViewModel}">
                 <Views:InventoryView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:CampaignViewModel}">
+                <Views:CampaignView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:BattleViewModel}">
+                <Views:BattleView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:StoryViewModel}">
+                <Views:StoryView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:CampaignCreatorViewModel}">
+                <Views:CampaignCreatorView/>
             </DataTemplate>
         </ContentControl.Resources>
         </ContentControl>

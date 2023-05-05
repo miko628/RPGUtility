@@ -20,9 +20,33 @@ namespace RPGUtility
         //k8
         //k6
         //k4
+        public int k100()
+        {
+            return rand.Next(1, 100);
+        }
         public int k20()
         { 
             return rand.Next(1,20);
+        }
+        public int k30()
+        {
+            return rand.Next(1, 30);
+        }
+        public int k12()
+        {
+            return rand.Next(1, 12);
+        }
+        public int k8()
+        {
+            return rand.Next(1, 8);
+        }
+        public int k6()
+        {
+            return rand.Next(1, 6);
+        }
+        public int k4()
+        {
+            return rand.Next(1, 4);
         }
     }
 }

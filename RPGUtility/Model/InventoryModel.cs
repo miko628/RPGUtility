@@ -14,7 +14,7 @@ namespace RPGUtility.Model
         {
            Itemlist = new List<Item>();
             
-            Itemlist.Add(new Item("Sword", 1, "A sharp sword."));
+            /*Itemlist.Add(new Item("Sword", 1, "A sharp sword."));
             Itemlist.Add(new Item("a", 1, "A sturdy shield."));
             Itemlist.Add(new Item("b", 1, "A sturdy shield."));
             Itemlist.Add(new Item("c", 1, "A sturdy shield."));
@@ -44,7 +44,7 @@ namespace RPGUtility.Model
             Itemlist.Add(new Item("b", 1, "A sturdy shield."));
             Itemlist.Add(new Item("c", 1, "A sturdy shield."));
             Itemlist.Add(new Item("d", 1, "A sturdy shield."));
-            Itemlist.Add(new Item("e", 1, "A sturdy shield."));
+            Itemlist.Add(new Item("e", 1, "A sturdy shield."));*/
         }
         public List<Item> getItems()
         {

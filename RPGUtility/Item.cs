@@ -1,31 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 
-namespace RPGUtility
+namespace RPGUtility;
+
+public partial class Item
 {
-   public class Item
-    {
-        public int? id;
-        // public string name;
-        // public string description;
-        public int quantity;
+    public int ItemId { get; set; }
 
-        public BitmapImage image { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public Item(string name,int quantity,string description)
-        {
-            this.image = new BitmapImage(new Uri("O:\\programming\\RPGUtility\\RPGUtility\\hnet.com-image.ico", UriKind.RelativeOrAbsolute));
-            /*this.image.BeginInit();
-            this.image.UriSource=;
-            this.image.EndInit();*/
-            this.name = name;
-            this.quantity = quantity;
-            this.description = description;
-        }
-    }
+    public string? Name { get; set; }
+
+    public int? Quantity { get; set; }
+
+    public string? Description { get; set; }
+
+    public int? CharacterId { get; set; }
+
+    public virtual Character? Character { get; set; }
 }
