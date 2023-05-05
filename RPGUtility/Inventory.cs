@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using RPGUtility.Models;
+
 namespace RPGUtility.Model
 {
     class EquipmentModel

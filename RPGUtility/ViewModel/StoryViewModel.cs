@@ -73,9 +73,11 @@ namespace RPGUtility.ViewModel
         public StoryViewModel(NavigationService navigation, int? campaign_id)
         {
             _navigationService = navigation;
-            _storyModel= new StoryModel();
-            _storyModel.id=campaign_id.GetValueOrDefault();
+            _storyModel = new StoryModel();
+            Name = campaign_id.ToString();
+           // _storyModel.id=campaign_id.GetValueOrDefault();
             Trace.WriteLine(campaign_id);
+
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
            // Name = campaign_id;
         }

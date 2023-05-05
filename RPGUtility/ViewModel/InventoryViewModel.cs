@@ -1,4 +1,5 @@
 ﻿using RPGUtility.Model;
+using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

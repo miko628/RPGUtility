@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using RPGUtility.Models;
+using Microsoft.Win32;
 
 namespace RPGUtility.Model
 {
     class CampaignCreatorModel
     {
         private Campaign? _campagin;
-       // public int? key;
+        public int? key;
         public string Name
         {
             get;
@@ -38,7 +40,7 @@ namespace RPGUtility.Model
             set;
         }
 
-        public void save()
+        public async Task save()
         {
             //_campagin = new Campaign(Name, Description, GameMaster, Year);
             //this._character.GetAll();
@@ -50,10 +52,14 @@ namespace RPGUtility.Model
             using (var context=new RpgutilityContext())
             {
                 var campaigns = context.Set<Campaign>();
-                 campaigns.Add(new Campaign { /*CampaignId=556,*/Name = this.Name, Description = this.Description, GameMaster = this.GameMaster, Year =this.Year});
+                Campaign pom = new Campaign { Name = this.Name, Description = this.Description, GameMaster = this.GameMaster, Year = this.Year };
+                await campaigns.AddAsync(pom);
                  //context.Campaigns.AddAsync(campaign);
-                 context.SaveChanges();
+                await context.SaveChangesAsync();
+                key = pom.CampaignId;
             }
+            //Trace.
+            //Trace.WriteLine(key);
         }
         public CampaignCreatorModel()
         {

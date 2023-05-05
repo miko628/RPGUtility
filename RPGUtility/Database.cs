@@ -69,7 +69,7 @@ namespace RPGUtility
             }
         }
 
-        public int? InsertCampaign(Campaign campaign)
+       /* public int? InsertCampaign(Campaign campaign)
         {
             int? key_id=null;
             // string sql = "select ";
@@ -86,10 +86,10 @@ namespace RPGUtility
                         {
                             // character = new Character();
                             //CommandDB.Parameters.AddWithValue("campaign_id", "seq_campaign");
-                           /* CommandDB.Parameters.AddWithValue("name", campaign.name);// tutaj dodaj jeszcze zamiane tej bitmapy itd.
+                           *//* CommandDB.Parameters.AddWithValue("name", campaign.name);// tutaj dodaj jeszcze zamiane tej bitmapy itd.
                             CommandDB.Parameters.AddWithValue("description", campaign.description);
                             CommandDB.Parameters.AddWithValue("game_master", campaign.game_master);
-                            CommandDB.Parameters.AddWithValue("year", campaign.year);*/
+                            CommandDB.Parameters.AddWithValue("year", campaign.year);*//*
                             CommandDB.ExecuteNonQuery();
                         }
                         transaction.Commit();
@@ -104,7 +104,7 @@ namespace RPGUtility
                
             }
             return key_id;
-        }
+        }*/
         /*public Campaign ReadCampaign(int id)
         {
             string sql = $"Select * from \"Campaign\" where campaign_id=@id";
@@ -283,7 +283,7 @@ namespace RPGUtility
 
         }
 
-        public void InsertCharacter(Character character)
+      /*  public void InsertCharacter(Character character)
         {
             int key_id;
            // string sql = "select ";
@@ -301,7 +301,7 @@ namespace RPGUtility
                         using (NpgsqlCommand CommandDB = new NpgsqlCommand(sql, Con))
                         {
                            // character = new Character();
-                           /* CommandDB.Parameters.AddWithValue("id", key_id);
+                           *//* CommandDB.Parameters.AddWithValue("id", key_id);
                             CommandDB.Parameters.AddWithValue("image", DBNull.Value);// tutaj dodaj jeszcze zamiane tej bitmapy itd.
                             CommandDB.Parameters.AddWithValue("name", character.name);
                             CommandDB.Parameters.AddWithValue("race", character.race);
@@ -324,12 +324,12 @@ namespace RPGUtility
                             CommandDB.Parameters.AddWithValue("gold_crowns", DBNull.Value);
                             CommandDB.Parameters.AddWithValue("silver_shillings", DBNull.Value);
                             CommandDB.Parameters.AddWithValue("brass_penniews", DBNull.Value);
-                            CommandDB.Parameters.AddWithValue("campaign_id", 0);//tutaj se wezmiesz skads jaka jest tera kampania ok ok*/
+                            CommandDB.Parameters.AddWithValue("campaign_id", 0);//tutaj se wezmiesz skads jaka jest tera kampania ok ok*//*
                             CommandDB.ExecuteNonQuery();
                         }
                        using (NpgsqlCommand CommandDB2 = new NpgsqlCommand(sql2, Con))
                         {
-                           /* CommandDB2.Parameters.AddWithValue("id", key_id);
+                           *//* CommandDB2.Parameters.AddWithValue("id", key_id);
                             CommandDB2.Parameters.AddWithValue("weapon_skill", character.weapon_skill);
                             CommandDB2.Parameters.AddWithValue("ballistic_skill", character.ballistic_skill);
                             CommandDB2.Parameters.AddWithValue("strength", character.strength);
@@ -382,7 +382,7 @@ namespace RPGUtility
                             CommandDB2.Parameters.AddWithValue("current_movement", character.current_movement);
                             CommandDB2.Parameters.AddWithValue("current_magic", character.current_magic);
                             CommandDB2.Parameters.AddWithValue("current_insanity_points", character.current_insanity_points);
-                            CommandDB2.Parameters.AddWithValue("current_fate_points", character.current_fate_points);*/
+                            CommandDB2.Parameters.AddWithValue("current_fate_points", character.current_fate_points);*//*
                             CommandDB2.ExecuteNonQuery();
                         }
                         transaction.Commit();
@@ -395,7 +395,7 @@ namespace RPGUtility
                     transaction.Rollback();
                     Trace.WriteLine("Wystąpił błąd: " + ex.Message);
                 }
-            }
+            }*/
                 // using (CommandDB = new NpgsqlCommand(sql, Con))
                 // {
                 
@@ -431,7 +431,7 @@ namespace RPGUtility
             //      Trace.WriteLine(dr[0].ToString());
             // dt = dr[0].ToString(); //get Value of ppassword Column
             //  }
-        }
+       // }
         
         public void Close()
         {

@@ -76,7 +76,7 @@ namespace RPGUtility.ViewModel
             _navigationService = navigation;
             _campaignCreatorModel = new CampaignCreatorModel();
             CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
-            SubmitCommand = new RelayCommand((object parameter) => { _campaignCreatorModel.save(); _navigationService.Navigate(() => new MenuViewModel(_navigationService)); /*_navigationService.Navigate(() => new StoryViewModel(_navigationService, _campaignCreatorModel.key));*/ }, CanExecuteMyCommand);
+            SubmitCommand = new RelayCommand(async (object parameter) => { await _campaignCreatorModel.save(); /*_navigationService.Navigate(() => new MenuViewModel(_navigationService));*/ _navigationService.Navigate(() => new StoryViewModel(_navigationService, _campaignCreatorModel.key)); }, CanExecuteMyCommand);
         }
         private bool CanExecuteMyCommand(object parameter)
         {
