@@ -1,4 +1,5 @@
 ﻿using RPGUtility.Model;
+using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -75,8 +76,8 @@ namespace RPGUtility.ViewModel
         {
             _navigationService = navigation;
             _campaignCreatorModel = new CampaignCreatorModel();
-            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
-            SubmitCommand = new RelayCommand(async (object parameter) => { await _campaignCreatorModel.save(); /*_navigationService.Navigate(() => new MenuViewModel(_navigationService));*/ _navigationService.Navigate(() => new StoryViewModel(_navigationService, _campaignCreatorModel.key)); }, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
+            SubmitCommand = new RelayCommand(async (object parameter) => { Campaign pom=await _campaignCreatorModel.save();  /*_navigationService.Navigate(() => new MenuViewModel(_navigationService));*/ _navigationService.Navigate(() => new StoryViewModel(_navigationService, pom)); }, CanExecuteMyCommand);
         }
         private bool CanExecuteMyCommand(object parameter)
         {

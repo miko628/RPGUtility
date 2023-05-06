@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RPGUtility.View"
+             xmlns:local="clr-namespace:RPGUtility.View" xmlns:viewmodel="clr-namespace:RPGUtility.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CampaignViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="DeepSkyBlue">
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -33,40 +34,63 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="0" Grid.RowSpan="13">
-            <ItemsControl Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="3" Grid.RowSpan="10" ItemsSource="{Binding Campaigns}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="15" >
-                            <Border Background="Red"/>
-                            <TextBlock Text="{Binding name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
-                            <TextBlock Text="{Binding acts}" Padding="5,5,5,5" HorizontalAlignment="Center" />
-                            <StackPanel.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="15"/>
-                                </Style>
-                            </StackPanel.Resources>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-        <Button Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="13" Content="Anuluj" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding CancelCommand}">
+
+        <ListBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="10" Grid.RowSpan="13" SelectedItem="{Binding SelectedCampaign}" Background="Transparent" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListBox.Resources>
+                <CollectionViewSource x:Key="ItemsSourceCollection" Source="{Binding Campaigns}" />
+                
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Height" Value="200"/>
+                    <Setter Property="Margin" Value="20,20,20,0"/>
+                    <Setter Property="Background" Value="gray"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemsSource>
+                <CompositeCollection>
+                    <ListBoxItem HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" >
+                        <Button Content="+" FontSize="96" Command="{Binding NewCampaignCommand}" />
+                    </ListBoxItem>
+                    <CollectionContainer Collection="{Binding Source={StaticResource ItemsSourceCollection}}" />
+                </CompositeCollection>
+            </ListBox.ItemsSource>
+
+            <ListBox.ItemTemplate >
+                <DataTemplate >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <TextBlock FontWeight="Bold"  Grid.Row="1" Grid.Column="0" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Name}"/>
+                    </Grid>
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <Button Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="14" Content="Anuluj" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding CancelCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="13" Content="Zatwierdź" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding SubmitCommand}">
+        <Button Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="14" Content="Zatwierdź" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding SubmitCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

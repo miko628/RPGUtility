@@ -56,20 +56,30 @@
         </ScrollViewer>
 
         <Expander BorderBrush="AliceBlue" BorderThickness="2" Grid.Column="6"  Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="14" ExpandDirection="Left" >
-            <StackPanel Background="Gray" >
-        <TextBlock Text="Sidebar content" FontSize="24" Margin="10" />
-        <ListBox ItemsSource="{Binding Items}" Margin="10" Width="180">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/WpfApp1;component/Resources/Item.png" Width="16" Height="16" Margin="5,0,5,0" />
-                        <TextBlock Text="{Binding}" Margin="0,0,5,0" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
-
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <StackPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Sidebar content" FontSize="24" Margin="10" />
+                    <ListBox ItemsSource="{Binding Acts}" Margin="10" Width="180">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" Margin="0,0,5,0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+                <Button Grid.Row="1" Grid.Column="0" Content="Dodaj Akt" Command="{Binding NewActCommand}"/>
+                <Button Grid.Row="1" Grid.Column="1" Content="Usuń wybrany Akt" Command="{Binding DeleteActCommand}"/>
+            </Grid>
         </Expander>
     </Grid>
 </UserControl>

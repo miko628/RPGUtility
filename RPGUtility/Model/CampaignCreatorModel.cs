@@ -16,7 +16,7 @@ namespace RPGUtility.Model
     class CampaignCreatorModel
     {
         private Campaign? _campagin;
-        public int? key;
+        
         public string Name
         {
             get;
@@ -40,7 +40,7 @@ namespace RPGUtility.Model
             set;
         }
 
-        public async Task save()
+        public async Task<Campaign> save()
         {
             //_campagin = new Campaign(Name, Description, GameMaster, Year);
             //this._character.GetAll();
@@ -56,11 +56,13 @@ namespace RPGUtility.Model
                 await campaigns.AddAsync(pom);
                  //context.Campaigns.AddAsync(campaign);
                 await context.SaveChangesAsync();
-                key = pom.CampaignId;
+                return pom;
             }
             //Trace.
             //Trace.WriteLine(key);
         }
+
+       
         public CampaignCreatorModel()
         {
             

@@ -11,7 +11,7 @@ namespace RPGUtility.Model
 {
     internal class StoryModel
     {
-        private Campaign _campaign;
+        public Campaign _campaign;
         
         public int id;
         
@@ -39,10 +39,23 @@ namespace RPGUtility.Model
             set;
         }
        
-        public StoryModel()
+        public async Task Delete(Act act)
         {
-
-         //   Name = id.ToString();
+            using (var context = new RpgutilityContext())
+            {
+                //var pom = context.Campaigns.Where(k=>k.CampaignId==id).First();
+                context.Acts.Remove(act);
+                await context.SaveChangesAsync();
+            }
+        }
+        public StoryModel( Campaign campaign)
+        {
+            this._campaign =campaign;
+            Name = this._campaign.Name;
+            Description = this._campaign.Description;
+            GameMaster = this._campaign.GameMaster;
+            Year= this._campaign.Year;
+            //   Name = id.ToString();
             // Database db = Database.GetInstance();
             // Campaign _campaign=db.ReadCampaign(id);
             /*Name = _campaign.name;
@@ -50,7 +63,7 @@ namespace RPGUtility.Model
             GameMaster = _campaign.game_master;
             Year = _campaign.year;*/
             //async Initialize();
-           // _ = Initialize();
+            // _ = Initialize();
         }
         public async Task Initialize()
         {
