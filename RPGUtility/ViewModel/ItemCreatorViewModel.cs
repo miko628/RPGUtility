@@ -47,7 +47,7 @@ namespace RPGUtility.ViewModel
         {
             //tutaj dodaj zapisywanie do bazy danych przedmiotu
             Trace.WriteLine("pomyslnie dodano przedmiot");
-            _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); 
+           // _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); 
             //_navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
         }
         private void ExecuteBack(object parameter)
@@ -55,11 +55,11 @@ namespace RPGUtility.ViewModel
             switch(_prev)
             {
                 case ("Character"):
-                    _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); 
+                  //  _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); 
                  //   _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
                     break;
                 default:
-                    _navigationService.Navigate(() => new MenuViewModel(_navigationService));
+                   // _navigationService.Navigate(() => new MenuViewModel(_navigationService));
 
                     //  _navigationState.CurrentViewModel = new MenuViewModel(_navigationState);
                     break;

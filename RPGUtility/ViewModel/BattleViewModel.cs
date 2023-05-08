@@ -17,7 +17,7 @@ namespace RPGUtility.ViewModel
         {
             _navigationService = navigation;
             _battleModel = new BattleModel();
-            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
+            //NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
 
         }
         private bool CanExecuteMyCommand(object parameter)

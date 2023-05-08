@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,32 +14,10 @@ namespace RPGUtility.Model
     internal class StoryModel
     {
         public Campaign _campaign;
+        private List<Act> acts;
         
-        public int id;
+        public ObservableCollection<Act> Acts { get; set; }
         
-        public string Name 
-        {
-            get;
-            set;
-        }
-
-        public string Description
-        {
-            get;
-            set;
-        }
-
-        public string GameMaster
-        {
-            get;
-            set;
-        }
-
-        public string Year
-        {
-            get;
-            set;
-        }
        
         public async Task Delete(Act act)
         {
@@ -47,14 +27,24 @@ namespace RPGUtility.Model
                 context.Acts.Remove(act);
                 await context.SaveChangesAsync();
             }
+            await GetAll();
         }
+
+        public async Task EditCampaign(Campaign _campaign)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                //var pom = context.Campaigns.Where(k=>k.CampaignId==id).First();
+                context.Campaigns.Remove(_campaign);
+                await context.SaveChangesAsync();
+            }
+        }
+
         public StoryModel( Campaign campaign)
         {
+            Acts = new ObservableCollection<Act>();
+            acts = new List<Act>();
             this._campaign =campaign;
-            Name = this._campaign.Name;
-            Description = this._campaign.Description;
-            GameMaster = this._campaign.GameMaster;
-            Year= this._campaign.Year;
             //   Name = id.ToString();
             // Database db = Database.GetInstance();
             // Campaign _campaign=db.ReadCampaign(id);
@@ -65,20 +55,42 @@ namespace RPGUtility.Model
             //async Initialize();
             // _ = Initialize();
         }
+        public async Task AddAct()
+        {
+            using (var context=new RpgutilityContext())
+            {
+                var act = context.Set<Act>();
+                Act pom = new Act { Name = $"Akt {Acts.Count()}", Description = "Testowe",CampaignId=_campaign.CampaignId };
+                await act.AddAsync(pom);
+                await context.SaveChangesAsync();
+            }
+           // await GetAll();
+        }
         public async Task Initialize()
         {
 
             using (var context = new RpgutilityContext())
             {
-                var campaigns = await context.Campaigns.SingleAsync(b => b.CampaignId == id);
+                var campaigns = await context.Acts.SingleAsync(b => b.CampaignId == _campaign.CampaignId);
                 //Name = campaigns.Find(id);
               //  Name = id;
             }
         }
-        public void getCampaign()
+        public async Task<List<Act>> GetAll()
         {
+           // Acts.Clear();
+            using (var context = new RpgutilityContext())
+            {
+                acts = await context.Acts.Where(b => b.CampaignId == _campaign.CampaignId).OrderBy(b => b.Name).ToListAsync();
+                return acts;
+            }
+           /* foreach (var item in acts)
+            {
+                Trace.WriteLine($"Description: {item.Description}");
+                Acts.Add(item);
+            }*/
 
         }
-       //public 
+        //public 
     }
 }

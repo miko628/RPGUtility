@@ -11,6 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.Threading;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
+using System.ComponentModel;
 
 namespace RPGUtility.ViewModel
 {
@@ -19,6 +23,8 @@ namespace RPGUtility.ViewModel
         private readonly NavigationService _navigationService;
         private CampaignModel _campaignModel;
         private Campaign _selectedItem;
+        private ObservableCollection<Campaign> _campaigns;
+       
         public Campaign SelectedCampaign
         {
             get { return _selectedItem; }
@@ -28,45 +34,55 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged(nameof(SelectedCampaign));
             }
         }
-         public RelayCommand CancelCommand { get; }
+        public RelayCommand CancelCommand { get; }
 
+        public RelayCommand DeleteCampaignCommand { get; }
         public RelayCommand SubmitCommand { get; }
         public RelayCommand NewCampaignCommand { get; }
         public ObservableCollection<Campaign> Campaigns
         {
-            get { return _campaignModel.Campaigns; }
-            set { _campaignModel.Campaigns = value;
+            get {
+               // Trace.WriteLine("222");
+               // _campaigns = _campaignModel.Campaigns;
+
+                return _campaigns; }
+            set {
+                _campaigns = value;
                 OnPropertyChanged(nameof(Campaigns));
             }
         }
 
-        /* private async Task Load()
-         {
-             List<Campaign> pom= await _campaignModel.GetAll();
-
-             foreach (var item in pom)
-             {
-                 Campaigns.Add(item);
-             }
-         }*/
-        private void RadioButtonChecked(object sender, RoutedEventArgs e)
+        private async Task Load()
         {
-            var radioButton = sender as RadioButton;
-            if (radioButton == null)
-                return;
-            int intIndex = Convert.ToInt32(radioButton.Content.ToString());
-            MessageBox.Show(intIndex.ToString(CultureInfo.InvariantCulture));
+
+            List<Campaign> camp = await _campaignModel.GetAll();
+            App.Current.Dispatcher.BeginInvoke((Action)delegate ()
+           {
+               Campaigns.Clear();
+               foreach (var item in camp)
+               {
+                   Campaigns.Add(item);
+               }
+           });
+
+
+
         }
+
         public CampaignViewModel(NavigationService navigation)
         {
             _navigationService = navigation;
             _campaignModel=new CampaignModel();
-           // Campaigns.Add(new Campaign("ok","ok","ok","ok");
-            _=_campaignModel.GetAll();
-           // Load();
-            CancelCommand = new RelayCommand((object parameter) => {  _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
+            _campaigns=new ObservableCollection<Campaign>();
+            // Campaigns.Add(new Campaign("ok","ok","ok","ok");
+            // _=_campaignModel.GetAll();
+            //Task < List < Campaign >> task1;
+            Task.Run(Load);
+            CancelCommand = new RelayCommand((object parameter) => {  _navigationService.Navigate(() => new HomeViewModel(_navigationService)); }, CanExecuteMyCommand);
             SubmitCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService, _selectedItem)); }, CanExecuteMyCommand);//tutaj przejscie do campaignView
             NewCampaignCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignCreatorViewModel(_navigationService)); }, CanExecuteMyCommand);
+            DeleteCampaignCommand = new RelayCommand(async(object parameter) => { await _campaignModel.Delete(_selectedItem); await Load(); }, CanExecuteMyCommand);
+
             //przycisk do dodawania nowego scenariusza ok ok
 
         }

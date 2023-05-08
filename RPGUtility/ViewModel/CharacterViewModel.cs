@@ -1,4 +1,5 @@
 ﻿using RPGUtility.Model;
+using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,12 +26,12 @@ namespace RPGUtility.ViewModel
         public RelayCommand NavigationSpellCommand { get; }
         public RelayCommand NavigationOpposedTestCommand { get; }
         public RelayCommand NavigationRollDiceCommand { get; }
-        public CharacterViewModel(NavigationService navigation)
+        public CharacterViewModel(NavigationService navigation,Campaign campaign)
         {
             _characterModel = new CharacterModel();
             _navigationService = navigation;
            // _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
-            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
+            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             NavigationItemCreationCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,"Character")); }, CanExecuteMyCommand);
             NavigationExchangeCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ExchangeViewModel(_navigationService)); }, CanExecuteMyCommand);
             // CancelCommand = new RelayCommand(ExecuteCancel, CanExecuteMyCommand);

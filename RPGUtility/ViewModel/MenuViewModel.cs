@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGUtility.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +17,14 @@ namespace RPGUtility.ViewModel
         public RelayCommand NavigateBattleCommand { get; }
         public RelayCommand NavigateCampaignCommand { get; }
         public RelayCommand NavigateSpellsCommand { get; }
-        public MenuViewModel(NavigationService navigation)
+        public MenuViewModel(NavigationService navigation, Campaign campaign)
         {
             _navigationService = navigation;
             //_navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
-            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HomeViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NavigateCampaignCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NavigateBattleCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignCreatorViewModel(_navigationService)); }, CanExecuteMyCommand);
+            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
+            NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
+           // NavigateCampaignCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
+           // NavigateBattleCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignCreatorViewModel(_navigationService)); }, CanExecuteMyCommand);
         }
 
         private void ExecuteBack(object parameter)

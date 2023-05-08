@@ -15,7 +15,7 @@ namespace RPGUtility.Model
 {
     class CampaignCreatorModel
     {
-        private Campaign? _campagin;
+        private readonly Campaign? _campagin;
         
         public string Name
         {

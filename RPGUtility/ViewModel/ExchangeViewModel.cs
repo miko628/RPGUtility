@@ -23,8 +23,8 @@ namespace RPGUtility.ViewModel
         {
             _exchangeModel = new ExchangeModel();
             _navigationService = navigation;
-            NavigateBackCommand =new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
-            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
+            //NavigateBackCommand =new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
+            //CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
         }
         private void ExecuteSave(object parameter)

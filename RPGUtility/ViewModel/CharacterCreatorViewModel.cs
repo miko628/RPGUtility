@@ -14,52 +14,73 @@ namespace RPGUtility.ViewModel
     {
         private readonly NavigationService _navigationService;
         private CharacterCreatorModel _characterCreatorModel;
+        private string _characterName;
+        private string _race;
+        private int _age;
+        private string _background;
+        private string _birthPlace;
+        private string _campaign;
+        private string _gender;
+        private string _characteristics;
+        private string _currentcareer;
+        private string _eyes;
+        private string _gamemaster;
+        private string _hair;
+        private string _playername;
+        private float _height;
+        private float _weight;
+        private string _previouscareer;
+        private string _relatives;
+        private string _star;
+        private int _year;
+
+
         public string CharacterName
         {
             get {
                 Trace.WriteLine("CharacterName");
-                return _characterCreatorModel.CharacterName; }
+                return _characterName; }
             set {
-                _characterCreatorModel.CharacterName = value;
+                _characterName = value;
                 OnPropertyChanged("CharacterName");
             }
         }
-        /*public string Race
+        public string Race
         {
             get { Trace.WriteLine("Race");
-                return _characterCreatorModel.Race; }
+                return _race; }
             set {
-                _characterCreatorModel.Race = value;
+                _race = value;
                 OnPropertyChanged("Race");
             }
-        }*/
+        }
         public string CurrentCarrer
         {
             get { Trace.WriteLine("CurrentCarrer");
-                return _characterCreatorModel.CurrentCarrer; }
+                return _currentcareer; }
             set
             {
-                _characterCreatorModel.CurrentCarrer = value;
+                _currentcareer = value;
                 OnPropertyChanged("CurrentCarrer");
             }
         }
         public string PreviousCarrer
         {
             get { Trace.WriteLine("PreviousCarrer"); 
-                return _characterCreatorModel.PreviousCarrer; }
+                return _previouscareer; }
             set
             {
-                _characterCreatorModel.PreviousCarrer = value;
+                _previouscareer = value;
                 OnPropertyChanged("PreviousCarrer");
             }
         }
         public string PlayerName
         {
             get { Trace.WriteLine("PlayerName");
-                return _characterCreatorModel.PlayerName; }
+                return _playername; }
             set
             {
-                _characterCreatorModel.PlayerName = value;
+                _playername = value;
                 OnPropertyChanged("PlayerName");
             }
         }
@@ -68,11 +89,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("GameMaster");
-                return _characterCreatorModel.GameMaster;
+                return _gamemaster;
             }
             set
             {
-                _characterCreatorModel.GameMaster = value;
+                _gamemaster = value;
                 OnPropertyChanged("GameMaster");
             }
         }
@@ -81,11 +102,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Campaign");
-                return _characterCreatorModel.Campaign;
+                return _campaign;
             }
             set
             {
-                _characterCreatorModel.Campaign = value;
+               _campaign = value;
                 OnPropertyChanged("Campaign");
             }
         }
@@ -94,11 +115,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Year");
-                return _characterCreatorModel.Year;
+                return _year;
             }
             set
             {
-                _characterCreatorModel.Year = value;
+                _year = value;
                 OnPropertyChanged("Year");
             }
         }
@@ -107,11 +128,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Age");
-                return _characterCreatorModel.Age;
+                return _age;
             }
             set
             {
-                _characterCreatorModel.Age = value;
+                _age = value;
                 OnPropertyChanged("Age");
             }
         }
@@ -120,11 +141,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Gender");
-                return _characterCreatorModel.Gender;
+                return _gender;
             }
             set
             {
-                _characterCreatorModel.Gender = value;
+               _gender = value;
                 OnPropertyChanged("Gender");
             }
         }
@@ -133,11 +154,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Eyes");
-                return _characterCreatorModel.Eyes;
+                return _eyes;
             }
             set
             {
-                _characterCreatorModel.Eyes = value;
+                _eyes = value;
                 OnPropertyChanged("Eyes");
             }
         }
@@ -146,11 +167,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Weight");
-                return _characterCreatorModel.Weight;
+                return _weight;
             }
             set
             {
-                _characterCreatorModel.Weight = value;
+                _weight = value;
                 OnPropertyChanged("Weight");
             }
         }
@@ -159,11 +180,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Hair");
-                return _characterCreatorModel.Hair;
+                return _hair;
             }
             set
             {
-                _characterCreatorModel.Hair = value;
+                _hair = value;
                 OnPropertyChanged("Hair");
             }
         }
@@ -172,11 +193,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Height");
-                return _characterCreatorModel.Height;
+                return _height;
             }
             set
             {
-                _characterCreatorModel.Height = value;
+                _height = value;
                 OnPropertyChanged("Height");
             }
         }
@@ -185,11 +206,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Star");
-                return _characterCreatorModel.Star;
+                return _star;
             }
             set
             {
-                _characterCreatorModel.Star = value;
+                _star = value;
                 OnPropertyChanged("Star");
             }
         }
@@ -198,11 +219,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Relatives");
-                return _characterCreatorModel.Relatives;
+                return _relatives;
             }
             set
             {
-                _characterCreatorModel.Relatives = value;
+                _relatives = value;
                 OnPropertyChanged("Relatives");
             }
         }
@@ -211,11 +232,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("BirthPlace");
-                return _characterCreatorModel.BirthPlace;
+                return _birthPlace;
             }
             set
             {
-                _characterCreatorModel.BirthPlace = value;
+                _birthPlace = value;
                 OnPropertyChanged("BirthPlace");
             }
         }
@@ -224,11 +245,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Characteristics");
-                return _characterCreatorModel.Characteristics;
+                return _characteristics;
             }
             set
             {
-                _characterCreatorModel.Characteristics = value;
+                _characteristics = value;
                 OnPropertyChanged("Characteristics");
             }
         }
@@ -237,11 +258,11 @@ namespace RPGUtility.ViewModel
             get
             {
                 Trace.WriteLine("Background");
-                return _characterCreatorModel.Background;
+                return _background;
             }
             set
             {
-                _characterCreatorModel.Background = value;
+                _background = value;
                 OnPropertyChanged("Background");
             }
         }
@@ -266,7 +287,7 @@ namespace RPGUtility.ViewModel
            _navigationService=navigation;
             _characterCreatorModel = new CharacterCreatorModel();
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
-            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService)); }, CanExecuteMyCommand);
+            //CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
             ImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
         }
         private void ExecuteSave(object parameter)
@@ -282,18 +303,21 @@ namespace RPGUtility.ViewModel
            // Trace.WriteLine(character.race);
             
 
-            _navigationService.Navigate(() => new MenuViewModel(_navigationService));
+           // _navigationService.Navigate(() => new CharacterViewModel(_navigationService));
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);
 
         }
         private void ExecuteImage(object parameter)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
             if (openFileDialog.ShowDialog() == true)
             {
                 string ImagePath = openFileDialog.FileName;
-                Image = new BitmapImage(new System.Uri(ImagePath));
+                var pom = new BitmapImage(new System.Uri(ImagePath));
+                
+                Image = ImageEncoder.bytearraytoBitmap(ImageEncoder.BitmapImagetobytearray(pom));
+                //Image = new BitmapImage(new System.Uri(ImagePath));
             }
         }
 

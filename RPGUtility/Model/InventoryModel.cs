@@ -1,4 +1,5 @@
-﻿using RPGUtility.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ namespace RPGUtility.Model
 {
     internal class InventoryModel
     {
+        private Character _character;
         private  List<Item> Itemlist { get; set; }
         public InventoryModel()
         {
@@ -46,6 +48,15 @@ namespace RPGUtility.Model
             Itemlist.Add(new Item("c", 1, "A sturdy shield."));
             Itemlist.Add(new Item("d", 1, "A sturdy shield."));
             Itemlist.Add(new Item("e", 1, "A sturdy shield."));*/
+        }
+
+        public async Task <List<Item>> GetAllItems()
+        {
+            using (var context = new RpgutilityContext())
+            {
+                Itemlist = await context.Items.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                return Itemlist;
+            }
         }
         public List<Item> getItems()
         {

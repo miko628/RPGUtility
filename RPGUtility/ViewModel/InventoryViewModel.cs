@@ -49,7 +49,7 @@ namespace RPGUtility.ViewModel
             _navigationService = navigation;
             Items = new ObservableCollection<Item>();
             LoadData();
-            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
+            //NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
         }
         private bool CanExecuteMyCommand(object parameter)
         { 

@@ -26,7 +26,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Frame x:Name="mainFrame"/>
-        <Button x:Name="startButton" Grid.Column="1" Grid.Row="2" FontSize="18" Content="Start"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateMenuCommand}">
+        <Button x:Name="startButton" Grid.Column="1" Grid.Row="2" FontSize="18" Content="Start"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateStartCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>

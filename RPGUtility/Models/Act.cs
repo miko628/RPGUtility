@@ -13,6 +13,9 @@ public partial class Act
     [Column("act_id")]
     public int ActId { get; set; }
 
+    [Column("name", TypeName = "character varying")]
+    public string? Name { get; set; }
+
     [Column("description")]
     public string? Description { get; set; }
 
