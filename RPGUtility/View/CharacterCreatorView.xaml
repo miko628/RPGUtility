@@ -90,7 +90,7 @@
             <TextBlock  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Text="Kampania :" FontSize="18" Margin="20,20,20,10"/>
             <TextBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Campaign}"/>
             <TextBlock  Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Rok Kampanii:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Year}"/>
+            <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Year}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
 
             <Border MinWidth="50" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#555A57">
                 <Border.Resources>
@@ -102,17 +102,17 @@
         
             <TextBlock  Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Text="Opis Postaci" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Wiek:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Age}"/>
+            <TextBox Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Age}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="3" Text="Płeć:" FontSize="18" Margin="20,20,20,20"/>
             <TextBox Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Gender}"/>
             <TextBlock  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor oczu:" FontSize="18" Margin="20,20,20,20"/>
             <TextBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Eyes}"/>
             <TextBlock  Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="3" Text="Waga:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Weight}"/>
+            <TextBox Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Weight}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor włosów:" FontSize="18" Margin="20,20,20,20"/>
             <TextBox Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Hair}"/>
             <TextBlock  Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="3" Text="Wzrost:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Height}"/>
+            <TextBox Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Height}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Text="Znak Gwiezdny:" FontSize="18" Margin="20,20,20,20"/>
             <TextBox Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Star}"/>
             <TextBlock  Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="3" Text="Rodzeństwo:" FontSize="18" Margin="20,20,20,20"/>
@@ -184,36 +184,37 @@
                 <TextBlock  Grid.Row="1" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="2" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="3" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
-                <TextBox Grid.Row="1" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="NumberFullWidth"/>
-                <TextBox Grid.Row="2" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="1" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="1" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="1" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+
+                <TextBox Grid.Row="1" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding WW}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding WW1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding WW2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding US}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding US1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding US2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding K}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding K1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding K2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Odp}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Odp1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Odp2}" PreviewTextInput="NumberValidationTextBox"/>
 
                 <TextBlock Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Zręczność"/>
                 <TextBlock Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Inteligencja"/>
                 <TextBlock Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Siła Woli"/>
                 <TextBlock Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ogłada"/>
 
-                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="1" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="1" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="2" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="3" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Zr}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Zr1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Zr2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Int}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Int1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Int2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding SW}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding SW1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding SW2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Ogd}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="2" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Ogd1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="3" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Ogd2}" PreviewTextInput="NumberValidationTextBox"/>
 
                 <Button Grid.Row="1" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" >
                     <Button.Resources>
@@ -252,32 +253,32 @@
                 <TextBlock  Grid.Row="6" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="7" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="8" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
-                
-                <TextBox Grid.Row="6" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="NumberFullWidth"/>
-                <TextBox Grid.Row="7" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="6" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="6" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="6" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
 
-                <TextBox Grid.Row="6" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="6" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="6" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="6" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="7" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
-                <TextBox Grid.Row="8" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number"/>
+                <TextBox Grid.Row="6" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding A}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding A1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding A2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="6" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Zyw}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Zyw1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Zyw2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="6" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding S}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding S1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding S2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="6" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Wt}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Wt1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Wt2}" PreviewTextInput="NumberValidationTextBox"/>
+
+                <TextBox Grid.Row="6" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Sz}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Sz1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Sz2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="6" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Mag}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Mag1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Mag2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="6" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding PO}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding PO1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding PO2}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="6" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding PP}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="7" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding PP1}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="8" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding PP2}" PreviewTextInput="NumberValidationTextBox"/>
 
                 <Button Grid.Row="6" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" >
                     <Button.Resources>

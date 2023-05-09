@@ -8,11 +8,11 @@ namespace RPGUtility
 {
     class Dice
     {
-        private Random rand;
-        public Dice()
+        //private Random rand;
+        /*public Dice()
         {
-            rand = new Random();
-        }
+           // rand = new Random(System.DateTime.Now.Millisecond);
+        }*/
         // k20
         // k12
         //k10 z 0
@@ -20,32 +20,45 @@ namespace RPGUtility
         //k8
         //k6
         //k4
-        public int k100()
+        public static int k100()
         {
-            return rand.Next(1, 100);
+            Random rand= new Random(System.DateTime.Now.Millisecond);
+            return rand.Next(1000, 100000) / 1000;
         }
-        public int k20()
-        { 
-            return rand.Next(1,20);
-        }
-        public int k30()
+        public static int k20()
         {
-            return rand.Next(1, 30);
+            Random rand = new Random(System.DateTime.Now.Millisecond);
+
+            return rand.Next(1000,20000)/1000;
         }
-        public int k12()
+        public static int k30()
         {
+            Random rand = new Random(System.DateTime.Now.Millisecond);
+
+            return rand.Next(1000, 30000)/1000;
+        }
+        public static int k12()
+        {
+            Random rand = new Random(System.DateTime.Now.Millisecond);
+
             return rand.Next(1, 12);
         }
-        public int k8()
+        public static int k8()
         {
+            Random rand = new Random(System.DateTime.Now.Millisecond);
+
             return rand.Next(1, 8);
         }
-        public int k6()
+        public static int k6()
         {
+            Random rand = new Random(System.DateTime.Now.Millisecond);
+
             return rand.Next(1, 6);
         }
-        public int k4()
+        public static int k4()
         {
+            Random rand = new Random(System.DateTime.Now.Millisecond);
+
             return rand.Next(1, 4);
         }
     }

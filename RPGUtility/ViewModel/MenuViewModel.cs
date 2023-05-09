@@ -22,7 +22,7 @@ namespace RPGUtility.ViewModel
             _navigationService = navigation;
             //_navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
-            NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
+            NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
            // NavigateCampaignCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
            // NavigateBattleCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignCreatorViewModel(_navigationService)); }, CanExecuteMyCommand);
         }

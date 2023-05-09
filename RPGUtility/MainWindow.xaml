@@ -51,6 +51,12 @@
             <DataTemplate DataType="{x:Type ViewModels:CampaignCreatorViewModel}">
                 <Views:CampaignCreatorView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:DiceViewModel}">
+                <Views:DiceView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:CharacterChooseViewModel}">
+                <Views:CharacterChooseView/>
+            </DataTemplate>
         </ContentControl.Resources>
         </ContentControl>
 </Window>

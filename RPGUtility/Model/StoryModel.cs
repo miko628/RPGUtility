@@ -13,7 +13,7 @@ namespace RPGUtility.Model
 {
     internal class StoryModel
     {
-        public Campaign _campaign;
+        private Campaign _campaign;
         private List<Act> acts;
         
         public ObservableCollection<Act> Acts { get; set; }
@@ -27,7 +27,7 @@ namespace RPGUtility.Model
                 context.Acts.Remove(act);
                 await context.SaveChangesAsync();
             }
-            await GetAll();
+            //await GetAll();
         }
 
         public async Task EditCampaign(Campaign _campaign)

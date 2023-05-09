@@ -32,7 +32,7 @@ namespace RPGUtility.Model
            // db.InsertCharacter(_character);
            // db.Close();
         }
-        public CharacterCreatorModel()
+        public CharacterCreatorModel(Campaign campaign)
         {
             //tutaj bendom 3 wartosci zapamietaj i tutaj dodammy takie ladne zaznaczanie ok ok
             Race = new ObservableCollection<String> { "Charakteryzacja ", "Dowodzenie", "Hazard", "Jeździectwo", "Mocna głowa", "Opieka nad zwierzętami", "Plotkowanie", "Pływanie", "Powożenie", "Przekonywanie", "Przeszukiwanie", "Skradanie się", "Spostrzegawczość", "Sztuka przetrwania", "Targowanie", "Ukrywanie się", "Wioślarstwo", "Wspinaczka", "Wycena", "Zastraszanie" };

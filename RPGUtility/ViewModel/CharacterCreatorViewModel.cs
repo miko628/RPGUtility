@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using RPGUtility.Model;
+using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,6 +34,19 @@ namespace RPGUtility.ViewModel
         private string _relatives;
         private string _star;
         private int _year;
+
+        private List<int> _firstBoxSource;
+
+        public List<int> FirstBoxSource
+        {
+            get { return _firstBoxSource; }
+            set
+            {
+                _firstBoxSource = value;
+                OnPropertyChanged(nameof(FirstBoxSource));
+            }
+        }
+
 
 
         public string CharacterName
@@ -278,16 +292,23 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Image");
             }
         }
+
+
         public RelayCommand SaveCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand ImageCommand { get; }
-        public CharacterCreatorViewModel(NavigationService navigation)
+        public CharacterCreatorViewModel(NavigationService navigation,Campaign? campaign)
         {
 
-           _navigationService=navigation;
-            _characterCreatorModel = new CharacterCreatorModel();
+            _firstBoxSource = new List<int>();
+            for(int i=0;i<8;i++)
+            {
+                FirstBoxSource.Add(0);
+            }
+            _navigationService =navigation;
+            _characterCreatorModel = new CharacterCreatorModel(campaign);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
-            //CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
             ImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
         }
         private void ExecuteSave(object parameter)

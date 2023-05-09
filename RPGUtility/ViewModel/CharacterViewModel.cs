@@ -37,7 +37,7 @@ namespace RPGUtility.ViewModel
             // CancelCommand = new RelayCommand(ExecuteCancel, CanExecuteMyCommand);
             // SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
             NavigationEquipmentCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new InventoryViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NavigationAdvancementCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterCreatorViewModel(_navigationService)); }, CanExecuteMyCommand);
+            NavigationAdvancementCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterCreatorViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             NavigationSkillTestCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
             NavigationSpellCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
             NavigationOpposedTestCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
