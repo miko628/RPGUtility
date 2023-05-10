@@ -46,7 +46,7 @@
         <TextBlock Width="350"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="NoWrap"  Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3" Text="{Binding Name}" FontSize="60" FontWeight="Bold"/>
         <Button Content="Edytuj" Grid.Column="6" Grid.Row="1" Command="{Binding EditCampaignCommand}"/>
         <Button Content="Menu" Grid.Column="7" Grid.Row="1" Command="{Binding NavigateMenuCommand}"/>
-        <Button Content="Edytuj" Grid.Column="6" Grid.Row="3" Command="{Binding EditCampaignCommand}"/>
+        <Button Content="Rzut kością" Grid.Column="6" Grid.Row="3" Command="{Binding DiceRollCommand}"/>
         <Button Content="Menu" Grid.Column="7" Grid.Row="3" Command="{Binding NavigateMenuCommand}"/>
         <TextBlock  Grid.Column="1"  Grid.ColumnSpan="4" Grid.Row="4" Text="{Binding GameMaster}" FontSize="26" FontWeight="SemiBold"/>
         <TextBlock  Grid.Column="1"   Grid.ColumnSpan="4" Grid.Row="5" Text="{Binding Year}" FontSize="26" FontWeight="SemiBold"/>

@@ -22,7 +22,7 @@ namespace RPGUtility
         //k4
         public static int k100()
         {
-            Random rand= new Random(System.DateTime.Now.Millisecond);
+            Random rand= new Random(System.DateTime.Now.Millisecond+ System.DateTime.Now.Millisecond);
             return rand.Next(1000, 100000) / 1000;
         }
         public static int k20()
@@ -33,7 +33,7 @@ namespace RPGUtility
         }
         public static int k30()
         {
-            Random rand = new Random(System.DateTime.Now.Millisecond);
+            Random rand = new Random(System.DateTime.Now.Millisecond + System.DateTime.Now.Millisecond);
 
             return rand.Next(1000, 30000)/1000;
         }
@@ -41,25 +41,25 @@ namespace RPGUtility
         {
             Random rand = new Random(System.DateTime.Now.Millisecond);
 
-            return rand.Next(1, 12);
+            return rand.Next(1000, 12000)/1000;
         }
         public static int k8()
         {
             Random rand = new Random(System.DateTime.Now.Millisecond);
 
-            return rand.Next(1, 8);
+            return rand.Next(1000, 8000)/1000;
         }
         public static int k6()
         {
             Random rand = new Random(System.DateTime.Now.Millisecond);
 
-            return rand.Next(1, 6);
+            return rand.Next(1000, 6000)/1000;
         }
         public static int k4()
         {
             Random rand = new Random(System.DateTime.Now.Millisecond);
 
-            return rand.Next(1, 4);
+            return rand.Next(1000, 4000)/1000;
         }
     }
 }

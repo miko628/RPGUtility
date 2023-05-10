@@ -13,11 +13,15 @@ namespace RPGUtility.ViewModel
     {
         private ItemCreationModel _itemModel;
         private readonly NavigationService _navigationService;
+        private ObservableCollection<string> _type;
        string _prev;
         private string _selectedOption;
         public string SelectedOption
         {
-            get => _selectedOption;
+            get {
+                Trace.WriteLine("wybieram : " + _selectedOption);
+                return _selectedOption;
+            }
             set
             {
                 _selectedOption = value;
@@ -25,7 +29,7 @@ namespace RPGUtility.ViewModel
             }
         }
         //public ViewModelBase CurrentViewModel => _navigationState.CurrentViewModel;
-        public ObservableCollection<String> ItemType { get { return _itemModel.ItemType; } set { _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot", "Broń", "Pancerz" }; } }
+        public ObservableCollection<string> ItemType { get { return _type; } set { _type = value; OnPropertyChanged(nameof(ItemType)); }  }
         public RelayCommand NavigateBackCommand { get; }
 
         public RelayCommand CancelCommand { get; }
@@ -35,6 +39,7 @@ namespace RPGUtility.ViewModel
             _itemModel = new ItemCreationModel();
             _selectedOption= _itemModel.ItemType[0];
             //SelectedOption = _itemModel.ItemType[0];
+            _type=new ObservableCollection<string> { "Przedmiot", "Broń", "Pancerz" };
             // _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot","Broń","Pancerz"};   
             _navigationService = navigation;
             _prev = _previousstate;

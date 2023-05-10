@@ -9,9 +9,9 @@ using System.Windows.Threading;
 
 namespace RPGUtility.ViewModel
 {
-    internal class DiceViewModel:ViewModelBase
+    public class DiceViewModel:ViewModelBase
     {
-        private readonly NavigationService _navigationService;
+        //private readonly NavigationService _navigationService;
         private int _rollResult;
 
         private int _attemps;
@@ -32,32 +32,39 @@ namespace RPGUtility.ViewModel
             get { return _attemps; }
             set { _attemps=value; OnPropertyChanged(nameof(Attemps));}
         }
-        public DiceViewModel(NavigationService navigationService)
+        public DiceViewModel()
         {
 
-            _navigationService = navigationService;
+            //_navigationService = navigationService;
             RollDiceCommand = new RelayCommand(DiceRoll, CanExecuteMyCommand);
 
         }
-
-        private async Task Roll()
+    /*    private void DiceRoll(object parameter)
         {
-            // Random rnd = new Random(System.DateTime.Now.Millisecond);
-            int attemps = Dice.k30()+5;
+            int attemps = Dice.k30() + 5;
             int result = 0;
-            for(int i=0;i< attemps; i++)
+            for (int i = 0; i < attemps; i++)
             {
                 result = Dice.k20();
                 //result = rnd.Next(1000, 20000) / 1000;
-                App.Current.Dispatcher.BeginInvoke((Action)delegate ()
-                {
-                    RollResult = result;
-                });
-                   // Dispatcher.Invoke(new Action(() => RollResult = result));
-                Thread.Sleep(20);
+                RollResult = Dice.k30();
             }
-        }
-        private void DiceRoll(object parameter)
+        }*/
+             private async Task Roll()
+             {
+                 // Random rnd = new Random(System.DateTime.Now.Millisecond);
+                 int attemps = Dice.k30()+5;
+                 int result = 0;
+                 for(int i=0;i< attemps; i++)
+                 {
+                     result = Dice.k20();
+                     //result = rnd.Next(1000, 20000) / 1000;
+
+                     App.Current.Dispatcher.Invoke(new Action(() => RollResult = result));
+                     Thread.Sleep(20);
+                 }
+             }
+          private void DiceRoll(object parameter)
         {
             Task.Run(Roll);
         }

@@ -18,7 +18,7 @@ namespace RPGUtility.View
     /// <summary>
     /// Interaction logic for DiceView.xaml
     /// </summary>
-    public partial class DiceView : UserControl
+    public partial class DiceView : Window
     {
         public DiceView()
         {

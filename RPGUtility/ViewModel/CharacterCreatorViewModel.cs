@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
@@ -28,22 +29,85 @@ namespace RPGUtility.ViewModel
         private string _gamemaster;
         private string _hair;
         private string _playername;
-        private float _height;
-        private float _weight;
+        private double _height;
+        private double _weight;
         private string _previouscareer;
         private string _relatives;
         private string _star;
         private int _year;
+        private Campaign _campaignfull;
+       
+        private int[] _nextstatsSource;
+        private int[] _nextstats1Source;
+        private int[] _nextstats2Source;
 
-        private List<int> _firstBoxSource;
-
-        public List<int> FirstBoxSource
+        private int[] _statsSource;
+        private int[] _stats1Source;
+        private int[] _stats2Source;
+        public int[] Stats
         {
-            get { return _firstBoxSource; }
+            get {
+                Trace.WriteLine("Stats");
+                return _statsSource;
+            }
             set
             {
-                _firstBoxSource = value;
-                OnPropertyChanged(nameof(FirstBoxSource));
+                _statsSource = value;
+                OnPropertyChanged(nameof(Stats));
+            }
+        }
+        public int[] Stats1
+        {
+            get {
+                Trace.WriteLine("Stats1");
+                return _stats1Source; }
+            set
+            {
+                _stats1Source = value;
+                OnPropertyChanged(nameof(Stats1));
+            }
+        }
+        public int[] Stats2
+        {
+            get {
+                Trace.WriteLine("Stats2");
+                return _stats2Source; }
+            set
+            {
+                _stats2Source = value;
+                OnPropertyChanged(nameof(Stats2));
+            }
+        }
+
+        public int[] NextStats
+        {
+            get {
+                Trace.WriteLine("NextStats");
+                return _nextstatsSource; }
+            set
+            {
+                _nextstatsSource = value;
+                OnPropertyChanged(nameof(NextStats));
+            }
+        }
+        public int[] NextStats1
+        {
+            get { Trace.WriteLine("NextStats1"); return _nextstats1Source; }
+            set
+            {
+                _nextstats1Source = value;
+                OnPropertyChanged(nameof(NextStats1));
+            }
+        }
+        public int[] NextStats2
+        {
+            get {
+                Trace.WriteLine("NextStats2"); 
+                return _nextstats2Source; }
+            set
+            {
+                _nextstats2Source = value;
+                OnPropertyChanged(nameof(NextStats2));
             }
         }
 
@@ -176,7 +240,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Eyes");
             }
         }
-        public float Weight
+        public double Weight
         {
             get
             {
@@ -202,7 +266,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Hair");
             }
         }
-        public float Height
+        public double Height
         {
             get
             {
@@ -297,34 +361,95 @@ namespace RPGUtility.ViewModel
         public RelayCommand SaveCommand { get; }
         public RelayCommand CancelCommand { get; }
         public RelayCommand ImageCommand { get; }
+
+        public RelayCommand RollStats { get; }
+        public RelayCommand RollStats1 { get; }
+        public RelayCommand RollStats2 { get; }
+        public RelayCommand NextRollStats { get; }
+        public RelayCommand NextRollStats1 { get; }
+        public RelayCommand NextRollStats2 { get; }
         public CharacterCreatorViewModel(NavigationService navigation,Campaign? campaign)
         {
-
-            _firstBoxSource = new List<int>();
-            for(int i=0;i<8;i++)
-            {
-                FirstBoxSource.Add(0);
-            }
+            _statsSource = new int[8]; 
+            _stats1Source = new int[8]; 
+            _stats2Source = new int[8]; 
+            _nextstatsSource = new int[8]; 
+            _nextstats1Source = new int[8]; 
+            _nextstats2Source = new int[8];
+            _campaignfull = campaign;
             _navigationService =navigation;
             _characterCreatorModel = new CharacterCreatorModel(campaign);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
             CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
             ImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
+            RollStats = new RelayCommand(DiceRoll, CanExecuteMyCommand);
+            RollStats1 = new RelayCommand(DiceRoll1, CanExecuteMyCommand);
+            RollStats2 = new RelayCommand(DiceRoll2, CanExecuteMyCommand);
+            NextRollStats = new RelayCommand((object parameter) => {
+                for (int i = 0; i < 8; i++)
+                {
+                    NextStats[i] = Dice.k20();
+                    Dice.k20();
+                    //Thread.Sleep(20);
+                }
+                OnPropertyChanged(nameof(NextStats));
+            }, CanExecuteMyCommand);
+            NextRollStats1 = new RelayCommand((object parameter) => {
+                for (int i = 0; i < 8; i++)
+                {
+                    int result=Dice.k20();
+                    //result=Dice.k20();
+                    NextStats1[i] = result;
+                    //result = Dice.k20();
+                }
+                OnPropertyChanged(nameof(NextStats1));
+            }, CanExecuteMyCommand);
+            NextRollStats2 = new RelayCommand((object parameter) => {
+                for (int i = 0; i < 8; i++)
+                {
+                    NextStats2[i] = Dice.k20();
+                }
+                OnPropertyChanged(nameof(NextStats2));
+            }, CanExecuteMyCommand);
         }
-        private void ExecuteSave(object parameter)
+        private void DiceRoll(object parameter)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Stats[i] = Dice.k20(); ;
+            }
+            OnPropertyChanged(nameof(Stats));
+        }
+        private void DiceRoll1(object parameter)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Stats1[i] = Dice.k20();
+            }
+            OnPropertyChanged(nameof(Stats1));
+        }
+        private void DiceRoll2(object parameter)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Stats2[i] = Dice.k30();
+            }
+            OnPropertyChanged(nameof(Stats2));
+        }
+        private async void ExecuteSave(object parameter)
         {
             // NavigationState pom = _navigationState;
-            _characterCreatorModel.Save();
+            // _characterCreatorModel.Save();
             //tutaj dodaj jeszcze sprawdzenie czy wszystkie wymagane pola są git określone
             //Character character = new Character(CharacterName,Race,Gender,null,Year,Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,null,null,CurrentCarrer,"oko",PreviousCarrer);
-            Trace.WriteLine("pomyslnie dodano postac");
+            //Trace.WriteLine("pomyslnie dodano postac");
             //dodaj zapisywanie do bazy danych
             //Character _character=new Character(CharacterName,Race,Gender,"ok",Year,height,)
             //Trace.WriteLine(character.name);
-           // Trace.WriteLine(character.race);
-            
+            // Trace.WriteLine(character.race);
+            Character pom = await _characterCreatorModel.Save(Image,CharacterName,Race,Gender,Background,new DateOnly(),Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,"","","","","",1.0,12.0,13.0,Stats,Stats1,Stats2);
 
-           // _navigationService.Navigate(() => new CharacterViewModel(_navigationService));
+             _navigationService.Navigate(() => new CharacterViewModel(_navigationService,pom, _campaignfull));
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);
 
         }
@@ -335,9 +460,9 @@ namespace RPGUtility.ViewModel
             if (openFileDialog.ShowDialog() == true)
             {
                 string ImagePath = openFileDialog.FileName;
-                var pom = new BitmapImage(new System.Uri(ImagePath));
+                Image = new BitmapImage(new System.Uri(ImagePath));
                 
-                Image = ImageEncoder.bytearraytoBitmap(ImageEncoder.BitmapImagetobytearray(pom));
+                //Image = ImageEncoder.bytearraytoBitmap(ImageEncoder.BitmapImagetobytearray(pom));
                 //Image = new BitmapImage(new System.Uri(ImagePath));
             }
         }

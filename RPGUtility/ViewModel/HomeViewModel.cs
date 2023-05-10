@@ -29,7 +29,7 @@ namespace RPGUtility.ViewModel
             NavigateStartCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(()=>new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
             //NavigateMenuCommand = new RelayCommand(ExecuteMenu, CanExecuteMyCommand);
             NavigateSettingsCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new SettingsViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NavigateHowCommand = new RelayCommand((object parameter) => { /*_navigationService.Navigate(() => new HowViewModel(_navigationService));*/ _navigationService.Navigate(() => new DiceViewModel(_navigationService)); }, CanExecuteMyCommand); 
+            NavigateHowCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HowViewModel(_navigationService)); }, CanExecuteMyCommand); 
             ExitCommand = new RelayCommand((object parameter) => { System.Windows.Application.Current.Shutdown(); }, CanExecuteMyCommand);
         }
         private void ExecuteMenu(object parameter) 

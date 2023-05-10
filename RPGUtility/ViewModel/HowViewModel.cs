@@ -10,6 +10,8 @@ namespace RPGUtility.ViewModel
     {
         private readonly NavigationService _navigationService;
         public RelayCommand NavigateBackCommand { get; }
+        public RelayCommand NextCommand { get; }
+        public RelayCommand PreviousCommand { get; }
             public HowViewModel(NavigationService navigation)
         {
             _navigationService = navigation;

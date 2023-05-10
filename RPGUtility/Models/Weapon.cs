@@ -16,6 +16,9 @@ public partial class Weapon
     [Column("weapon_image")]
     public byte[]? WeaponImage { get; set; }
 
+    [Column("name", TypeName = "character varying")]
+    public string? Name { get; set; }
+
     [Column("type", TypeName = "character varying")]
     public string? Type { get; set; }
 

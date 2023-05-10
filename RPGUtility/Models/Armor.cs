@@ -13,6 +13,9 @@ public partial class Armor
     [Column("armor_id")]
     public int ArmorId { get; set; }
 
+    [Column("name", TypeName = "character varying")]
+    public string? Name { get; set; }
+
     [Column("armor_image")]
     public byte[]? ArmorImage { get; set; }
 

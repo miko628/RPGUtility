@@ -26,10 +26,11 @@ namespace RPGUtility.ViewModel
         public RelayCommand NavigationSpellCommand { get; }
         public RelayCommand NavigationOpposedTestCommand { get; }
         public RelayCommand NavigationRollDiceCommand { get; }
-        public CharacterViewModel(NavigationService navigation,Campaign campaign)
+        public CharacterViewModel(NavigationService navigation,Character character,Campaign campaign)
         {
             _characterModel = new CharacterModel();
             _navigationService = navigation;
+            Image = ImageEncoder.bytearraytoBitmap(character.CharacterImage);
            // _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             NavigationItemCreationCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,"Character")); }, CanExecuteMyCommand);

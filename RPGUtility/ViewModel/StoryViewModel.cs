@@ -1,5 +1,6 @@
 ﻿using RPGUtility.Model;
 using RPGUtility.Models;
+using RPGUtility.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +24,8 @@ namespace RPGUtility.ViewModel
         private string? _year;
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand NavigateMenuCommand { get; }
+
+        public RelayCommand DiceRollCommand { get; }
         public RelayCommand NewActCommand { get; }
         public RelayCommand DeleteActCommand { get; }
 
@@ -153,6 +156,11 @@ namespace RPGUtility.ViewModel
             NavigateMenuCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
             EditCampaignCommand = new RelayCommand((object parameter) =>
             {
+            }, CanExecuteMyCommand);
+            DiceRollCommand= new RelayCommand((object parameter) => {
+                DiceView subWindow = new DiceView();
+                subWindow.DataContext = new DiceViewModel();
+                subWindow.Show();
             }, CanExecuteMyCommand);
             // Name = campaign_id;
         }

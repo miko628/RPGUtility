@@ -13,6 +13,9 @@ public partial class Skill
     [Column("skill_id")]
     public int SkillId { get; set; }
 
+    [Column("name", TypeName = "character varying")]
+    public string? Name { get; set; }
+
     [Column("description", TypeName = "character varying")]
     public string? Description { get; set; }
 

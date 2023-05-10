@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="LightPink">
     <Grid>
-       
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -55,11 +55,81 @@
             </Border.Resources>
         </Border>
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" Text="Przedmiot" HorizontalAlignment="Center" FontSize="32" FontWeight="ExtraBold"/>
-        <ComboBox ItemsSource="{Binding ItemType}" SelectedValue="{Binding SelectedOption,Mode=TwoWay}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="6" Padding="0,10,0,10"/>
+        <ComboBox ItemsSource="{Binding ItemType}" SelectedValue="{Binding SelectedOption}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="6" Padding="0,10,0,10"/>
         <TextBlock Text="Typ przedmiotu" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
         <TextBlock Text="Opis przedmiotu" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
         <TextBox Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="6" Grid.RowSpan="3" FontSize="24" />
         <TextBlock Text="Opis przedmiotu" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+
+        <Grid Background="Red" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid" >
+                    <Setter Property="Visibility" Value="Collapsed" />
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedOption}" Value="Przedmiot">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <!-- Pierwsza część formularza -->
+           
+        </Grid>
+        
+        <Grid Background="White" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid" >
+                    <Setter Property="Visibility" Value="Collapsed" />
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedOption}" Value="Broń">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <!-- Pierwsza część formularza -->
+
+        </Grid>
+
+        <Grid Background="Purple" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid" >
+                    <Setter Property="Visibility" Value="Collapsed" />
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedOption}" Value="Pancerz">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <!-- Pierwsza część formularza -->
+
+        </Grid>
+
 
         <Button Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="17" Content="Anuluj"  Command="{Binding CancelCommand}">
          

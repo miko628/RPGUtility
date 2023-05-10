@@ -12,10 +12,10 @@ namespace RPGUtility.Model
     internal class InventoryModel
     {
         private Character _character;
-        private  List<Item> Itemlist { get; set; }
+        //private  List<Item> Itemlist { get; set; }
         public InventoryModel()
         {
-           Itemlist = new List<Item>();
+           //Itemlist = new List<Item>();
             
             /*Itemlist.Add(new Item("Sword", 1, "A sharp sword."));
             Itemlist.Add(new Item("a", 1, "A sturdy shield."));
@@ -54,18 +54,44 @@ namespace RPGUtility.Model
         {
             using (var context = new RpgutilityContext())
             {
-                Itemlist = await context.Items.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                List<Item> Itemlist = await context.Items.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                List<Weapon> Weaponlist = await context.Weapons.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                List <Armor> Armorlist = await context.Armors.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
                 return Itemlist;
             }
         }
-        public List<Item> getItems()
+        public async Task DeleteItem(Item item)
         {
-            return Itemlist;
+            using (var context = new RpgutilityContext())
+            {
+                context.Items.Remove(item);
+                await context.SaveChangesAsync();
+            }
         }
-        public void AddItem(Item item)
+        public async Task DeleteWeapon(Weapon weapon)
         {
-            Itemlist.Add(item);
+            using (var context = new RpgutilityContext())
+            {
+                context.Weapons.Remove(weapon);
+                await context.SaveChangesAsync();
+            }
         }
+        public async Task DeleteArmor(Armor armor)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                context.Armors.Remove(armor);
+                await context.SaveChangesAsync();
+            }
+        }
+      /*  public void AddWeapon(Weapon weapon)
+        {
+            //Itemlist.Add(item);
+        }*/
+  /*      public void AddItem(Item item)
+        {
+            //Itemlist.Add(item);
+        }*/
     }
 }
 
