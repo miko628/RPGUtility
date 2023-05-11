@@ -56,7 +56,7 @@ namespace RPGUtility.ViewModel
         {
 
             List<Campaign> camp = await _campaignModel.GetAll();
-            App.Current.Dispatcher.BeginInvoke((Action)delegate ()
+            await App.Current.Dispatcher.BeginInvoke((Action)delegate ()
            {
                Campaigns.Clear();
                foreach (var item in camp)

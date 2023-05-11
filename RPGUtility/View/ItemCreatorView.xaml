@@ -7,140 +7,179 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="LightPink">
     <Grid>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Border MinWidth="50" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" Grid.RowSpan="14" Background="#555A57">
-            <Border.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
-                </Style>
-            </Border.Resources>
-        </Border>
-        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" Text="Przedmiot" HorizontalAlignment="Center" FontSize="32" FontWeight="ExtraBold"/>
-        <ComboBox ItemsSource="{Binding ItemType}" SelectedValue="{Binding SelectedOption}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="6" Padding="0,10,0,10"/>
-        <TextBlock Text="Typ przedmiotu" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
-        <TextBlock Text="Opis przedmiotu" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
-        <TextBox Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="6" Grid.RowSpan="3" FontSize="24" />
-        <TextBlock Text="Opis przedmiotu" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+        <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" >
+            <Grid>
 
-        <Grid Background="Red" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.Style>
-                <Style TargetType="Grid" >
-                    <Setter Property="Visibility" Value="Collapsed" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition MinHeight="100" MaxHeight="300"/>
+                    <RowDefinition MinHeight="100" MaxHeight="300"/>
+                    <RowDefinition MinHeight="100" MaxHeight="300"/>
+                    <RowDefinition MinHeight="100" MaxHeight="300"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition Height="15"/>
 
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedOption}" Value="Przedmiot">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-            <!-- Pierwsza część formularza -->
-           
-        </Grid>
-        
-        <Grid Background="White" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.Style>
-                <Style TargetType="Grid" >
-                    <Setter Property="Visibility" Value="Collapsed" />
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition MinHeight="100" MaxHeight="300"/>
+                    <RowDefinition MinHeight="100" MaxHeight="300"/>
+                    <RowDefinition Height="15"/>
+                    
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition MinHeight="50" MaxHeight="100"/>
+                    <RowDefinition Height="15"/>
 
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedOption}" Value="Broń">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-            <!-- Pierwsza część formularza -->
-
-        </Grid>
-
-        <Grid Background="Purple" Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.Style>
-                <Style TargetType="Grid" >
-                    <Setter Property="Visibility" Value="Collapsed" />
-
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedOption}" Value="Pancerz">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-            <!-- Pierwsza część formularza -->
-
-        </Grid>
+                    <RowDefinition Height="*"/>
 
 
-        <Button Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="17" Content="Anuluj"  Command="{Binding CancelCommand}">
-         
-        <Button.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="25"/>
+                </Grid.RowDefinitions>
 
-            </Style>
-        </Button.Resources>
-        </Button>
-        <Button Grid.Column="5"  Grid.ColumnSpan="4" Grid.Row="17" Content="Zapisz" Command="{Binding SaveCommand}">
+
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="8" Grid.RowSpan="19" Background="#555A57">
+                    <Border.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="30"/>
+                        </Style>
+                    </Border.Resources>
+                </Border>
+                <TextBlock Margin="0,20,0,0"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" Text="Przedmiot" HorizontalAlignment="Center" FontSize="32" FontWeight="ExtraBold" TextAlignment="Center"/>
+                <Border MinWidth="50" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="3" Background="SlateGray">
+                    <Border.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="30"/>
+                        </Style>
+                    </Border.Resources>
+                </Border>
+                <TextBlock Text="Obraz przedmiotu" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                <Button Content="Prześlij" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="4" Command="{Binding SendImageCommand}" />
+                <Image Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="6" Source="{Binding ItemImage}" />
+                <ComboBox HorizontalContentAlignment="Center"  ItemsSource="{Binding ItemType}" SelectedValue="{Binding SelectedOption}" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="6" Padding="0,10,0,10"/>
+                <TextBlock Text="Typ przedmiotu" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                <TextBlock Text="Nazwa przedmiotu" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+                <TextBox Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="6" Grid.RowSpan="1" FontSize="24" Text="{Binding ItemName}" />
+                <TextBlock Text="Opis przedmiotu" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+                <TextBox Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="6" Grid.RowSpan="2" FontSize="24" Text="{Binding ItemDescription}" AcceptsReturn="True" />
+                <TextBlock Text="Liczba" Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+                <TextBox Text="{Binding ItemQuantity}" MinWidth="50" Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+
+                <!-- zdjencie -->
+                <!-- nazwa -->
+                <!-- opis -->
+                <!-- liczba -->
+
+                
+
+                <Grid Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition MinHeight="100" MaxHeight="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Style>
+                        <Style TargetType="Grid" >
+                            <Setter Property="Visibility" Value="Collapsed" />
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedOption}" Value="Broń">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" Text="Typ Broni" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" MinHeight="50" MaxHeight="100" ItemsSource="{Binding WeaponType}" SelectedValue="{Binding SelectedWeapon}"/>
+                    <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Text="Wartość Obrażeń" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Text="{Binding AttackValue}"  MinWidth="50"  FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <!-- typ combobox -->
+                    <!-- damage -->
+
+                </Grid>
+
+                <Grid Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition MinHeight="50" MaxHeight="100"/>
+                        <RowDefinition MinHeight="100" MaxHeight="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Style>
+                        <Style TargetType="Grid" >
+                            <Setter Property="Visibility" Value="Collapsed" />
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedOption}" Value="Pancerz">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" Text="Typ Pancerzu" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" MinHeight="50" MaxHeight="100" ItemsSource="{Binding ArmorType}" SelectedValue="{Binding SelectedArmor}"/>
+                    <!-- typ 4 combobox chyba-->
+                    <!-- leb obrona -->
+                    <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Text="Wartość pancerzu" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Text="{Binding ArmorValue}" MinWidth="50" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <!-- klata obrona -->
+                    <!-- nogi obrona -->
+                    <!-- buty obrona -->
+                </Grid>
+
+
+
+
+
+            </Grid>
+        </ScrollViewer>
+        <Button Grid.Column="0"  Grid.Row="1" Content="Anuluj"  Command="{Binding CancelCommand}" Margin="30,3,0,1">
+
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25"/>
@@ -148,7 +187,13 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Button Grid.Column="1" Grid.Row="1" Content="Zapisz" Command="{Binding SaveCommand}" Margin="0,3,30,1">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="25"/>
 
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
-    
 </UserControl>

@@ -13,10 +13,10 @@ namespace RPGUtility.Model
     {
         private Character _character;
         //private  List<Item> Itemlist { get; set; }
-        public InventoryModel()
+        public InventoryModel(Character character)
         {
-           //Itemlist = new List<Item>();
-            
+            //Itemlist = new List<Item>();
+            _character = character;
             /*Itemlist.Add(new Item("Sword", 1, "A sharp sword."));
             Itemlist.Add(new Item("a", 1, "A sturdy shield."));
             Itemlist.Add(new Item("b", 1, "A sturdy shield."));

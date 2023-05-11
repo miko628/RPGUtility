@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 
 namespace RPGUtility.ViewModel
@@ -18,10 +19,11 @@ namespace RPGUtility.ViewModel
         private StoryModel _storyModel;
         //private int? campaign_id;
         private Act? _selectedAct;
-        private string? _name;
-        private string? _description;
-        private string? _gamemaster;
-        private string? _year;
+        private string _name;
+        private string _description;
+        private string _gamemaster;
+        private string _year;
+        private bool _canExecute = true;
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand NavigateMenuCommand { get; }
 
@@ -132,37 +134,64 @@ namespace RPGUtility.ViewModel
         public StoryViewModel(NavigationService navigation, Campaign? campaign)
         {
             _navigationService = navigation;
-            _storyModel = new StoryModel(campaign);
-            // Name = campaign_id.ToString();
-            try 
+            if (campaign != null)
             {
-                Name = campaign.Name;
-                Description = campaign.Description;
-                Year = new string("Rok gry: " + campaign.Year);
-                GameMaster = new string("Mistrz gry: " + campaign.GameMaster);
+                _storyModel = new StoryModel(campaign);
+                // Name = campaign_id.ToString();
+                try
+                {
+                    Name = campaign.Name;
+                    Description = campaign.Description;
+                    Year = new string("Rok gry: " + campaign.Year);
+                    GameMaster = new string("Mistrz gry: " + campaign.GameMaster);
+                }
+                catch
+                (ArgumentNullException e)
+                {
+                    Trace.WriteLine($"Processing failed: {e.Message}");
+                }
+
+                //_storyModel._campaign = campaign;
+                // _storyModel.id=campaign_id.GetValueOrDefault();
+                //Trace.WriteLine(campaign_id);
+                Task.Run(Load);
+                //new ThreadPriorityLevel start=()=> Backgrou
+                NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
+                NewActCommand = new RelayCommand(async (object parameter) => { await _storyModel.AddAct(); await Load();/*do tworzenia postaci*/ }, CanExecuteMyCommand);
+                DeleteActCommand = new RelayCommand(async (object parameter) => { await _storyModel.Delete(_selectedAct); await Load(); }, CanExecuteMyCommand);
+                NavigateMenuCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+                EditCampaignCommand = new RelayCommand((object parameter) =>
+                {
+                }, CanExecuteMyCommand);
+                DiceRollCommand = new RelayCommand((object parameter) =>
+                {
+                    DiceView subWindow = new DiceView();
+                    subWindow.DataContext = new DiceViewModel();
+                    subWindow.Closed += (sender, args) => { _canExecute = true; };
+
+                    subWindow.Show();
+                    _canExecute = false;
+
+                }, ExecuteCommand);
+                // Name = campaign_id;
             }
-            catch
-            (ArgumentNullException e)
-            { }
-            
-            //_storyModel._campaign = campaign;
-            // _storyModel.id=campaign_id.GetValueOrDefault();
-            //Trace.WriteLine(campaign_id);
-            Task.Run(Load);
-            //new ThreadPriorityLevel start=()=> Backgrou
-            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
-            NewActCommand = new RelayCommand(async(object parameter) => { await _storyModel.AddAct(); await Load();/*do tworzenia postaci*/ }, CanExecuteMyCommand);
-            DeleteActCommand = new RelayCommand(async (object parameter) => { await _storyModel.Delete(_selectedAct); await Load(); }, CanExecuteMyCommand);
-            NavigateMenuCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
-            EditCampaignCommand = new RelayCommand((object parameter) =>
+            else
             {
-            }, CanExecuteMyCommand);
-            DiceRollCommand= new RelayCommand((object parameter) => {
-                DiceView subWindow = new DiceView();
-                subWindow.DataContext = new DiceViewModel();
-                subWindow.Show();
-            }, CanExecuteMyCommand);
-            // Name = campaign_id;
+                //dodaj tu jeszcze message box ok ok
+                _navigationService.Navigate(() => new CampaignViewModel(_navigationService));
+            
+            }
+        }
+
+        private bool ExecuteCommand(object parameter)
+        {
+            if (Application.Current.MainWindow != null)
+            {
+                return true;//  Application.Current.MainWindow.Activate();
+            }
+            else return false;
+            //_canExecute = !_canExecute;
+           // return _canExecute;
         }
         private bool CanExecuteMyCommand(object parameter)
         {

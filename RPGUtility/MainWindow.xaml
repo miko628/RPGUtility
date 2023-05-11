@@ -8,7 +8,7 @@
         xmlns:ViewModels="clr-namespace:RPGUtility.ViewModel"
         mc:Ignorable="d"
         Title="RPGUtility" Height="450" Width="800" WindowStartupLocation="CenterScreen"
-        MinHeight="600" MinWidth="800">
+        MinHeight="600" MinWidth="800" >
 
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>

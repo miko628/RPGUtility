@@ -15,40 +15,33 @@ namespace RPGUtility.ViewModel
     class InventoryViewModel: ViewModelBase
     {
         private readonly NavigationService _navigationService;
+        private readonly Character _character;
+        private readonly Campaign _campaign;
         private InventoryModel _inventoryModel;
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand AddCommand { get; }
         //private ObservableCollection<Item> _items;
        
         public ObservableCollection<Item> Items { get; set; }
-
-        private void LoadData()
-        {
-            /*List<Item> dbItems = _inventoryModel.getItems();
-            foreach (var item in dbItems)
-            {
-                // Id = itemData.Id,
-                var it = new Item(item.name, item.quantity, item.description);
-               *//* {
-                    name = item.name,
-                    quantity = item.quantity,
-                    description = item.description
-                };*//*
-                Items.Add(item);
-                Trace.WriteLine(item.name);
-                Trace.WriteLine(item.quantity);
-                Trace.WriteLine(item.description);
-            }*/
-               
-            
-        }
         
-        public InventoryViewModel(NavigationService navigation)
+        private async Task Load()
         {
-            _inventoryModel = new InventoryModel();
+            List<Item> _item = await _inventoryModel.GetAllItems();
+            await App.Current.Dispatcher.BeginInvoke((Action)delegate ()
+            {
+                Items.Clear();
+                foreach (var item in _item)
+                {
+                    Items.Add(item);
+                }
+            });
+        }
+        public InventoryViewModel(NavigationService navigation,Character character,Campaign campaign)
+        {
+            _inventoryModel = new InventoryModel(character);
             _navigationService = navigation;
             Items = new ObservableCollection<Item>();
-            LoadData();
+            Task.Run(Load);
             //NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
         }
         private bool CanExecuteMyCommand(object parameter)

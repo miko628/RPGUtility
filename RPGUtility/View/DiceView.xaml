@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:RPGUtility.View"
              xmlns:ViewModel="clr-namespace:RPGUtility.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             Title="Dice" Height="300" Width="300" WindowStartupLocation="CenterScreen"
+             MinHeight="50" MinWidth="50">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
