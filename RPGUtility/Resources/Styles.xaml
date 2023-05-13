@@ -1,0 +1,151 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="MenuButtons" TargetType="Button">
+        <Setter Property="Background" Value="#000000"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Opacity" Value="0.75"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="Button">
+                <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="#000000"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#838D87" />
+
+                <!-- Kolor tła po najechaniu myszą -->
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="CommonButtons" TargetType="Button">
+        <Setter Property="Foreground" Value="#FBF6E2"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="#161815" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+               
+                <Setter Property="Background" Value="#838D87" />
+                
+            </Trigger>
+        </Style.Triggers>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="FormTextBox" TargetType="TextBox">
+        <Setter Property="FontSize" Value="20"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="CommonLabel" TargetType="Label">
+        <Setter Property="Background" Value="#161815"/>
+        <Setter Property="Foreground" Value="#FBF6E2"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="CommonTextBox" TargetType="TextBox">
+        
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="30"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    <Style x:Key="CommonTextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="30"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="HideBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="CornerRadius" Value="15,0,0,15"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=ActExpander, Path=IsExpanded}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="HideButtons" TargetType="Button">
+        <Setter Property="Foreground" Value="#FBF6E2"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="#161815" />
+        <Setter Property="Visibility" Value="Visible" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+
+                <Setter Property="Background" Value="#838D87" />
+
+            </Trigger>
+            <DataTrigger Binding="{Binding ElementName=ActExpander, Path=IsExpanded}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    
+</ResourceDictionary>

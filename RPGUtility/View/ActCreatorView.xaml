@@ -5,8 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="Pink">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Text="Nazwa Aktu:"/>
+        <TextBox Text="{Binding Name}"  Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="6"/>
+        <TextBlock Text="Opis Scenariusza:" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <TextBox Text="{Binding Description}" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="6" Grid.RowSpan="3" TextWrapping="Wrap" AcceptsReturn="True"/>
+        
+
+        <Button Content="Anuluj" Command="{Binding CancelCommand}" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="4"/>
+        <Button Content="Zatwierdź" Command="{Binding SubmitCommand}" Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="4"/>
     </Grid>
 </UserControl>

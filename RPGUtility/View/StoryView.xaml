@@ -6,18 +6,30 @@
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </UserControl.Resources>
     <Grid>
+      
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto" MinWidth="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+
+            <ColumnDefinition Width="Auto"  MinWidth="25"/>
+            
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -33,53 +45,103 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
-        
-        <Button Grid.Column="1" Grid.Row="1" Width="150" Height="100"  Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
+
+        <Button Grid.Column="1" Grid.Row="1"  Content="Cofnij" Style="{StaticResource HideButtons}"  Command="{Binding NavigateBackCommand}">
         </Button>
-        <TextBlock Width="350"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="NoWrap"  Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="3" Text="{Binding Name}" FontSize="60" FontWeight="Bold"/>
-        <Button Content="Edytuj" Grid.Column="6" Grid.Row="1" Command="{Binding EditCampaignCommand}"/>
-        <Button Content="Menu" Grid.Column="7" Grid.Row="1" Command="{Binding NavigateMenuCommand}"/>
-        <Button Content="Rzut kością" Grid.Column="6" Grid.Row="3" Command="{Binding DiceRollCommand}"/>
-        <Button Content="Menu" Grid.Column="7" Grid.Row="3" Command="{Binding NavigateMenuCommand}"/>
-        <TextBlock  Grid.Column="1"  Grid.ColumnSpan="4" Grid.Row="4" Text="{Binding GameMaster}" FontSize="26" FontWeight="SemiBold"/>
-        <TextBlock  Grid.Column="1"   Grid.ColumnSpan="4" Grid.Row="5" Text="{Binding Year}" FontSize="26" FontWeight="SemiBold"/>
+      
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="NoWrap"   Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Name}" FontSize="60" FontWeight="Heavy"/>
+        
+        <TextBlock  Grid.Column="1"  Grid.ColumnSpan="5" Grid.Row="4" Text="{Binding GameMaster}" FontSize="26" FontWeight="SemiBold"/>
+        <TextBlock  Grid.Column="1"   Grid.ColumnSpan="5" Grid.Row="5" Text="{Binding Year}" FontSize="26" FontWeight="SemiBold"/>
+
+        <Grid Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" >
+            
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <Border Background="#E7DDB3"  Style="{StaticResource HideBorder}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
+            <Button Content="Edytuj" Style="{StaticResource HideButtons}" Grid.Row="0" Grid.Column="0"  Margin="5" Command="{Binding EditCampaignCommand}"/>
+            <Button Content="Menu" Style="{StaticResource HideButtons}" Grid.Row="1" Grid.Column="1" Margin="5"  Command="{Binding NavigateMenuCommand}"/>
+            <Button Content="Rzut kością" Style="{StaticResource HideButtons}" Grid.Row="1" Grid.Column="0" Margin="5" Command="{Binding DiceRollCommand}"/>
+            <Button Content="Menu" Style="{StaticResource HideButtons}" Grid.Row="0" Grid.Column="1" Margin="5"  Command="{Binding NavigateMenuCommand}"/>
+        </Grid>
 
         <Border Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="10" Grid.RowSpan="8" Background="#E7DDB3">
             <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
             </Border.Resources>
         </Border>
-        <ScrollViewer Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="9" Grid.RowSpan="8">
-            <TextBlock TextWrapping="Wrap" FontSize="32" Text="{Binding Description}"/>
+        <Border Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="7" Grid.RowSpan="7" Background="#eeeeee" Margin="15,10,0,0">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Border.Resources>
+        </Border>
+        <ScrollViewer Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="7" Grid.RowSpan="6" Margin="0,10,0,0">
+            <TextBox Style="{StaticResource CommonTextBox}" TextWrapping="Wrap" FontSize="32" Text="{Binding Description}" Margin="30,20,20,10" AcceptsReturn="True" BorderThickness="0">
+            </TextBox>
         </ScrollViewer>
-        <Expander BorderBrush="Transparent" Background="Orange"  BorderThickness="2" Grid.Column="9" Grid.Row="0" Grid.RowSpan="14" ExpandDirection="Left" >
-            <Grid>
+        <Button Grid.Row="13" Style="{StaticResource HideButtons}" Command="{Binding SaveEditCommand}"  Grid.Column="1" Grid.ColumnSpan="6" Content="Zapisz" />
+
+        <Expander x:Name="ActExpander"  Background="#E7DDB3" Foreground="#161815" FontWeight="Bold" FontSize="13" BorderThickness="0" Grid.Column="9" Grid.Row="0" Grid.RowSpan="14" ExpandDirection="Left" >
+            <Expander.Header >Akt</Expander.Header>
+            <Grid Background="#E7DDB3" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
-                <ListBox Width="365" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Acts}" SelectedItem="{Binding SelectedAct}" Background="Orange" Grid.ColumnSpan="2"  FontSize="36" >
-                    <ListBox.ItemTemplate>
+                <ListView Grid.Column="0" Grid.Row="1"  Width="365" MinWidth="100" Margin="0,5,0,0"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Acts}" SelectedItem="{Binding SelectedAct}" Background="#E7DDB3" Grid.ColumnSpan="2"  FontSize="36" BorderThickness="0" >
+                    <ListView.ItemContainerStyle>
+
+                        <Style TargetType="{x:Type ListViewItem}">
+                            
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.45" />
+
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Opacity" Value="0.55" />
+
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Name}" Width="350" Height="100"  Background="Red" Margin="0,0,0,0" Padding="0,0,0,0" />
+                                <Label Style="{StaticResource CommonLabel}"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Name}" MinWidth="90" Width="350" Height="100"  Margin="0,0,0,0" Padding="0,0,0,0" />
                             </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Button Grid.Row="1" Grid.Column="0" Content="Dodaj Akt" Command="{Binding NewActCommand}"/>
-                <Button Grid.Row="1" Grid.Column="1" Content="Usuń wybrany Akt" Command="{Binding DeleteActCommand}"/>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource CommonButtons}"  Grid.Row="0" Content="Scenariusz 10" Command="{Binding ShowCampaignCommand}"/>
+
+                <Button Style="{StaticResource CommonButtons}" Margin="5,0,0,0"  Grid.Row="2" Grid.Column="0" Content="Dodaj Akt" Command="{Binding NewActCommand}"/>
+                <Button Style="{StaticResource CommonButtons}" Margin="5,0,0,0" Grid.Row="2" Grid.Column="1" Content="Usuń Akt" Command="{Binding DeleteActCommand}"/>
             </Grid>
         </Expander>
     </Grid>

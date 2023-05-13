@@ -55,9 +55,29 @@ namespace RPGUtility.Model
             using (var context = new RpgutilityContext())
             {
                 List<Item> Itemlist = await context.Items.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
-                List<Weapon> Weaponlist = await context.Weapons.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
-                List <Armor> Armorlist = await context.Armors.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+               // List<Weapon> Weaponlist = await context.Weapons.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+              //  List <Armor> Armorlist = await context.Armors.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
                 return Itemlist;
+            }
+        }
+        public async Task<List<Weapon>> GetAllWeapons()
+        {
+            using (var context = new RpgutilityContext())
+            {
+              //  List<Item> Itemlist = await context.Items.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                List<Weapon> Weaponlist = await context.Weapons.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+               // List<Armor> Armorlist = await context.Armors.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                return Weaponlist;
+            }
+        }
+        public async Task<List<Armor>> GetAllArmors()
+        {
+            using (var context = new RpgutilityContext())
+            {
+                //List<Item> Itemlist = await context.Items.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+              //  List<Weapon> Weaponlist = await context.Weapons.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                List<Armor> Armorlist = await context.Armors.Where(b => b.CharacterId == _character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                return Armorlist;
             }
         }
         public async Task DeleteItem(Item item)

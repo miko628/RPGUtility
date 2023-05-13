@@ -5,7 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View" xmlns:viewmodel="clr-namespace:RPGUtility.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CampaignViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="DeepSkyBlue">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid x:Name="Campaign">
 
         <Grid.ColumnDefinitions>
@@ -14,6 +22,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -23,6 +32,7 @@
 
             <RowDefinition Height="10"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
 
 
@@ -36,8 +46,10 @@
                 <Style TargetType="ListViewItem">
                     <Setter Property="Height" Value="200"/>
                     <Setter Property="Margin" Value="20,20,20,0"/>
-                    <Setter Property="Background" Value="gray"/>
+                    <Setter Property="Background" Value="#161815"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Foreground" Value="#ECE8DF"/>
+                    <Setter Property="FontSize" Value="68"/>
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                     <Setter Property="Grid.Row" Value="3"/>
                     <Setter Property="Template">
@@ -48,10 +60,12 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="#3F3F3F" />
+                                        <Setter TargetName="Border" Property="Background" Value="#495551" />
+                                        <Setter Property="Opacity" Value="0.8"/>
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="#353535" />
+                                        <Setter TargetName="Border" Property="Background" Value="#838D87" />
+                                            <!--Setter TargetName="Border" Property="Foreground" Value="#ECE8DF"/-->
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -74,7 +88,7 @@
                             <RowDefinition Height="*"/>
 
                         </Grid.RowDefinitions>
-                        <TextBlock FontWeight="Bold"  Grid.Row="1" Grid.Column="0" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Name}">
+                        <TextBlock FontWeight="Bold"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Text="{Binding Name}">
                            
                         </TextBlock>
 
@@ -83,34 +97,21 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Height="200" Content="+" FontSize="96" Command="{Binding NewCampaignCommand}">
-        <Button.Resources>
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Height="200" Content="+" FontSize="96" Command="{Binding NewCampaignCommand}" >
+            <Button.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="30"/>
             </Style>
         </Button.Resources>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="14" Content="Anuluj" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding CancelCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button Grid.Column="2" Grid.Row="14" Content="Usuń" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding DeleteCampaignCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button Grid.Column="3" Grid.Row="14" Content="Zatwierdź" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding SubmitCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="1" Grid.Row="5" Content="Anuluj"  Command="{Binding CancelCommand}"/>
+
+
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="2" Grid.Row="5" Content="Usuń"  Command="{Binding DeleteCampaignCommand}"/>
+
+
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="3" Grid.Row="5" Content="Zatwierdź"  Command="{Binding SubmitCommand}"/>
+
     </Grid>
 </UserControl>

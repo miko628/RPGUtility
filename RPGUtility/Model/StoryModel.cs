@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ControlzEx.Standard;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using RPGUtility.Models;
 using System;
@@ -60,7 +61,7 @@ namespace RPGUtility.Model
             using (var context=new RpgutilityContext())
             {
                 var act = context.Set<Act>();
-                Act pom = new Act { Name = $"Akt {Acts.Count()}", Description = "Testowe",CampaignId=_campaign.CampaignId };
+                Act pom = new Act { Name = $"Akt {Acts.Count()+1}", Description = "",CampaignId=_campaign.CampaignId };
                 await act.AddAsync(pom);
                 await context.SaveChangesAsync();
             }
@@ -74,6 +75,29 @@ namespace RPGUtility.Model
                 var campaigns = await context.Acts.SingleAsync(b => b.CampaignId == _campaign.CampaignId);
                 //Name = campaigns.Find(id);
               //  Name = id;
+            }
+        }
+        public async Task UpdateAct(Act act,string name,string description)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                act.Name = name;
+                act.Description = description;
+                context.Update(act);
+               await context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateCampaign(string name,string description,string gamemaster,string year)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                _campaign.Name = name;
+                _campaign.Description = description;
+                _campaign.GameMaster = gamemaster;
+                _campaign.Year = year;
+                context.Update(_campaign);
+                await context.SaveChangesAsync();
+                
             }
         }
         public async Task<List<Act>> GetAll()

@@ -11,6 +11,8 @@ namespace RPGUtility.ViewModel
 {
     class CampaignCreatorViewModel: ViewModelBase
     {
+
+        //description moze byc nullem tylko reszta not null ok ok
         private readonly NavigationService _navigationService;
         private CampaignCreatorModel _campaignCreatorModel;
         public RelayCommand CancelCommand { get; }

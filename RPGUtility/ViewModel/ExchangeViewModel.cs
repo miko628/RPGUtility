@@ -1,4 +1,5 @@
 ﻿using RPGUtility.Model;
+using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,12 +20,12 @@ namespace RPGUtility.ViewModel
 
         public RelayCommand ChooseSecondCharacterCommand { get; }
         public RelayCommand ChooseFirstCharacterCommand { get; }
-        public ExchangeViewModel(NavigationService navigation)
+        public ExchangeViewModel(NavigationService navigation,Campaign campaign,Character character)
         {
             _exchangeModel = new ExchangeModel();
             _navigationService = navigation;
-            //NavigateBackCommand =new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
-            //CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService)); }, CanExecuteMyCommand);
+            //NavigateBackCommand =new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campa)); }, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
         }
         private void ExecuteSave(object parameter)

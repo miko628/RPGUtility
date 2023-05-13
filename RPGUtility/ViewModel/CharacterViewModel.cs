@@ -34,7 +34,7 @@ namespace RPGUtility.ViewModel
            // _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             NavigationItemCreationCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
-            NavigationExchangeCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ExchangeViewModel(_navigationService)); }, CanExecuteMyCommand);
+            NavigationExchangeCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ExchangeViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
             // CancelCommand = new RelayCommand(ExecuteCancel, CanExecuteMyCommand);
             // SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
             NavigationEquipmentCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new InventoryViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);

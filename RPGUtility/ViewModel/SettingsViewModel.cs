@@ -13,23 +13,12 @@ namespace RPGUtility.ViewModel
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand HandleCheck { get; }
         public RelayCommand HandleUnchecked { get; }
-
-        private WindowState _currentWindowState;
-        public WindowState CurrentWindowState
-        {
-            get { return _currentWindowState; }
-            set
-            {
-                _currentWindowState = value;
-                OnPropertyChanged(nameof(CurrentWindowState));
-            }
-        }
         public SettingsViewModel(NavigationService navigation)
         {
             _navigationService = navigation;
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HomeViewModel(_navigationService)); }, CanExecuteMyCommand);
-            HandleCheck = new RelayCommand((object parameter) => { CurrentWindowState = WindowState.Maximized;  }, CanExecuteMyCommand);
-            HandleUnchecked = new RelayCommand((object parameter) => { CurrentWindowState = WindowState.Normal; }, CanExecuteMyCommand);
+           // HandleCheck = new RelayCommand((object parameter) => { CurrentWindowState = WindowState.Maximized;  }, CanExecuteMyCommand);
+           // HandleUnchecked = new RelayCommand((object parameter) => { CurrentWindowState = WindowState.Normal; }, CanExecuteMyCommand);
 
             //NavigateCharacterCommand = new RelayCommand(ExecuteCharacter, CanExecuteMyCommand);
         }

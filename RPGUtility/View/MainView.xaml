@@ -5,7 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="RosyBrown">
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Resources/castle_background.jpg"/>
+    </UserControl.Background>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -26,34 +37,17 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Frame x:Name="mainFrame"/>
-        <Button x:Name="startButton" Grid.Column="1" Grid.Row="2" FontSize="18" Content="Start"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateStartCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="loadButton" Grid.Column="1" Grid.Row="4" FontSize="18" Content="Jak grać?"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateHowCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="settingsButton" Grid.Column="1" Grid.Row="6" FontSize="18" Content="Ustawienia"  Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateSettingsCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="exitButton" Grid.Column="1" Grid.Row="8" FontSize="18" Content="Zakończ" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding ExitCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+        <Button x:Name="startButton" Style="{StaticResource MenuButtons}"  Grid.Column="1" Grid.Row="2" Content="Start" Command="{Binding NavigateStartCommand}"/>
+
+
+        <Button x:Name="loadButton" Style="{StaticResource MenuButtons}" Grid.Column="1" Grid.Row="4" Content="Jak grać?" Command="{Binding NavigateHowCommand}"/>
+
+
+        <Button x:Name="settingsButton" Style="{StaticResource MenuButtons}" Grid.Column="1" Grid.Row="6" Content="Ustawienia" Command="{Binding NavigateSettingsCommand}"/>
+
+        <Button x:Name="exitButton" Style="{StaticResource MenuButtons}" Grid.Column="1" Grid.Row="8" Content="Zakończ" Command="{Binding ExitCommand}"/>
+
+
 
     </Grid>
 </UserControl>

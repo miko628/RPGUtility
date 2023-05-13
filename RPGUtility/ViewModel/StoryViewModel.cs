@@ -27,8 +27,11 @@ namespace RPGUtility.ViewModel
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand NavigateMenuCommand { get; }
 
+        public RelayCommand SaveEditCommand { get; }
         public RelayCommand DiceRollCommand { get; }
         public RelayCommand NewActCommand { get; }
+
+        public RelayCommand ShowCampaignCommand { get; }
         public RelayCommand DeleteActCommand { get; }
 
         public Act SelectedAct {
@@ -160,6 +163,13 @@ namespace RPGUtility.ViewModel
                 NewActCommand = new RelayCommand(async (object parameter) => { await _storyModel.AddAct(); await Load();/*do tworzenia postaci*/ }, CanExecuteMyCommand);
                 DeleteActCommand = new RelayCommand(async (object parameter) => { await _storyModel.Delete(_selectedAct); await Load(); }, CanExecuteMyCommand);
                 NavigateMenuCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+                SaveEditCommand =new RelayCommand((object parameter) => { Trace.WriteLine(Name); Trace.WriteLine(Description); Trace.WriteLine(SelectedAct); },CanExecuteMyCommand);
+                ShowCampaignCommand=new RelayCommand((object parameter) => {
+                    Name = campaign.Name;
+                    Description = campaign.Description;
+                    Year = new string("Rok gry: " + campaign.Year);
+                    GameMaster = new string("Mistrz gry: " + campaign.GameMaster);
+                }, CanExecuteMyCommand);
                 EditCampaignCommand = new RelayCommand((object parameter) =>
                 {
                 }, CanExecuteMyCommand);

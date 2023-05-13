@@ -63,7 +63,7 @@
 
             </Grid.RowDefinitions>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Background="#555A57">
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Background="Pink">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -92,7 +92,7 @@
             <TextBlock  Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Rok Kampanii:" FontSize="18" Margin="20,20,20,10"/>
             <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Year}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#555A57">
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="Pink">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -122,7 +122,7 @@
             <TextBlock  Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="3" Text="Znaki szczególne:" FontSize="18" Margin="20,20,20,20"/>
             <TextBox Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Characteristics}"/>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="Pink">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -145,7 +145,7 @@
                 </Button.Resources>
             </Button>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#555A57">
+            <Border MinWidth="50" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="Pink">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -178,10 +178,10 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Walka Wręcz" />
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="US" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Krzepa"/>
-                <TextBlock Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Odporność"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Walka Wręcz (WW): Cecha sprawności Bohatera w walce" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera"/>
+                <TextBlock Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera"/>
                 <TextBlock  Grid.Row="1" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="2" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="3" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
@@ -199,12 +199,12 @@
                 <TextBox Grid.Row="2" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[3]}" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox Grid.Row="3" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[3]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                <TextBlock Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Zręczność"/>
-                <TextBlock Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Inteligencja"/>
-                <TextBlock Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Siła Woli"/>
-                <TextBlock Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ogłada"/>
+                <TextBlock Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera"/>
+                <TextBlock Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera"/>
+                <TextBlock Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera"/>
+                <TextBlock Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera"/>
 
-                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[4]}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[4]}" PreviewTextInput="NumberValidationTextBox" FontSize="28"/>
                 <TextBox Grid.Row="2" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[4]}" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox Grid.Row="3" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[4]}" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[5]}" PreviewTextInput="NumberValidationTextBox"/>
@@ -217,7 +217,7 @@
                 <TextBox Grid.Row="2" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[7]}" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox Grid.Row="3" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[7]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                <Button Grid.Row="1" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats}">
+                <Button Grid.Row="1" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats}" Margin="5,0,0,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -225,7 +225,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Grid.Row="2" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats1}">
+                <Button Grid.Row="2" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats1}" Margin="5,0,0,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -233,7 +233,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Grid.Row="3" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats2}" >
+                <Button Grid.Row="3" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats2}" Margin="5,0,0,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -242,14 +242,14 @@
                     </Button.Resources>
                 </Button>
 
-                <TextBlock Grid.Row="5" Grid.Column="1" Text="A" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="A" />
-                <TextBlock Grid.Row="5" Grid.Column="2" Text="Żyw" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Żywotność" />
-                <TextBlock Grid.Row="5" Grid.Column="3" Text="S" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Siła"/>
-                <TextBlock Grid.Row="5" Grid.Column="4" Text="Wt" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Witalność"/>
-                <TextBlock Grid.Row="5" Grid.Column="6" Text="Sz" TextAlignment="Center" Padding="5,5,20,0" FontSize="18" FontWeight="SemiBold" ToolTip="Szybkość"/>
-                <TextBlock Grid.Row="5" Grid.Column="7" Text="Mag" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Magia"/>
-                <TextBlock Grid.Row="5" Grid.Column="8" Text="PO" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Obłędu"/>
-                <TextBlock Grid.Row="5" Grid.Column="9" Text="PP" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Przeznaczenia"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="A" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ataki (A): Cecha szybkości ataku Bohatera" />
+                <TextBlock Grid.Row="5" Grid.Column="2" Text="Żyw" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Żywotność (Żyw) Cecha witalności Bohatera" />
+                <TextBlock Grid.Row="5" Grid.Column="3" Text="S" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Siła (S): Cecha określająca obrażenia zadawane przez Bohatera"/>
+                <TextBlock Grid.Row="5" Grid.Column="4" Text="Wt" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Witalność (Wt): Cecha określająca zdloność ignorowania otrzymanych obrażeń Bohatera"/>
+                <TextBlock Grid.Row="5" Grid.Column="6" Text="Sz" TextAlignment="Center" Padding="5,5,20,0" FontSize="18" FontWeight="SemiBold" ToolTip="Szybkość (Sz): Cecha określąca prędkość poruszania się Bohatera"/>
+                <TextBlock Grid.Row="5" Grid.Column="7" Text="Mag" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Magia (Mag): Cecha określająca zdolności magiczne bohatera"/>
+                <TextBlock Grid.Row="5" Grid.Column="8" Text="PO" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Obłędu (PO): Cecha określająca stan zdrowia psychicznego Bohatera"/>
+                <TextBlock Grid.Row="5" Grid.Column="9" Text="PP" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Przeznaczenia (PP): Cecha określająca szczęście Bohatera"/>
                 
                 <TextBlock  Grid.Row="6" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
                 <TextBlock  Grid.Row="7" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
@@ -281,7 +281,7 @@
                 <TextBox Grid.Row="7" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[7]}" PreviewTextInput="NumberValidationTextBox"/>
                 <TextBox Grid.Row="8" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[7]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                <Button Grid.Row="6" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats}" >
+                <Button Grid.Row="6" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats}" Margin="5,0,0,0" >
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -289,7 +289,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Grid.Row="7" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats1}">
+                <Button Grid.Row="7" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats1}" Margin="5,0,0,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -297,7 +297,7 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Grid.Row="8" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats2}">
+                <Button Grid.Row="8" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats2}" Margin="5,0,0,0">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>

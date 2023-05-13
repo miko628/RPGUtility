@@ -385,6 +385,7 @@ namespace RPGUtility.ViewModel
             RollStats = new RelayCommand(DiceRoll, CanExecuteMyCommand);
             RollStats1 = new RelayCommand(DiceRoll1, CanExecuteMyCommand);
             RollStats2 = new RelayCommand(DiceRoll2, CanExecuteMyCommand);
+            //ludzie,krasnoludy,elfy,niziolki
             NextRollStats = new RelayCommand((object parameter) => {
                 for (int i = 0; i < 8; i++)
                 {

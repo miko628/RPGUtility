@@ -24,5 +24,10 @@ namespace RPGUtility.View
         {
             InitializeComponent();
         }
+
+        private void b_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

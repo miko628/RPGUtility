@@ -6,10 +6,18 @@
              
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="AliceBlue">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -18,33 +26,33 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
 
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Nazwa Scenariusza:"/>
-        <TextBox Text="{Binding Name}"  Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="6"/>
-        <TextBlock Text="Opis Scenariusza:" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <TextBox Text="{Binding Description}" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="6" Grid.RowSpan="3" TextWrapping="Wrap" AcceptsReturn="True"/>
-        <TextBlock Text="Mistrz Gry:" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"/>
-        <TextBox Text="{Binding GameMaster}" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="6"/>
-        <TextBlock Text="Rok Kampanii:" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"/>
-        <TextBox Text="{Binding Year}" Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="6" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
-        <Button Content="Anuluj" Command="{Binding CancelCommand}" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="4"/>
-        <Button Content="Zatwierdź" Command="{Binding SubmitCommand}" Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="4"/>
+        <TextBlock  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Text="Nazwa Scenariusza:" FontSize="18" FontWeight="Bold"/>
+        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding Name}"  Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="6"/>
+        <TextBlock Text="Opis Scenariusza:" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="3" FontSize="18" FontWeight="Bold"/>
+        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding Description}" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="6" Grid.RowSpan="3" TextWrapping="Wrap" AcceptsReturn="True"/>
+        <TextBlock Text="Mistrz Gry:" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" FontSize="18" FontWeight="Bold"/>
+        <TextBox Style="{StaticResource FormTextBox}" Text="{Binding GameMaster}" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="6" />
+        <TextBlock Text="Rok Kampanii:" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" FontSize="18" FontWeight="Bold"/>
+        <TextBox Style="{StaticResource FormTextBox}"  Text="{Binding Year}" Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="6" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
+        <Button Content="Anuluj" Command="{Binding CancelCommand}" Style="{StaticResource CommonButtons}" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="4" Margin="0,0,5,0"/>
+        <Button Content="Zatwierdź" Command="{Binding SubmitCommand}" Style="{StaticResource CommonButtons}" Grid.Column="5" Grid.Row="11" Grid.ColumnSpan="4" Margin="5,0,0,0"/>
     </Grid>
 </UserControl>
