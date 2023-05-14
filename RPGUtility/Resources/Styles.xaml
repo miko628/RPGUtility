@@ -86,10 +86,23 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Style.Resources>
             <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="30"/>
+                <Setter Property="CornerRadius" Value="15"/>
             </Style>
         </Style.Resources>
     </Style>
+
+    <Style x:Key="CommonTextBox2" TargetType="TextBox">
+
+
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+    
     <Style x:Key="CommonTextBlock" TargetType="TextBlock">
         <Setter Property="FontSize" Value="32"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
@@ -147,5 +160,11 @@
             </Style>
         </Style.Resources>
     </Style>
-    
+
+    <Style x:Key="NumberTextBox" TargetType="TextBox">
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="InputScope" Value="Number"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="28"/>
+    </Style>
 </ResourceDictionary>

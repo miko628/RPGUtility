@@ -34,7 +34,7 @@ namespace RPGUtility.ViewModel
         private string _previouscareer;
         private string _relatives;
         private string _star;
-        private int _year;
+        private string _year;
         private Campaign _campaignfull;
        
         private int[] _nextstatsSource;
@@ -162,6 +162,12 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("PlayerName");
             }
         }
+
+        public double CashGold { get; set; }
+
+        public double CashSilver { get; set; }
+
+        public double CashPennies { get; set; }
         public string GameMaster
         {
             get
@@ -188,7 +194,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Campaign");
             }
         }
-        public int Year
+        public string Year
         {
             get
             {
@@ -363,30 +369,30 @@ namespace RPGUtility.ViewModel
         public RelayCommand ImageCommand { get; }
 
         public RelayCommand RollStats { get; }
-        public RelayCommand RollStats1 { get; }
-        public RelayCommand RollStats2 { get; }
         public RelayCommand NextRollStats { get; }
-        public RelayCommand NextRollStats1 { get; }
-        public RelayCommand NextRollStats2 { get; }
-        public CharacterCreatorViewModel(NavigationService navigation,Campaign? campaign)
+
+        public CharacterCreatorViewModel(NavigationService navigation, Campaign? campaign)
         {
-            _statsSource = new int[8]; 
-            _stats1Source = new int[8]; 
-            _stats2Source = new int[8]; 
-            _nextstatsSource = new int[8]; 
-            _nextstats1Source = new int[8]; 
+            _statsSource = new int[8];
+            _stats1Source = new int[8];
+            _stats2Source = new int[8];
+            _nextstatsSource = new int[8];
+            _nextstats1Source = new int[8];
             _nextstats2Source = new int[8];
+
             _campaignfull = campaign;
-            _navigationService =navigation;
+            Campaign = _campaignfull.Name;
+            GameMaster=_campaignfull.GameMaster;
+            Year = _campaignfull.Year;
+            _navigationService = navigation;
             _characterCreatorModel = new CharacterCreatorModel(campaign);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
-            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             ImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
             RollStats = new RelayCommand(DiceRoll, CanExecuteMyCommand);
-            RollStats1 = new RelayCommand(DiceRoll1, CanExecuteMyCommand);
-            RollStats2 = new RelayCommand(DiceRoll2, CanExecuteMyCommand);
             //ludzie,krasnoludy,elfy,niziolki
-            NextRollStats = new RelayCommand((object parameter) => {
+            NextRollStats = new RelayCommand((object parameter) =>
+            {
                 for (int i = 0; i < 8; i++)
                 {
                     NextStats[i] = Dice.k20();
@@ -394,23 +400,6 @@ namespace RPGUtility.ViewModel
                     //Thread.Sleep(20);
                 }
                 OnPropertyChanged(nameof(NextStats));
-            }, CanExecuteMyCommand);
-            NextRollStats1 = new RelayCommand((object parameter) => {
-                for (int i = 0; i < 8; i++)
-                {
-                    int result=Dice.k20();
-                    //result=Dice.k20();
-                    NextStats1[i] = result;
-                    //result = Dice.k20();
-                }
-                OnPropertyChanged(nameof(NextStats1));
-            }, CanExecuteMyCommand);
-            NextRollStats2 = new RelayCommand((object parameter) => {
-                for (int i = 0; i < 8; i++)
-                {
-                    NextStats2[i] = Dice.k20();
-                }
-                OnPropertyChanged(nameof(NextStats2));
             }, CanExecuteMyCommand);
         }
         private void DiceRoll(object parameter)

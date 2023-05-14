@@ -33,7 +33,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K10" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K20" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K30" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K40" Grid.Row="6" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K50" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K60" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K70" Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K80" Grid.Row="7" Grid.Column="7" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K90" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Content="K100" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" Command="{Binding RollDiceCommand}"/>
         <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Content="{Binding RollResult}"/>
 
     </Grid>

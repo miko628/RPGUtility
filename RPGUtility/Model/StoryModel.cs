@@ -17,7 +17,7 @@ namespace RPGUtility.Model
         private Campaign _campaign;
         private List<Act> acts;
         
-        public ObservableCollection<Act> Acts { get; set; }
+        //public ObservableCollection<Act> Acts { get; set; }
         
        
         public async Task Delete(Act act)
@@ -43,8 +43,6 @@ namespace RPGUtility.Model
 
         public StoryModel( Campaign campaign)
         {
-            Acts = new ObservableCollection<Act>();
-            acts = new List<Act>();
             this._campaign =campaign;
             //   Name = id.ToString();
             // Database db = Database.GetInstance();
@@ -56,12 +54,12 @@ namespace RPGUtility.Model
             //async Initialize();
             // _ = Initialize();
         }
-        public async Task AddAct()
+        public async Task AddAct(int number)
         {
             using (var context=new RpgutilityContext())
             {
                 var act = context.Set<Act>();
-                Act pom = new Act { Name = $"Akt {Acts.Count()+1}", Description = "",CampaignId=_campaign.CampaignId };
+                Act pom = new Act { Name = $"Akt {number}", Description = "",CampaignId=_campaign.CampaignId };
                 await act.AddAsync(pom);
                 await context.SaveChangesAsync();
             }
@@ -105,7 +103,7 @@ namespace RPGUtility.Model
            // Acts.Clear();
             using (var context = new RpgutilityContext())
             {
-                acts = await context.Acts.Where(b => b.CampaignId == _campaign.CampaignId).OrderBy(b => b.Name).ToListAsync();
+                acts = await context.Acts.Where(b => b.CampaignId == _campaign.CampaignId).OrderBy(a => a.ActId).ToListAsync();
                 return acts;
             }
            /* foreach (var item in acts)

@@ -17,15 +17,36 @@ namespace RPGUtility.ViewModel
     {
         private readonly NavigationService _navigationService;
         private StoryModel _storyModel;
-        //private int? campaign_id;
-        private Act? _selectedAct;
+        private Campaign _campaign;
+        private dynamic _selectedAct;
         private string _name;
         private string _description;
         private string _gamemaster;
         private string _year;
         private bool _canExecute = true;
+        private bool _isreadonly=true;
+        private bool _ishidden=true;
+        private dynamic _actlist;
+        public bool ReadOnly
+        {
+            get { return _isreadonly; }
+            set
+            {
+                _isreadonly = value;
+                OnPropertyChanged(nameof(ReadOnly));
+            }
+        }
+        public bool Hide
+        {
+            get { return _ishidden; }
+            set
+            {
+                _ishidden = value;
+                OnPropertyChanged(nameof(Hide));
+            }
+        }
         public RelayCommand NavigateBackCommand { get; }
-        public RelayCommand NavigateMenuCommand { get; }
+        public RelayCommand NavigateCharacterCommand { get; }
 
         public RelayCommand SaveEditCommand { get; }
         public RelayCommand DiceRollCommand { get; }
@@ -34,14 +55,21 @@ namespace RPGUtility.ViewModel
         public RelayCommand ShowCampaignCommand { get; }
         public RelayCommand DeleteActCommand { get; }
 
-        public Act SelectedAct {
+        public dynamic SelectedAct {
             get {
                 if (_selectedAct != null)
                 {
                     Name = _selectedAct.Name;
                     Description = _selectedAct.Description;
-                    GameMaster = "";
-                    Year = "";
+                    if(_selectedAct is Campaign)
+                    {
+                        Hide = true;
+                    GameMaster =_selectedAct.GameMaster;
+                    Year =_selectedAct.Year;
+                    }else
+                    {
+                        Hide = false;
+                    }
                 }
                 
                 return _selectedAct;
@@ -55,12 +83,12 @@ namespace RPGUtility.ViewModel
             }
         }
         public RelayCommand EditCampaignCommand { get; }
-        public ObservableCollection<Act> Acts
+        public ObservableCollection<dynamic> Acts
         {
-            get { return _storyModel.Acts; }
+            get { return _actlist; }
             set
             {
-                _storyModel.Acts = value;
+                _actlist = value;
                 OnPropertyChanged(nameof(Acts));
             }
         }
@@ -68,7 +96,7 @@ namespace RPGUtility.ViewModel
         {
             get
             {
-                Trace.WriteLine("Name");
+               // Trace.WriteLine("Name");
                 return _name;
             }
             set
@@ -82,7 +110,7 @@ namespace RPGUtility.ViewModel
         {
             get
             {
-                Trace.WriteLine("Description");
+               // Trace.WriteLine("Description");
                 return _description;
             }
             set
@@ -96,7 +124,7 @@ namespace RPGUtility.ViewModel
         {
             get
             {
-                Trace.WriteLine("GameMaster");
+                //Trace.WriteLine("GameMaster");
                 return _gamemaster;
             }
             set
@@ -110,7 +138,7 @@ namespace RPGUtility.ViewModel
         {
             get
             {
-                Trace.WriteLine("Year");
+                //Trace.WriteLine("Year");
                 return _year;
             }
             set
@@ -126,6 +154,7 @@ namespace RPGUtility.ViewModel
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 Acts.Clear();
+                Acts.Add(_campaign);
                 foreach (var item in ac)
                 {
                     Acts.Add(item);
@@ -141,37 +170,39 @@ namespace RPGUtility.ViewModel
             {
                 _storyModel = new StoryModel(campaign);
                 // Name = campaign_id.ToString();
-                try
-                {
-                    Name = campaign.Name;
-                    Description = campaign.Description;
-                    Year = new string("Rok gry: " + campaign.Year);
-                    GameMaster = new string("Mistrz gry: " + campaign.GameMaster);
-                }
-                catch
-                (ArgumentNullException e)
-                {
-                    Trace.WriteLine($"Processing failed: {e.Message}");
-                }
-
+                _campaign = campaign;
+                
+                _actlist = new ObservableCollection<dynamic>();
                 //_storyModel._campaign = campaign;
                 // _storyModel.id=campaign_id.GetValueOrDefault();
                 //Trace.WriteLine(campaign_id);
+                //Acts.Add(campaign);
                 Task.Run(Load);
+                _selectedAct = _campaign;
+                OnPropertyChanged(nameof(SelectedAct));
                 //new ThreadPriorityLevel start=()=> Backgrou
                 NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
-                NewActCommand = new RelayCommand(async (object parameter) => { await _storyModel.AddAct(); await Load();/*do tworzenia postaci*/ }, CanExecuteMyCommand);
-                DeleteActCommand = new RelayCommand(async (object parameter) => { await _storyModel.Delete(_selectedAct); await Load(); }, CanExecuteMyCommand);
-                NavigateMenuCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
-                SaveEditCommand =new RelayCommand((object parameter) => { Trace.WriteLine(Name); Trace.WriteLine(Description); Trace.WriteLine(SelectedAct); },CanExecuteMyCommand);
-                ShowCampaignCommand=new RelayCommand((object parameter) => {
-                    Name = campaign.Name;
-                    Description = campaign.Description;
-                    Year = new string("Rok gry: " + campaign.Year);
-                    GameMaster = new string("Mistrz gry: " + campaign.GameMaster);
-                }, CanExecuteMyCommand);
+                NewActCommand = new RelayCommand(async (object parameter) => { await _storyModel.AddAct(Acts.Count()); await Load();/*do tworzenia postaci*/ }, CanExecuteMyCommand);
+                DeleteActCommand = new RelayCommand(async (object parameter) => { if (_selectedAct is not null) { await _storyModel.Delete(_selectedAct); await Load(); } }, CanExecuteMyCommand);
+                NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+                SaveEditCommand =new RelayCommand(async(object parameter) => {
+
+                    if (_selectedAct is Act)
+                    {
+                        await _storyModel.UpdateAct(_selectedAct, Name, Description);
+                        await Task.Run(Load);
+                    }
+                    else
+                    {
+                        await _storyModel.UpdateCampaign(Name, Description, GameMaster, Year);
+                        await Task.Run(Load);
+                    }
+
+                },CanExecuteMyCommand);
+
                 EditCampaignCommand = new RelayCommand((object parameter) =>
                 {
+                    ReadOnly = !ReadOnly;
                 }, CanExecuteMyCommand);
                 DiceRollCommand = new RelayCommand((object parameter) =>
                 {

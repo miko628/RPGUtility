@@ -5,8 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#103463">
-    <ScrollViewer VerticalScrollBarVisibility="Visible" >
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" >
     <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -58,41 +76,40 @@
                 <RowDefinition MinHeight="100" MaxHeight="300"/>
                 
                 <RowDefinition Height="15"/>
-                <RowDefinition MinHeight="100" MaxHeight="300"/>
+     
 
 
             </Grid.RowDefinitions>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Background="Pink">
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
                     </Style>
                 </Border.Resources>
             </Border>
-            <TextBlock  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="Bohater" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+            <TextBlock  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Text="Bohater" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="Nazwa postaci:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CharacterName}"/>
+            <TextBox Style="{StaticResource FormTextBox}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CharacterName}"/>
             <TextBlock  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="Rasa postaci:" FontSize="18" Margin="20,20,20,10"/>
             <!--TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Race}"/-->
             <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding Race}" Text="Race" />
-            <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Obecna profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CurrentCarrer}" />
-            <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Poprzednia profesja:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding PreviousCarrer}"/>
+            <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Języki:" FontSize="18" Margin="20,20,20,10"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Languages}" />
+                <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Typ postaci:" FontSize="18" Margin="20,20,20,10"/>
+                <ComboBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" />
 
 
-            <TextBlock  Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Text="Gracz" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Text="Imię Gracza:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Name="PlayerName" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding PlayerName}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Name="PlayerName" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding PlayerName}"/>
             <TextBlock  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Text="Mistrz Gry:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding GameMaster}"/>
+                <TextBox Style="{StaticResource CommonTextBox}" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding GameMaster}" IsReadOnly="True"/>
             <TextBlock  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" Text="Kampania :" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Campaign}"/>
+                <TextBox Style="{StaticResource CommonTextBox}" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Campaign}" IsReadOnly="True"/>
             <TextBlock  Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Text="Rok Kampanii:" FontSize="18" Margin="20,20,20,10"/>
-            <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Year}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
+                <TextBox Style="{StaticResource CommonTextBox}" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Year}" IsReadOnly="True"/>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="Pink">
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -100,29 +117,29 @@
                 </Border.Resources>
             </Border>
         
-            <TextBlock  Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Text="Opis Postaci" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+            <TextBlock  Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Text="Opis Postaci" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Wiek:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Age}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" Margin="20,20,20,20"  Text="{Binding Age}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="3" Text="Płeć:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Gender}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" Margin="20,20,20,20"  Text="{Binding Gender}"/>
             <TextBlock  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor oczu:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Eyes}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1"  Margin="20,20,20,20"  Text="{Binding Eyes}"/>
             <TextBlock  Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="3" Text="Waga:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Weight}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" Margin="20,20,20,20"  Text="{Binding Weight}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor włosów:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Hair}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Hair}"/>
             <TextBlock  Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="3" Text="Wzrost:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Height}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
+                <TextBox Style="{StaticResource FormTextBox}"  Grid.Row="10" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Height}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Text="Znak Gwiezdny:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Star}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Star}"/>
             <TextBlock  Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="3" Text="Rodzeństwo:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Relatives}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="11" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Relatives}"/>
             <TextBlock  Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3" Text="Miejsce urodzenia:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding BirthPlace}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding BirthPlace}"/>
             <TextBlock  Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="3" Text="Znaki szczególne:" FontSize="18" Margin="20,20,20,20"/>
-            <TextBox Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Characteristics}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="12" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Characteristics}"/>
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="Pink">
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -136,16 +153,9 @@
             </Image>
             <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="14" Text="Awatar postaci" HorizontalAlignment="Center" FontSize="18"/>
 
-            <Button Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="16" Content="Prześlij" Command="{Binding ImageCommand}" >
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="25"/>
+                <Button Style="{StaticResource CommonButtons}" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="16" Content="Prześlij" Command="{Binding ImageCommand}" />
 
-                    </Style>
-                </Button.Resources>
-            </Button>
-
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="Pink">
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="18" Grid.ColumnSpan="5" Grid.RowSpan="6" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -182,67 +192,35 @@
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" />
                 <TextBlock Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera"/>
                 <TextBlock Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera"/>
-                <TextBlock  Grid.Row="1" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
-                <TextBlock  Grid.Row="2" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
-                <TextBlock  Grid.Row="3" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <!--TextBlock  Grid.Row="1" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/-->
+               
 
-                <TextBox Grid.Row="1" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[0]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[0]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[0]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="1" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[1]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[1]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[1]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="1" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[2]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[2]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[2]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="1" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[3]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[3]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[3]}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="1" MaxLength="2" Style="{StaticResource NumberTextBox}"  Text="{Binding Stats[0]}" PreviewTextInput="NumberValidationTextBox"/>
+                        
+                    <TextBox Grid.Row="1" Grid.Column="2" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[1]}" PreviewTextInput="NumberValidationTextBox"/>
+                       
+                    <TextBox Grid.Row="1" Grid.Column="3" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[2]}" PreviewTextInput="NumberValidationTextBox"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="4" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[3]}" PreviewTextInput="NumberValidationTextBox"/>
+                      
 
                 <TextBlock Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera"/>
                 <TextBlock Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera"/>
                 <TextBlock Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera"/>
                 <TextBlock Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera"/>
 
-                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[4]}" PreviewTextInput="NumberValidationTextBox" FontSize="28"/>
-                <TextBox Grid.Row="2" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[4]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[4]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[5]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[5]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[5]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="1" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[6]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[6]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[6]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="1" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats[7]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="2" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats1[7]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="3" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding Stats2[7]}" PreviewTextInput="NumberValidationTextBox"/>
+                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[4]}" PreviewTextInput="NumberValidationTextBox"/>
+                       
+                    <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[5]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                <Button Grid.Row="1" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats}" Margin="5,0,0,0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                    <TextBox Grid.Row="1" Grid.Column="8" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[6]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="2" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats1}" Margin="5,0,0,0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                    <TextBox Grid.Row="1" Grid.Column="9" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[7]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="3" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding RollStats2}" Margin="5,0,0,0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                    <Button Style="{StaticResource CommonButtons}" Grid.Row="1" Grid.Column="10" Content="+"  FontWeight="Bold" Command="{Binding RollStats}" Margin="5,0,0,0"/>
 
-                        </Style>
-                    </Button.Resources>
-                </Button>
 
-                <TextBlock Grid.Row="5" Grid.Column="1" Text="A" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ataki (A): Cecha szybkości ataku Bohatera" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="A" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ataki (A): Cecha szybkości ataku Bohatera" />
                 <TextBlock Grid.Row="5" Grid.Column="2" Text="Żyw" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Żywotność (Żyw) Cecha witalności Bohatera" />
                 <TextBlock Grid.Row="5" Grid.Column="3" Text="S" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Siła (S): Cecha określająca obrażenia zadawane przez Bohatera"/>
                 <TextBlock Grid.Row="5" Grid.Column="4" Text="Wt" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Witalność (Wt): Cecha określająca zdloność ignorowania otrzymanych obrażeń Bohatera"/>
@@ -251,66 +229,37 @@
                 <TextBlock Grid.Row="5" Grid.Column="8" Text="PO" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Obłędu (PO): Cecha określająca stan zdrowia psychicznego Bohatera"/>
                 <TextBlock Grid.Row="5" Grid.Column="9" Text="PP" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Punkty Przeznaczenia (PP): Cecha określająca szczęście Bohatera"/>
                 
-                <TextBlock  Grid.Row="6" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
-                <TextBlock  Grid.Row="7" Grid.Column="0" Text="Schemat rozwoju" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
-                <TextBlock  Grid.Row="8" Grid.Column="0" Text="Aktualna" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/>
+                <!-- TextBlock  Grid.Row="6" Grid.Column="0" Text="Początkowa" TextAlignment="Right" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"/-->
+                
 
-                <TextBox Grid.Row="6" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[0]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[0]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="1" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[0]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="6" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[1]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[1]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="2" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[1]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="6" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[2]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[2]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="3" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[2]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="6" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[3]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[3]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="4" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[3]}" PreviewTextInput="NumberValidationTextBox"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[0]}" PreviewTextInput="NumberValidationTextBox"/>
+                        
+                    <TextBox Grid.Row="6" Grid.Column="2" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[1]}" PreviewTextInput="NumberValidationTextBox"/>
+                       
+                    <TextBox Grid.Row="6" Grid.Column="3" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[2]}" PreviewTextInput="NumberValidationTextBox"/>
+                        
+                    <TextBox Grid.Row="6" Grid.Column="4" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[3]}" PreviewTextInput="NumberValidationTextBox"/>
+                        
 
-                <TextBox Grid.Row="6" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[4]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[4]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="6" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[4]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="6" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[5]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[5]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="7" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[5]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="6" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[6]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[6]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="8" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[6]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="6" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats[7]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="7" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats1[7]}" PreviewTextInput="NumberValidationTextBox"/>
-                <TextBox Grid.Row="8" Grid.Column="9" MaxLength="2" TextAlignment="Center" InputScope="Number" Text="{Binding NextStats2[7]}" PreviewTextInput="NumberValidationTextBox"/>
+                    <TextBox Grid.Row="6" Grid.Column="6" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[4]}" PreviewTextInput="NumberValidationTextBox"/>
+                       
+                    <TextBox Grid.Row="6" Grid.Column="7" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[5]}" PreviewTextInput="NumberValidationTextBox"/>
+                       
+                    <TextBox Grid.Row="6" Grid.Column="8" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[6]}" PreviewTextInput="NumberValidationTextBox"/>
+                       
+                    <TextBox Grid.Row="6" Grid.Column="9" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[7]}" PreviewTextInput="NumberValidationTextBox"/>
 
-                <Button Grid.Row="6" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats}" Margin="5,0,0,0" >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
 
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="7" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats1}" Margin="5,0,0,0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                    <Button Style="{StaticResource CommonButtons}" Grid.Row="6" Grid.Column="10" Content="+"  Command="{Binding NextRollStats}" Margin="5,0,0,0" />
 
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Grid.Row="8" Grid.Column="10" Content="+" FontSize="20" FontWeight="Bold" Command="{Binding NextRollStats2}" Margin="5,0,0,0">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
 
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Grid>
 
-            
-           
-        
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="25" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+                </Grid>
+
+
+
+
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="25" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -320,9 +269,9 @@
             </Border>
             <TextBlock  Grid.Row="25" Grid.Column="1" Grid.ColumnSpan="5" Text="Umiejętności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
 
-           
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="29" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="29" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -331,10 +280,10 @@
             </Border>
 
             <TextBlock  Grid.Row="29" Grid.Column="1" Grid.ColumnSpan="5" Text=" Zdolności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
-        
-            
 
-            <Border MinWidth="50" Grid.Column="1" Grid.Row="33" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#555A57">
+
+
+                <Border MinWidth="50" Grid.Column="1" Grid.Row="33" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
                 <Border.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="30"/>
@@ -343,27 +292,19 @@
             </Border>
         
             <TextBlock  Grid.Row="33" Grid.Column="1" Grid.ColumnSpan="5" Text="Pieniądze" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
-            <TextBox Grid.Row="34" Grid.Column="1" MaxLength="4" TextAlignment="Center" InputScope="Number" Text="{Binding CashGold}" PreviewTextInput="FloatValidationTextBox"/>
-            <TextBox Grid.Row="34" Grid.Column="2" MaxLength="4" TextAlignment="Center" InputScope="Number" Text="{Binding CashSilver}" PreviewTextInput="FloatValidationTextBox"/>
-            <TextBox Grid.Row="34" Grid.Column="4" MaxLength="4" TextAlignment="Center" InputScope="Number" Text="{Binding CashPennies}" PreviewTextInput="FloatValidationTextBox"/>
+            <TextBox Style="{StaticResource NumberTextBox}" Grid.Row="34" Grid.Column="1" MaxLength="4" Text="{Binding CashGold}" PreviewTextInput="FloatValidationTextBox"/>
+                <TextBox Style="{StaticResource NumberTextBox}" Grid.Row="34" Grid.Column="2" MaxLength="4" Text="{Binding CashSilver}" PreviewTextInput="FloatValidationTextBox"/>
+                <TextBox Style="{StaticResource NumberTextBox}" Grid.Row="34" Grid.Column="4" MaxLength="4" Text="{Binding CashPennies}" PreviewTextInput="FloatValidationTextBox"/>
             <Button Grid.Row="34" Grid.Column="5"/>
+            </Grid>
+        </ScrollViewer>
+        
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="0" Grid.Row="1" Content="Anuluj"  Command="{Binding CancelCommand}" Margin="2"/>
 
-            <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="37" Content="Anuluj"  Command="{Binding CancelCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="25"/>
 
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Grid.Column="4"  Grid.ColumnSpan="2" Grid.Row="37" Content="Zapisz" Command="{Binding SaveCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="25"/>
+        <Button Style="{StaticResource CommonButtons}"  Grid.Column="1" Grid.Row="1" Content="Zapisz" Command="{Binding SaveCommand}" Margin="2"/>
 
-                    </Style>
-                </Button.Resources>
-            </Button>
-        </Grid>
-    </ScrollViewer>
+
+ 
+    </Grid>
 </UserControl>
