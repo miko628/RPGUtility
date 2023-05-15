@@ -93,7 +93,7 @@
             <TextBox Style="{StaticResource FormTextBox}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding CharacterName}"/>
             <TextBlock  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="Rasa postaci:" FontSize="18" Margin="20,20,20,10"/>
             <!--TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Race}"/-->
-            <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding Race}" Text="Race" />
+            <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding Race}" SelectedValue="{Binding SelectedRace}" Text="Race" />
             <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Języki:" FontSize="18" Margin="20,20,20,10"/>
                 <TextBox Style="{StaticResource FormTextBox}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Languages}" />
                 <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Typ postaci:" FontSize="18" Margin="20,20,20,10"/>
@@ -250,7 +250,7 @@
                     <TextBox Grid.Row="6" Grid.Column="9" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding NextStats[7]}" PreviewTextInput="NumberValidationTextBox"/>
 
 
-                    <Button Style="{StaticResource CommonButtons}" Grid.Row="6" Grid.Column="10" Content="+"  Command="{Binding NextRollStats}" Margin="5,0,0,0" />
+                    <!--Button Style="{StaticResource CommonButtons}" Grid.Row="6" Grid.Column="10" Content="+"  Command="{Binding NextRollStats}" Margin="5,0,0,0" /-->
 
 
 

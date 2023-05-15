@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
 
@@ -33,7 +33,7 @@
             </ListView.Resources>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Height" Value="200"/>
+                    <Setter Property="Height" Value="50"/>
                     <Setter Property="Margin" Value="20,20,20,0"/>
                     <Setter Property="Background" Value="gray"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -82,7 +82,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Height="200" Content="+" FontSize="96" Command="{Binding NewCharacterCommand}">
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  Height="100" Content="+" FontSize="96" Command="{Binding NewCharacterCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="30"/>

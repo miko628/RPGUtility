@@ -17,7 +17,7 @@ namespace RPGUtility.ViewModel
         private readonly NavigationService _navigationService;
         private CharacterCreatorModel _characterCreatorModel;
         private string _characterName;
-        private string _race;
+        private string[] _race;
         private int _age;
         private string _background;
         private string _birthPlace;
@@ -35,15 +35,10 @@ namespace RPGUtility.ViewModel
         private string _relatives;
         private string _star;
         private string _year;
-        private Campaign _campaignfull;
-       
+        private Campaign _campaignfull;  
         private int[] _nextstatsSource;
-        private int[] _nextstats1Source;
-        private int[] _nextstats2Source;
-
         private int[] _statsSource;
-        private int[] _stats1Source;
-        private int[] _stats2Source;
+
         public int[] Stats
         {
             get {
@@ -56,28 +51,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged(nameof(Stats));
             }
         }
-        public int[] Stats1
-        {
-            get {
-                Trace.WriteLine("Stats1");
-                return _stats1Source; }
-            set
-            {
-                _stats1Source = value;
-                OnPropertyChanged(nameof(Stats1));
-            }
-        }
-        public int[] Stats2
-        {
-            get {
-                Trace.WriteLine("Stats2");
-                return _stats2Source; }
-            set
-            {
-                _stats2Source = value;
-                OnPropertyChanged(nameof(Stats2));
-            }
-        }
+
 
         public int[] NextStats
         {
@@ -90,28 +64,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged(nameof(NextStats));
             }
         }
-        public int[] NextStats1
-        {
-            get { Trace.WriteLine("NextStats1"); return _nextstats1Source; }
-            set
-            {
-                _nextstats1Source = value;
-                OnPropertyChanged(nameof(NextStats1));
-            }
-        }
-        public int[] NextStats2
-        {
-            get {
-                Trace.WriteLine("NextStats2"); 
-                return _nextstats2Source; }
-            set
-            {
-                _nextstats2Source = value;
-                OnPropertyChanged(nameof(NextStats2));
-            }
-        }
-
-
+        public string SelectedRace { get; set; }
 
         public string CharacterName
         {
@@ -123,7 +76,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("CharacterName");
             }
         }
-        public string Race
+        public string[] Race
         {
             get { Trace.WriteLine("Race");
                 return _race; }
@@ -132,26 +85,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Race");
             }
         }
-        public string CurrentCarrer
-        {
-            get { Trace.WriteLine("CurrentCarrer");
-                return _currentcareer; }
-            set
-            {
-                _currentcareer = value;
-                OnPropertyChanged("CurrentCarrer");
-            }
-        }
-        public string PreviousCarrer
-        {
-            get { Trace.WriteLine("PreviousCarrer"); 
-                return _previouscareer; }
-            set
-            {
-                _previouscareer = value;
-                OnPropertyChanged("PreviousCarrer");
-            }
-        }
+       
         public string PlayerName
         {
             get { Trace.WriteLine("PlayerName");
@@ -350,6 +284,7 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged("Background");
             }
         }
+        public string Languages { get; set; }
         public BitmapImage Image
         {
             get
@@ -374,12 +309,10 @@ namespace RPGUtility.ViewModel
         public CharacterCreatorViewModel(NavigationService navigation, Campaign? campaign)
         {
             _statsSource = new int[8];
-            _stats1Source = new int[8];
-            _stats2Source = new int[8];
             _nextstatsSource = new int[8];
-            _nextstats1Source = new int[8];
-            _nextstats2Source = new int[8];
-
+            _race = new string [] { "Człowiek","Elf","Niziołek","Krasnolud","Inna"};
+            SelectedRace=_race[0];
+            //_selectedType=_type[0];
             _campaignfull = campaign;
             Campaign = _campaignfull.Name;
             GameMaster=_campaignfull.GameMaster;
@@ -404,28 +337,64 @@ namespace RPGUtility.ViewModel
         }
         private void DiceRoll(object parameter)
         {
+            int value = Dice.k10();
+            int value2 = Dice.k10();
+            int[] list;
             for (int i = 0; i < 8; i++)
             {
-                Stats[i] = Dice.k20(); ;
+                Stats[i] = 0;
+                NextStats[i] = 0;
             }
+            // int basenumber = 0;
+            switch (SelectedRace)
+            {
+                case "Elf":
+                    list = _characterCreatorModel.ElfRoll();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Stats[i] = list[i];
+                        NextStats[i] = list[i + 8];
+                    }
+                    break;
+                case "Człowiek":
+                    list = _characterCreatorModel.HumanRoll();
+                    for(int i=0;i<8;i++)
+                    {
+                        Stats[i] = list[i];
+                        NextStats[i] = list[i + 8];
+                    }
+                    break;
+                case "Niziołek":
+                    list = _characterCreatorModel.HalflingRoll();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Stats[i] = list[i];
+                        NextStats[i] = list[i + 8];
+                    }
+                    break;
+                case "Krasnolud":
+                    list = _characterCreatorModel.DwarfRoll();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Stats[i] = list[i];
+                        NextStats[i] = list[i + 8];
+                    }
+                    break;
+                default:
+                    list = _characterCreatorModel.DefaultRoll();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Stats[i] = list[i];
+                        NextStats[i] = list[i + 8];
+                    }
+                    break;
+            }
+
+
             OnPropertyChanged(nameof(Stats));
+            OnPropertyChanged(nameof(NextStats));
         }
-        private void DiceRoll1(object parameter)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                Stats1[i] = Dice.k20();
-            }
-            OnPropertyChanged(nameof(Stats1));
-        }
-        private void DiceRoll2(object parameter)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                Stats2[i] = Dice.k30();
-            }
-            OnPropertyChanged(nameof(Stats2));
-        }
+       
         private async void ExecuteSave(object parameter)
         {
             // NavigationState pom = _navigationState;
@@ -437,7 +406,7 @@ namespace RPGUtility.ViewModel
             //Character _character=new Character(CharacterName,Race,Gender,"ok",Year,height,)
             //Trace.WriteLine(character.name);
             // Trace.WriteLine(character.race);
-            Character pom = await _characterCreatorModel.Save(Image,CharacterName,Race,Gender,Background,new DateOnly(),Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,"","","","","",1.0,12.0,13.0,Stats,Stats1,Stats2);
+            Character pom = await _characterCreatorModel.Save(Image,CharacterName,"selected race",Gender,Background,new DateOnly(),Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,"","","","","",1.0,12.0,13.0,Stats);
 
              _navigationService.Navigate(() => new CharacterViewModel(_navigationService,pom, _campaignfull));
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);

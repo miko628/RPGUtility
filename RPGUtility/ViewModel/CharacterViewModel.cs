@@ -1,5 +1,6 @@
 ﻿using RPGUtility.Model;
 using RPGUtility.Models;
+using RPGUtility.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +15,7 @@ namespace RPGUtility.ViewModel
     {
         private readonly NavigationService _navigationService;
         private CharacterModel _characterModel;
+        public string CharacterName { get; set; }
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand NavigationItemCreationCommand { get; }
       //  public RelayCommand CancelCommand { get; }
@@ -30,9 +32,10 @@ namespace RPGUtility.ViewModel
         {
             _characterModel = new CharacterModel();
             _navigationService = navigation;
+            CharacterName = character.Name;
             Image = ImageEncoder.bytearraytoBitmap(character.CharacterImage);
            // _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
-            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new MenuViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             NavigationItemCreationCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
             NavigationExchangeCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ExchangeViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
             // CancelCommand = new RelayCommand(ExecuteCancel, CanExecuteMyCommand);
@@ -42,7 +45,11 @@ namespace RPGUtility.ViewModel
             NavigationSkillTestCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
             NavigationSpellCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
             NavigationOpposedTestCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
-            NavigationRollDiceCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
+            NavigationRollDiceCommand = new RelayCommand((object parameter) => {
+                DiceView subWindow = new DiceView();
+                subWindow.DataContext = new DiceViewModel();
+                subWindow.Show();
+            }, CanExecuteMyCommand);
             NavigationTradeCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
         }
         //k20 k12 k10 k10 k8 k6 k4

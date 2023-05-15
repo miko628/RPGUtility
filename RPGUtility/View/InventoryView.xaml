@@ -6,7 +6,16 @@
              xmlns:local="clr-namespace:RPGUtility.View"
              xmlns:c="clr-namespace:RPGUtility.Models"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
     <Grid>
         <Grid.Resources>
             
@@ -21,13 +30,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -36,39 +49,36 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Border Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="4" Grid.RowSpan="9" Background="Gray">
-            <Border.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
-                </Style>
-            </Border.Resources>
-        </Border>
+        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Style="{StaticResource CommonButtons}" Command="{Binding NavigateBackCommand}"/>
+
         
         <TextBlock  FontSize="20" FontWeight="Bold" Margin="5" />
-        <ScrollViewer Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="4" Grid.RowSpan="9" VerticalScrollBarVisibility="Auto" >
-            <ListView Grid.Column="1" Grid.ColumnSpan="8" Grid.Row="3" Grid.RowSpan="10" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
-            
+        <ScrollViewer Grid.Column="1" Grid.ColumnSpan="9" Grid.Row="5" Grid.RowSpan="9" VerticalScrollBarVisibility="Auto" >
+            <ListView  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Background="#E7DDB3" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
                     <DataTemplate DataType="{x:Type c:Item}">
                         <StackPanel Margin="15" >
                             <Grid>
-                                <Image Width="200" Height="200"  Source="{Binding ItemImage}"  />
+                                <Border Width="260" Height="260" Background="SkyBlue" Style="{StaticResource ClassicBorder}" />
+                                <Image Width="200" Height="200"  Source="{Binding ItemImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
                                 <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="20"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                             </Grid>
 
 
 
-                            <TextBlock Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
+                            
 
                             <StackPanel.ToolTip>
                                 <ToolTip Background="SkyBlue" >
@@ -83,14 +93,11 @@
                     <DataTemplate DataType="{x:Type c:Weapon}">
                         <StackPanel Margin="15" >
                             <Grid>
-                                <Image Width="200" Height="200"  Source="{Binding WeaponImage}"  />
+                                <Border Width="260" Height="260" Background="IndianRed" Style="{StaticResource ClassicBorder}" />
+                                <Image Width="200" Height="200"  Source="{Binding WeaponImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
                                 <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="20"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                             </Grid>
-
-
-
-                            <TextBlock Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
-
                             <StackPanel.ToolTip >
                                 <ToolTip Background="IndianRed">
                                     <StackPanel>
@@ -104,8 +111,10 @@
                     <DataTemplate DataType="{x:Type c:Armor}">
                         <StackPanel Margin="15" >
                             <Grid>
-                                <Image Width="200" Height="200"  Source="{Binding ArmorImage}"  />
+                                <Border Width="260" Height="260" Background="MediumPurple" Style="{StaticResource ClassicBorder}" />
+                                <Image Width="200" Height="200"  Source="{Binding ArmorImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
                                 <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="20"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                             </Grid>
 
 
@@ -126,35 +135,20 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.Resources>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                
                 
               
             </ListView>
         </ScrollViewer>
-        <Border Grid.Column="3" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="4" Background="Black">
-            <Border.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
-                </Style>
-            </Border.Resources>
-        </Border>
-        <Button Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="4" Content="Usuń" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding DeleteCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button Grid.Column="5" Grid.Row="14" Grid.ColumnSpan="4" Content="Dodaj" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding AddCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+        
+        <Label Style="{StaticResource CommonLabel}" HorizontalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding CharacterName}" Grid.Column="3" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="3" />
+
+        <Button Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="3" Content="Usuń" Style="{StaticResource CommonButtons}" Command="{Binding DeleteCommand}" Margin="2"/>
+
+        <Button Grid.Column="4" Grid.Row="14" Grid.ColumnSpan="3" Content="Edytuj" Style="{StaticResource CommonButtons}" Command="{Binding EditCommand}" Margin="2"/>
+
+
+        <Button Grid.Column="6" Grid.Row="14" Grid.ColumnSpan="3" Content="Dodaj" Style="{StaticResource CommonButtons}" Command="{Binding AddCommand}" Margin="2"/>
+
     </Grid>
 </UserControl>

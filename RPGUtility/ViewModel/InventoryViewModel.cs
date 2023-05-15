@@ -19,6 +19,8 @@ namespace RPGUtility.ViewModel
         private readonly Campaign _campaign;
         private dynamic _selectedItem;
         private InventoryModel _inventoryModel;
+
+        public string CharacterName { get; set; }
         public RelayCommand NavigateBackCommand { get; }
         public RelayCommand AddCommand { get; }
         //private ObservableCollection<Item> _items;
@@ -57,13 +59,31 @@ namespace RPGUtility.ViewModel
         {
             _inventoryModel = new InventoryModel(character);
             _navigationService = navigation;
+            CharacterName = character.Name;
             Items = new ObservableCollection<dynamic>();
             Task.Run(Load);
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
             AddCommand= new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
             //DeleteArmorCommand= new RelayCommand((object parameter) => { Trace.WriteLine("usuwam a"); }, CanExecuteMyCommand);
             //DeleteItemCommand= new RelayCommand((object parameter) => { Trace.WriteLine("usuwam i"); }, CanExecuteMyCommand);
-            DeleteCommand = new RelayCommand((object parameter) => { string a = "usuwam w" + _selectedItem.Name; Trace.WriteLine(a); }, CanExecuteMyCommand);
+            DeleteCommand = new RelayCommand(async(object parameter) => {
+                if (_selectedItem is Item)
+                {
+                    await _inventoryModel.DeleteItem(_selectedItem);
+                    await Task.Run(Load);
+                }
+                else if (_selectedItem is Weapon)
+                {
+                    await _inventoryModel.DeleteWeapon(_selectedItem);
+                    await Task.Run(Load);
+                }
+                else if (_selectedItem is Armor)
+                {
+                    await _inventoryModel.DeleteArmor(_selectedItem);
+                    await Task.Run(Load);
+                }
+                else Trace.WriteLine("blond");
+            }, CanExecuteMyCommand);
         }
         private bool CanExecuteMyCommand(object parameter)
         { 

@@ -77,9 +77,9 @@
             <Button Content="Edytuj" Style="{StaticResource HideButtons}" Grid.Row="0" Grid.Column="0"  Margin="5" Command="{Binding EditCampaignCommand}"/>
             <ToggleButton x:Name="ToggleButton1" Content="Menu" Background="Black"  Grid.Row="0" Grid.Column="1" Margin="5">
                 <ToggleButton.Template>
+                    
                     <ControlTemplate TargetType="ToggleButton">
-                
-                            <Popup x:Name="Popup" IsOpen="{TemplateBinding IsChecked}" PlacementTarget="{Binding ElementName=ToggleButton1}"
+                        <Popup x:Name="Popup" IsOpen="{TemplateBinding IsChecked}" PlacementTarget="{Binding ElementName=ToggleButton1}"
                        Placement="Bottom" StaysOpen="True">
                                 <Border Background="#E7DDB3" BorderBrush="Black" BorderThickness="1" CornerRadius="0">
                                     <StackPanel>

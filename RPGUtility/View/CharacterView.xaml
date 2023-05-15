@@ -50,8 +50,13 @@
                 </Style>
             </Border.Resources>
         </Border>
-        <Image Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Source="{Binding Image}" Stretch="Fill" Margin="5" ></Image>
-        <TextBlock Text="Nazwa_postaci(dodaj tu binding)" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" FontSize="18" HorizontalAlignment="Center"/>
+        <Border Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" CornerRadius="15" Margin="10,55,10,0" >
+            <Border.Background>
+                <ImageBrush  Stretch="Fill" ImageSource="{Binding Image}" />
+            </Border.Background>
+        </Border>
+
+        <Label Style="{StaticResource CommonLabel}" Content="{Binding CharacterName}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Top"  HorizontalContentAlignment="Center"/>
 
         <Border MinWidth="50" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4" Background="#555A57">
             <Border.Resources>
@@ -60,7 +65,7 @@
                 </Style>
             </Border.Resources>
         </Border>
-        <TextBlock Text="Dziennik zdarzeń" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+        <Label Content="Statystyki" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Style="{StaticResource CommonLabel}"/>
 
         <Button Content="Ekwipunek" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Margin="10,0,10,0" Command="{Binding NavigationEquipmentCommand}"/>
 
