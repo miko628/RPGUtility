@@ -84,20 +84,40 @@ namespace RPGUtility.ViewModel
         public string ItemDescription { get; set; }
 
         public int ItemQuantity { get; set; }
-        public ItemCreatorViewModel(NavigationService navigation,Campaign campaign,Character character)
+        public ItemCreatorViewModel(NavigationService navigation,Campaign campaign,Character character,dynamic? item)
         {
+            _type = new ObservableCollection<string> { "Przedmiot", "Broń", "Pancerz" };
+            _weaponType = new ObservableCollection<string> { "Miecz", "Łuk" };
+            _armorType = new ObservableCollection<string> { "Głowa", "Korpus", "Ręce", "Nogi", "Całe ciało" };
+            if (item is not null)
+            {
+                //ItemImage = item.Image;
+                if(item is Item)
+                {
+                    
+                }   else if(item is Weapon)
+                {
+
+                }
+                else if(item is Armor)
+                {
+
+                }
+
+                ItemName = item.Name;
+                ItemDescription = item.Description;
+            }
             _itemModel = new ItemCreationModel(character);
             //_itemModel.ItemType[0];
             _campaign = campaign;
             _character = character;
             //SelectedOption = _itemModel.ItemType[0];
-            _type=new ObservableCollection<string> { "Przedmiot", "Broń", "Pancerz" };
-            _weaponType = new ObservableCollection<string> { "Miecz","Łuk" };
-            _armorType = new ObservableCollection<string> { "Głowa", "Korpus","Ręce","Nogi","Całe ciało" };
+            
             // _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot","Broń","Pancerz"};   
             _selectedOption = _type[0];
             _selectedWeapon = _weaponType[0];
             _selectedArmor = _armorType[0];
+            ItemQuantity = 1;
             _navigationService = navigation;
             //_prev = _previousstate;
             SendImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);

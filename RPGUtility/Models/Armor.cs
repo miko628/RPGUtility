@@ -14,31 +14,22 @@ public partial class Armor
     public int ArmorId { get; set; }
 
     [Column("name", TypeName = "character varying")]
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
 
     [Column("armor_image")]
-    public byte[]? ArmorImage { get; set; }
+    public byte[] ArmorImage { get; set; } = null!;
 
     [Column("type", TypeName = "character varying")]
-    public string? Type { get; set; }
+    public string Type { get; set; } = null!;
 
     [Column("quantity")]
-    public int? Quantity { get; set; }
+    public int Quantity { get; set; }
 
     [Column("description")]
     public string? Description { get; set; }
 
-    [Column("head")]
-    public double? Head { get; set; }
-
-    [Column("chestplate")]
-    public double? Chestplate { get; set; }
-
-    [Column("leggings")]
-    public double? Leggings { get; set; }
-
-    [Column("boots")]
-    public double? Boots { get; set; }
+    [Column("armor")]
+    public double Armor1 { get; set; }
 
     [Column("character_id")]
     public int? CharacterId { get; set; }

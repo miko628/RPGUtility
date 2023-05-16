@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -25,16 +26,18 @@ namespace RPGUtility.Model
         public ObservableCollection<string> Race { get; set; }
 
            
-            public async Task<Character> Save(BitmapImage image,string name,string race,string gender,string? background, DateOnly birth, double height, double weight, string hair,string eyes,string characteristics,string placebirth,string star,string relatives, string maindelty,string languages,string? career,string? careerpath,string? careerexits,double gold,double silver, double pennies, int[] stats)
+            public async Task<Character> Save(BitmapImage image,string name,string playername,string race,string gender,int age, double height, double weight, string hair,string eyes,string characteristics,string placebirth,string star,string relatives,string languages,double gold,double silver, double pennies, int[] stats, int[]stats2)
         {
             byte[] data=ImageEncoder.BitmapImagetobytearray(image);
             using (var context = new RpgutilityContext())
             {
                 var characters = context.Set<Character>();
-                //Statistic stat = new Statistic { WeaponSkill = stats[0], };
-                Character pom = new Character { CharacterImage = data, Name = name, Race = race, Gender = gender, Background = background, BirthYear = birth, Height = height, Weight = weight, Hair = hair, Eyes = eyes, Characteristics = characteristics, PlaceBirth = placebirth, StarSign = star, Relatives = relatives, MainDelty = maindelty, Languages = languages, Career = career, CarrerPath = careerpath, CarrerExits = careerexits, GoldCrowns = gold, SilverShillings = silver, BrassPenniews = pennies, CampaignId = _campaign.CampaignId};
+                var statistics = context.Set<Statistic>();
+                Statistic stat = new Statistic { WeaponSkill = stats[0], BallisticSkill = stats[1], Strength = stats[2], Toughness = stats[3], Agility = stats[4], Intelligence = stats[5],Willpower=stats[6], Fellowship = stats[7], Attacks = stats2[0], Wounds = stats2[1], Health = stats2[1], StrengthBonus = stats2[2], ToughnessBonus = stats2[3], Movement = stats2[4], Magic = stats2[5], InsanityPoints = stats2[6], FatePoints = stats2[7], CurrentFatePoints = stats2[7]  };
+                Character pom = new Character { CharacterImage = data, Name = name, Playername=playername, Race = race, Gender = gender, Age=age, Height = height, Weight = weight, Hair = hair, Eyes = eyes, Characteristics = characteristics, PlaceBirth = placebirth, StarSign = star, Relatives = relatives, Languages = languages, GoldCrowns = gold, SilverShillings = silver, BrassPenniews = pennies, CampaignId = _campaign.CampaignId};
 
                 await characters.AddAsync(pom);
+                await statistics.AddAsync(stat);
                 //context.Campaigns.AddAsync(campaign);
                 await context.SaveChangesAsync();
                 return pom;

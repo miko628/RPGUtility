@@ -38,7 +38,7 @@ namespace RPGUtility.ViewModel
         private Campaign _campaignfull;  
         private int[] _nextstatsSource;
         private int[] _statsSource;
-
+        private string[] _charactertype;
         public int[] Stats
         {
             get {
@@ -52,6 +52,15 @@ namespace RPGUtility.ViewModel
             }
         }
 
+        public string SelectedCharacterType { get; set; }
+        public string[] CharacterType
+        {
+            get { return _charactertype; }
+            set {
+                _charactertype = value;
+                OnPropertyChanged(nameof(CharacterType));
+            }
+        }
 
         public int[] NextStats
         {
@@ -306,12 +315,40 @@ namespace RPGUtility.ViewModel
         public RelayCommand RollStats { get; }
         public RelayCommand NextRollStats { get; }
 
-        public CharacterCreatorViewModel(NavigationService navigation, Campaign? campaign)
+        public CharacterCreatorViewModel(NavigationService navigation, Campaign? campaign,Character? character)
         {
+            if (character is not null)
+            {
+                //Image = character.CharacterImage;
+                CharacterName = character.Name;
+                PlayerName=character.Playername;
+                SelectedRace = character.Race;
+                Gender = character.Gender;
+                Age = character.Age;
+                Height = character.Height;
+                Weight=character.Weight;
+                Hair=character.Hair;
+                Eyes=character.Eyes;
+                Characteristics = character.Characteristics;
+                BirthPlace = character.PlaceBirth;
+                Star = character.StarSign;
+                Relatives = character.Relatives;
+                CashGold = character.GoldCrowns;
+                CashSilver = character.SilverShillings;
+                CashPennies = character.BrassPenniews;
+                //Stats[0] =sta.;
+
+            }
+            else
+            {
+
+            }
             _statsSource = new int[8];
             _nextstatsSource = new int[8];
+            _charactertype = new string[] { "Gracz", "NPC" };
             _race = new string [] { "Człowiek","Elf","Niziołek","Krasnolud","Inna"};
             SelectedRace=_race[0];
+            SelectedCharacterType = _charactertype[0];
             //_selectedType=_type[0];
             _campaignfull = campaign;
             Campaign = _campaignfull.Name;
@@ -406,9 +443,9 @@ namespace RPGUtility.ViewModel
             //Character _character=new Character(CharacterName,Race,Gender,"ok",Year,height,)
             //Trace.WriteLine(character.name);
             // Trace.WriteLine(character.race);
-            Character pom = await _characterCreatorModel.Save(Image,CharacterName,"selected race",Gender,Background,new DateOnly(),Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,"","","","","",1.0,12.0,13.0,Stats);
+            Character pom = await _characterCreatorModel.Save(Image,CharacterName,PlayerName,SelectedRace,Gender,Age,Height,Weight,Hair,Eyes,Characteristics,BirthPlace,Star,Relatives,Languages,CashGold,CashSilver,CashPennies,Stats,NextStats);
 
-             _navigationService.Navigate(() => new CharacterViewModel(_navigationService,pom, _campaignfull));
+            _navigationService.Navigate(() => new CharacterViewModel(_navigationService,pom, _campaignfull));
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);
 
         }

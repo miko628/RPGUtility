@@ -14,22 +14,22 @@ public partial class Weapon
     public int WeaponId { get; set; }
 
     [Column("weapon_image")]
-    public byte[]? WeaponImage { get; set; }
+    public byte[] WeaponImage { get; set; } = null!;
 
     [Column("name", TypeName = "character varying")]
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
 
     [Column("type", TypeName = "character varying")]
-    public string? Type { get; set; }
+    public string Type { get; set; } = null!;
 
     [Column("quantity")]
-    public int? Quantity { get; set; }
+    public int Quantity { get; set; }
 
     [Column("description")]
     public string? Description { get; set; }
 
     [Column("damage")]
-    public double? Damage { get; set; }
+    public double Damage { get; set; }
 
     [Column("character_id")]
     public int? CharacterId { get; set; }

@@ -15,6 +15,23 @@ namespace RPGUtility.Model
         {
             _campaign = campaign;
         }
+        public async Task Delete(Character character)
+        {
+            try
+            {
+                using (var context = new RpgutilityContext())
+                {
+                    //var pom = context.Campaigns.Where(k=>k.CampaignId==id).First();
+                    context.Characters.Remove(character);
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (ArgumentNullException e)
+            {
+
+                // the exception above will not be caught here
+            }
+        }
         public async Task<List<Character>> GetAll()
         {
             List<Character> characters;

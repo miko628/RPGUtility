@@ -97,7 +97,7 @@
             <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Języki:" FontSize="18" Margin="20,20,20,10"/>
                 <TextBox Style="{StaticResource FormTextBox}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Languages}" />
                 <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Typ postaci:" FontSize="18" Margin="20,20,20,10"/>
-                <ComboBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" />
+                <ComboBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding CharacterType}" SelectedValue="{Binding SelectedCharacterType }" />
 
 
             <TextBlock  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Text="Imię Gracza:" FontSize="18" Margin="20,20,20,20"/>
@@ -119,13 +119,13 @@
         
             <TextBlock  Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Text="Opis Postaci" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
             <TextBlock  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" Text="Wiek:" FontSize="18" Margin="20,20,20,20"/>
-                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" Margin="20,20,20,20"  Text="{Binding Age}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Age}" PreviewTextInput="NumberValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="3" Text="Płeć:" FontSize="18" Margin="20,20,20,20"/>
-                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" Margin="20,20,20,20"  Text="{Binding Gender}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Gender}"/>
             <TextBlock  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor oczu:" FontSize="18" Margin="20,20,20,20"/>
-                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1"  Margin="20,20,20,20"  Text="{Binding Eyes}"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32"  Margin="20,20,20,20"  Text="{Binding Eyes}"/>
             <TextBlock  Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="3" Text="Waga:" FontSize="18" Margin="20,20,20,20"/>
-                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" Margin="20,20,20,20"  Text="{Binding Weight}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
+                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Weight}" PreviewTextInput="FloatValidationTextBox" MaxLength="6"/>
             <TextBlock  Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Text="Kolor włosów:" FontSize="18" Margin="20,20,20,20"/>
                 <TextBox Style="{StaticResource FormTextBox}" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20"  Text="{Binding Hair}"/>
             <TextBlock  Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="3" Text="Wzrost:" FontSize="18" Margin="20,20,20,20"/>

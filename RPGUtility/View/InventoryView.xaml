@@ -125,10 +125,8 @@
                                 <ToolTip Background="MediumPurple">
                                     <StackPanel >
                                         <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
-                                        <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Head, StringFormat={}Pancerz głowy : {0}}"/>
-                                        <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Chestplate, StringFormat={}Pancerz korpus : {0}}"/>
-                                        <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Leggings, StringFormat={}Pancerz nogi : {0}}"/>
-                                        <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Boots, StringFormat={}Pancerz ręce : {0}}"/>
+                                        <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Armor, StringFormat={}Pancerz : {0}}"/>
+
                                     </StackPanel>
                                 </ToolTip>
                             </StackPanel.ToolTip>
@@ -148,7 +146,7 @@
         <Button Grid.Column="4" Grid.Row="14" Grid.ColumnSpan="3" Content="Edytuj" Style="{StaticResource CommonButtons}" Command="{Binding EditCommand}" Margin="2"/>
 
 
-        <Button Grid.Column="6" Grid.Row="14" Grid.ColumnSpan="3" Content="Dodaj" Style="{StaticResource CommonButtons}" Command="{Binding AddCommand}" Margin="2"/>
+        <Button Grid.Column="7" Grid.Row="14" Grid.ColumnSpan="3" Content="Dodaj" Style="{StaticResource CommonButtons}" Command="{Binding AddCommand}" Margin="2"/>
 
     </Grid>
 </UserControl>

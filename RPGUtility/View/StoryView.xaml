@@ -52,11 +52,11 @@
 
         <Button Grid.Column="1" Grid.Row="1"  Content="Cofnij" Style="{StaticResource HideButtons}"  Command="{Binding NavigateBackCommand}">
         </Button>
-      
-        <TextBox IsReadOnly="{Binding ReadOnly}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="NoWrap"   Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Name}" FontSize="60" FontWeight="Heavy"/>
 
-        <TextBox IsReadOnly="{Binding ReadOnly}"  Grid.Column="1"  Grid.ColumnSpan="5" Grid.Row="4" Text="{Binding GameMaster}" FontSize="26" FontWeight="SemiBold" Visibility="{Binding Path=Hide, Converter={StaticResource BoolToVisibility}}"/>
-        <TextBox IsReadOnly="{Binding ReadOnly}"  Grid.Column="1"   Grid.ColumnSpan="5" Grid.Row="5" Text="{Binding Year}" FontSize="26" FontWeight="SemiBold" Visibility="{Binding Path=Hide, Converter={StaticResource BoolToVisibility}}"/>
+        <TextBox Style="{StaticResource StoryTextBox}" IsReadOnly="{Binding ReadOnly}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="NoWrap"   Grid.Column="1" Grid.ColumnSpan="6" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Name}" FontSize="60" FontWeight="Heavy"/>
+
+        <TextBox Style="{StaticResource StoryTextBox}"  IsReadOnly="{Binding ReadOnly}"  Grid.Column="1"  Grid.ColumnSpan="5" Grid.Row="4" Text="{Binding GameMaster}" FontSize="26" FontWeight="SemiBold" Visibility="{Binding Path=Hide, Converter={StaticResource BoolToVisibility}}"/>
+        <TextBox Style="{StaticResource StoryTextBox}" IsReadOnly="{Binding ReadOnly}"  Grid.Column="1"   Grid.ColumnSpan="5" Grid.Row="5" Text="{Binding Year}" FontSize="26" FontWeight="SemiBold" Visibility="{Binding Path=Hide, Converter={StaticResource BoolToVisibility}}"/>
 
         <Grid Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" >
             
@@ -117,7 +117,7 @@
             </Border.Resources>
         </Border>
         <ScrollViewer Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="7" Grid.RowSpan="6" Margin="0,10,0,0">
-            <TextBox IsReadOnly="{Binding ReadOnly}" Style="{StaticResource CommonTextBox}" TextWrapping="Wrap" FontSize="32" Text="{Binding Description}" Margin="30,20,20,10" AcceptsReturn="True" BorderThickness="0">
+            <TextBox Style="{StaticResource CommonTextBox}" TextWrapping="Wrap" FontSize="32" Text="{Binding Description}" Margin="30,20,20,10" AcceptsReturn="True" BorderThickness="0">
             </TextBox>
         </ScrollViewer>
         <Button Grid.Row="13" Style="{StaticResource HideButtons}" Command="{Binding SaveEditCommand}"  Grid.Column="1" Grid.ColumnSpan="6" Content="Zapisz" />

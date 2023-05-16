@@ -46,29 +46,12 @@ namespace RPGUtility.Model
         public async Task AddArmor(BitmapImage bitimage, string name, int quantity, string description,string type,double armorvalue)
         {
             byte[] image = ImageEncoder.BitmapImagetobytearray(bitimage);
-            double head = 0;
-            double chest = 0;
-            double leggings = 0;
-            double boots = 0;
-            switch (type)
-            {
-                case "Głowa": head = armorvalue;
-                    break;
-                case "Korpus": chest = armorvalue;
-                    break;
-                case "Ręce": boots = armorvalue;
-                    break;
-                case "Nogi": leggings = armorvalue;
-                    break;
-                case "Całe ciało": head= armorvalue; chest = armorvalue; leggings = armorvalue; boots = armorvalue;
-                    break;
 
-            }
             
             using (var context = new RpgutilityContext())
             {
                 var armor = context.Set<Armor>();
-                Armor pom=new Armor{ArmorImage=image,Name=name,Type=type,Quantity=quantity,Description=description,Head=head,Chestplate=chest,Leggings=leggings,Boots=boots, CharacterId = _character.CharacterId };
+                Armor pom=new Armor{ArmorImage=image,Name=name,Type=type,Quantity=quantity,Description=description,Armor1=armorvalue, CharacterId = _character.CharacterId };
                 //Act pom = new Act { Name = $"Akt {Acts.Count()}", Description = "Testowe", CampaignId = _campaign.CampaignId };
                 await armor.AddAsync(pom);
                 await context.SaveChangesAsync();

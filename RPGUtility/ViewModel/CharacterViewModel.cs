@@ -36,12 +36,12 @@ namespace RPGUtility.ViewModel
             Image = ImageEncoder.bytearraytoBitmap(character.CharacterImage);
            // _navigationState.CurrentViewModelChange += OnCurrentViewModelChange;
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
-            NavigationItemCreationCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
+            NavigationItemCreationCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character,null)); }, CanExecuteMyCommand);
             NavigationExchangeCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ExchangeViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
             // CancelCommand = new RelayCommand(ExecuteCancel, CanExecuteMyCommand);
             // SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
             NavigationEquipmentCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new InventoryViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
-            NavigationAdvancementCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterCreatorViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+            NavigationAdvancementCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterCreatorViewModel(_navigationService, campaign,character)); }, CanExecuteMyCommand);
             NavigationSkillTestCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
             NavigationSpellCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);
             NavigationOpposedTestCommand = new RelayCommand(ExecuteEquipment, CanExecuteMyCommand);

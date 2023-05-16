@@ -29,8 +29,8 @@ namespace RPGUtility.ViewModel
             Task.Run(Load);
             CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
             SubmitCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService, _selectedCharacter ,campaign)); }, CanExecuteMyCommand);
-            NewCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterCreatorViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
-            //  DeleteCharacterCommand = new RelayCommand(async (object parameter) => { await _characterChooseModel.Delete(_selectedCharacter); await Load(); }, CanExecuteMyCommand);
+            NewCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterCreatorViewModel(_navigationService,campaign,null)); }, CanExecuteMyCommand);
+            DeleteCharacterCommand = new RelayCommand(async (object parameter) => { await _characterchooseModel.Delete(_selectedCharacter); await Load(); }, CanExecuteMyCommand);
         }
         public ObservableCollection<Character> Characters
         {

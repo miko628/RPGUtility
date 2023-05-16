@@ -14,13 +14,13 @@ public partial class Item
     public int ItemId { get; set; }
 
     [Column("item_image")]
-    public byte[]? ItemImage { get; set; }
+    public byte[] ItemImage { get; set; } = null!;
 
     [Column("name", TypeName = "character varying")]
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
 
     [Column("quantity")]
-    public int? Quantity { get; set; }
+    public int Quantity { get; set; }
 
     [Column("description")]
     public string? Description { get; set; }

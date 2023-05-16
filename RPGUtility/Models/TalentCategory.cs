@@ -6,23 +6,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RPGUtility.Models;
 
-[Table("Act")]
-public partial class Act
+[Table("TalentCategory")]
+public partial class TalentCategory
 {
     [Key]
-    [Column("act_id")]
-    public int ActId { get; set; }
+    [Column("talent_id")]
+    public int TalentId { get; set; }
 
     [Column("name", TypeName = "character varying")]
     public string Name { get; set; } = null!;
 
-    [Column("description")]
+    [Column("description", TypeName = "character varying")]
     public string? Description { get; set; }
 
-    [Column("campaign_id")]
-    public int CampaignId { get; set; }
-
-    [ForeignKey("CampaignId")]
-    [InverseProperty("Acts")]
-    public virtual Campaign Campaign { get; set; } = null!;
+    [InverseProperty("TalentNavigation")]
+    public virtual Talent? Talent { get; set; }
 }

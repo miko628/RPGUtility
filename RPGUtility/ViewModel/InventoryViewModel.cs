@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Xml.Linq;
 
 namespace RPGUtility.ViewModel
@@ -25,7 +26,7 @@ namespace RPGUtility.ViewModel
         public RelayCommand AddCommand { get; }
         //private ObservableCollection<Item> _items;
         // public RelayCommand DeleteItemCommand { get; }
-
+        public RelayCommand EditCommand { get; }
         public dynamic SelectedItem { get { return _selectedItem; } set { _selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }
        public RelayCommand DeleteCommand { get; }
 
@@ -63,8 +64,10 @@ namespace RPGUtility.ViewModel
             Items = new ObservableCollection<dynamic>();
             Task.Run(Load);
             NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
-            AddCommand= new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character)); }, CanExecuteMyCommand);
+            AddCommand= new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService,campaign,character,null)); }, CanExecuteMyCommand);
+            EditCommand= new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ItemCreatorViewModel(_navigationService, campaign, character, SelectedItem)); }, CanExecuteMyCommand);
             //DeleteArmorCommand= new RelayCommand((object parameter) => { Trace.WriteLine("usuwam a"); }, CanExecuteMyCommand);
+            //EditingCommands =;
             //DeleteItemCommand= new RelayCommand((object parameter) => { Trace.WriteLine("usuwam i"); }, CanExecuteMyCommand);
             DeleteCommand = new RelayCommand(async(object parameter) => {
                 if (_selectedItem is Item)

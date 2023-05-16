@@ -13,16 +13,14 @@ public partial class Skill
     [Column("skill_id")]
     public int SkillId { get; set; }
 
-    [Column("name", TypeName = "character varying")]
-    public string? Name { get; set; }
-
-    [Column("description", TypeName = "character varying")]
-    public string? Description { get; set; }
-
     [Column("character_id")]
     public int? CharacterId { get; set; }
 
     [ForeignKey("CharacterId")]
     [InverseProperty("Skills")]
     public virtual Character? Character { get; set; }
+
+    [ForeignKey("SkillId")]
+    [InverseProperty("Skill")]
+    public virtual SkillCategory SkillNavigation { get; set; } = null!;
 }

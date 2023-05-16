@@ -14,16 +14,16 @@ public partial class Campaign
     public int CampaignId { get; set; }
 
     [Column("name", TypeName = "character varying")]
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
 
     [Column("description")]
     public string? Description { get; set; }
 
     [Column("game_master", TypeName = "character varying")]
-    public string? GameMaster { get; set; }
+    public string GameMaster { get; set; } = null!;
 
     [Column("year", TypeName = "character varying")]
-    public string? Year { get; set; }
+    public string Year { get; set; } = null!;
 
     [InverseProperty("Campaign")]
     public virtual ICollection<Act> Acts { get; set; } = new List<Act>();

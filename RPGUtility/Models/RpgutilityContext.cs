@@ -19,8 +19,6 @@ public partial class RpgutilityContext : DbContext
 
     public virtual DbSet<Armor> Armors { get; set; }
 
-    public virtual DbSet<Battle> Battles { get; set; }
-
     public virtual DbSet<Campaign> Campaigns { get; set; }
 
     public virtual DbSet<Character> Characters { get; set; }
@@ -29,14 +27,18 @@ public partial class RpgutilityContext : DbContext
 
     public virtual DbSet<Skill> Skills { get; set; }
 
+    public virtual DbSet<SkillCategory> SkillCategories { get; set; }
+
     public virtual DbSet<Statistic> Statistics { get; set; }
 
     public virtual DbSet<Talent> Talents { get; set; }
 
+    public virtual DbSet<TalentCategory> TalentCategories { get; set; }
+
     public virtual DbSet<Weapon> Weapons { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Server=localhost; port=5433; userid=postgres; password=password; database=RPGUtility;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,9 +49,7 @@ public partial class RpgutilityContext : DbContext
 
             entity.Property(e => e.ActId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Campaign).WithMany(p => p.Acts)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Act_campaign_id_fkey");
+            entity.HasOne(d => d.Campaign).WithMany(p => p.Acts).HasConstraintName("Act_campaign_id_fkey");
         });
 
         modelBuilder.Entity<Armor>(entity =>
@@ -61,34 +61,6 @@ public partial class RpgutilityContext : DbContext
             entity.HasOne(d => d.Character).WithMany(p => p.Armors)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Armor_character_id_fkey");
-        });
-
-        modelBuilder.Entity<Battle>(entity =>
-        {
-            entity.HasKey(e => e.BattleId).HasName("Battle_pkey");
-
-            entity.Property(e => e.BattleId)
-                .ValueGeneratedOnAdd()
-                .UseIdentityAlwaysColumn();
-
-            entity.HasOne(d => d.BattleNavigation).WithOne(p => p.Battle).HasConstraintName("Battle_battle_id_fkey");
-
-            entity.HasMany(d => d.Characters).WithMany(p => p.Battles)
-                .UsingEntity<Dictionary<string, object>>(
-                    "BattleDetail",
-                    r => r.HasOne<Character>().WithMany()
-                        .HasForeignKey("CharacterId")
-                        .HasConstraintName("Battle_details_character_id_fkey"),
-                    l => l.HasOne<Battle>().WithMany()
-                        .HasForeignKey("BattleId")
-                        .HasConstraintName("Battle_details_battle_id_fkey"),
-                    j =>
-                    {
-                        j.HasKey("BattleId", "CharacterId").HasName("Battle_details_pkey");
-                        j.ToTable("Battle_details");
-                        j.IndexerProperty<int>("BattleId").HasColumnName("battle_id");
-                        j.IndexerProperty<int>("CharacterId").HasColumnName("character_id");
-                    });
         });
 
         modelBuilder.Entity<Campaign>(entity =>
@@ -104,9 +76,7 @@ public partial class RpgutilityContext : DbContext
 
             entity.Property(e => e.CharacterId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Campaign).WithMany(p => p.Characters)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Character_campaign_id_fkey");
+            entity.HasOne(d => d.Campaign).WithMany(p => p.Characters).HasConstraintName("Character_campaign_id_fkey");
         });
 
         modelBuilder.Entity<Item>(entity =>
@@ -124,11 +94,22 @@ public partial class RpgutilityContext : DbContext
         {
             entity.HasKey(e => e.SkillId).HasName("Skill_pkey");
 
-            entity.Property(e => e.SkillId).UseIdentityAlwaysColumn();
+            entity.Property(e => e.SkillId)
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Character).WithMany(p => p.Skills)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Skill_character_id_fkey");
+
+            entity.HasOne(d => d.SkillNavigation).WithOne(p => p.Skill).HasConstraintName("Skill_skill_id_fkey");
+        });
+
+        modelBuilder.Entity<SkillCategory>(entity =>
+        {
+            entity.HasKey(e => e.SkillId).HasName("SkillCategory_pkey");
+
+            entity.Property(e => e.SkillId).UseIdentityAlwaysColumn();
         });
 
         modelBuilder.Entity<Statistic>(entity =>
@@ -146,11 +127,22 @@ public partial class RpgutilityContext : DbContext
         {
             entity.HasKey(e => e.TalentId).HasName("Talent_pkey");
 
-            entity.Property(e => e.TalentId).UseIdentityAlwaysColumn();
+            entity.Property(e => e.TalentId)
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn();
 
             entity.HasOne(d => d.Character).WithMany(p => p.Talents)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Talent_character_id_fkey");
+
+            entity.HasOne(d => d.TalentNavigation).WithOne(p => p.Talent).HasConstraintName("Talent_talent_id_fkey");
+        });
+
+        modelBuilder.Entity<TalentCategory>(entity =>
+        {
+            entity.HasKey(e => e.TalentId).HasName("TalentCategory_pkey");
+
+            entity.Property(e => e.TalentId).UseIdentityAlwaysColumn();
         });
 
         modelBuilder.Entity<Weapon>(entity =>

@@ -14,34 +14,34 @@ public partial class Character
     public int CharacterId { get; set; }
 
     [Column("character_image")]
-    public byte[]? CharacterImage { get; set; }
+    public byte[] CharacterImage { get; set; } = null!;
 
     [Column("name", TypeName = "character varying")]
-    public string? Name { get; set; }
+    public string Name { get; set; } = null!;
+
+    [Column("playername", TypeName = "character varying")]
+    public string Playername { get; set; } = null!;
 
     [Column("race", TypeName = "character varying")]
-    public string? Race { get; set; }
+    public string Race { get; set; } = null!;
 
     [Column("gender", TypeName = "character varying")]
     public string? Gender { get; set; }
 
-    [Column("background")]
-    public string? Background { get; set; }
-
-    [Column("birth_year")]
-    public DateOnly? BirthYear { get; set; }
+    [Column("age")]
+    public int Age { get; set; }
 
     [Column("height")]
-    public double? Height { get; set; }
+    public double Height { get; set; }
 
     [Column("weight")]
-    public double? Weight { get; set; }
+    public double Weight { get; set; }
 
     [Column("hair", TypeName = "character varying")]
-    public string? Hair { get; set; }
+    public string Hair { get; set; } = null!;
 
     [Column("eyes", TypeName = "character varying")]
-    public string? Eyes { get; set; }
+    public string Eyes { get; set; } = null!;
 
     [Column("characteristics")]
     public string? Characteristics { get; set; }
@@ -50,44 +50,32 @@ public partial class Character
     public string? PlaceBirth { get; set; }
 
     [Column("star_sign", TypeName = "character varying")]
-    public string? StarSign { get; set; }
+    public string StarSign { get; set; } = null!;
 
     [Column("relatives", TypeName = "character varying")]
     public string? Relatives { get; set; }
 
-    [Column("main_delty", TypeName = "character varying")]
-    public string? MainDelty { get; set; }
-
     [Column("languages")]
-    public string? Languages { get; set; }
-
-    [Column("career", TypeName = "character varying")]
-    public string? Career { get; set; }
-
-    [Column("carrer_path", TypeName = "character varying")]
-    public string? CarrerPath { get; set; }
-
-    [Column("carrer_exits", TypeName = "character varying")]
-    public string? CarrerExits { get; set; }
+    public string Languages { get; set; } = null!;
 
     [Column("gold_crowns")]
-    public double? GoldCrowns { get; set; }
+    public double GoldCrowns { get; set; }
 
     [Column("silver_shillings")]
-    public double? SilverShillings { get; set; }
+    public double SilverShillings { get; set; }
 
     [Column("brass_penniews")]
-    public double? BrassPenniews { get; set; }
+    public double BrassPenniews { get; set; }
 
     [Column("campaign_id")]
-    public int? CampaignId { get; set; }
+    public int CampaignId { get; set; }
 
     [InverseProperty("Character")]
     public virtual ICollection<Armor> Armors { get; set; } = new List<Armor>();
 
     [ForeignKey("CampaignId")]
     [InverseProperty("Characters")]
-    public virtual Campaign? Campaign { get; set; }
+    public virtual Campaign Campaign { get; set; } = null!;
 
     [InverseProperty("Character")]
     public virtual ICollection<Item> Items { get; set; } = new List<Item>();
@@ -103,8 +91,4 @@ public partial class Character
 
     [InverseProperty("Character")]
     public virtual ICollection<Weapon> Weapons { get; set; } = new List<Weapon>();
-
-    [ForeignKey("CharacterId")]
-    [InverseProperty("Characters")]
-    public virtual ICollection<Battle> Battles { get; set; } = new List<Battle>();
 }
