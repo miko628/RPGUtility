@@ -4,8 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View"
+             xmlns:c="clr-namespace:RPGUtility.Models"
+
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="LightSlateGray">
+            
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+        </ResourceDictionary>
+
+    </UserControl.Resources>
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -14,9 +27,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -38,34 +52,214 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-            <Button.Resources>
+        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Style="{StaticResource CommonButtons}"  Command="{Binding NavigateBackCommand}"/>
+
+
+        <Border MinWidth="50" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="11" Background="#E7DDB3">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Border.Resources>
+        </Border>
+        <Border MinWidth="50" Grid.Column="9" Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="11" Background="#E7DDB3">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30"/>
+                </Style>
+            </Border.Resources>
+        </Border>
+        <ListView Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="10"  ItemsSource="{Binding Items2}" SelectedItem="{Binding SelectedItem}" Background="#E7DDB3" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"/>
                 </Style>
-            </Button.Resources>
-        </Button>
-        <Border MinWidth="50" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="11" Background="#555A57">
-            <Border.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
-                </Style>
-            </Border.Resources>
-        </Border>
-        <Border MinWidth="50" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="11" Background="#555A57">
-            <Border.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="30"/>
-                </Style>
-            </Border.Resources>
-        </Border>
-        <Button Grid.Column="6" Grid.Row="7" Grid.RowSpan="2" Content="Anuluj" Command="{Binding CancelCommand}"/>
-        <Button Grid.Column="6" Grid.Row="9" Grid.RowSpan="2" Content="Potwierdź" Command="{Binding SaveCommand}"/>
+                <DataTemplate DataType="{x:Type c:Item}">
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="120" Height="120" Background="SkyBlue" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding ItemImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="16" Foreground="#FBF6E2"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <StackPanel.ToolTip>
+                            <ToolTip Background="SkyBlue" >
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
+
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type c:Weapon}">
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="120" Height="120" Background="IndianRed" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding WeaponImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="16" Foreground="#FBF6E2"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <StackPanel.ToolTip >
+                            <ToolTip Background="IndianRed">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Damage, StringFormat={}Obrażenia : {0}}"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type c:Armor}">
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="120" Height="120" Background="MediumPurple" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding ArmorImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" />
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="16" Foreground="#FBF6E2" Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+
+
+
+                        <TextBlock Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
+
+                        <StackPanel.ToolTip >
+                            <ToolTip Background="MediumPurple">
+                                <StackPanel >
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Armor, StringFormat={}Pancerz : {0}}"/>
+
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.Resources>
+        </ListView>
         <TextBlock Text="Postać 1" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
-        <TextBlock Text="Postać 2" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
-        <Button Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="2" Content="Wybierz postać" Command="{Binding ChooseFirstCharacterCommand}"/>
-        <Button Grid.Column="9" Grid.Row="12" Grid.ColumnSpan="2" Content="Wybierz postać" Command="{Binding ChooseSecondCharacterCommand}"/>
+        <TextBlock Text="Postać 2" Grid.Column="9" Grid.Row="3" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
+        <Button Style="{StaticResource CommonButtons}"  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" FontSize="20" Content="Wybierz postać" Command="{Binding ChooseCharacterCommand}"/>
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="1" Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="6" Content="Anuluj" Command="{Binding CancelCommand}" FontSize="20" Margin="2,5,2,2"/>
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="7" Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="6" Content="Potwierdź" Command="{Binding SaveCommand}" FontSize="20" Margin="2,5,2,2"/>
+
+
+        <ListView Style="{StaticResource CommonListView}"  Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="10" Background="#E7DDB3" ItemsSource="{Binding Characters}" SelectedItem="{Binding SelectedCharacter}" Visibility="{Binding IsComboBoxVisible, Converter={StaticResource BoolToVisibility}}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+
+            </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="100" Height="100" Background="#161815" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding CharacterImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="20" Foreground="#FBF6E2" Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <StackPanel.ToolTip>
+                            <ToolTip Background="SkyBlue" >
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding PlayerName}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Gender}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Age}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Race}"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="10"  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Background="#E7DDB3" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+                <DataTemplate DataType="{x:Type c:Item}">
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="120" Height="120" Background="SkyBlue" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding ItemImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="16" Foreground="#FBF6E2"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <StackPanel.ToolTip>
+                            <ToolTip Background="SkyBlue" >
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
+
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type c:Weapon}">
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="120" Height="120" Background="IndianRed" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding WeaponImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" FontWeight="Bold"/>
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="16" Foreground="#FBF6E2"  Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <StackPanel.ToolTip >
+                            <ToolTip Background="IndianRed">
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Damage, StringFormat={}Obrażenia : {0}}"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type c:Armor}">
+                    <StackPanel Margin="15" >
+                        <Grid>
+                            <Border Width="120" Height="120" Background="MediumPurple" Style="{StaticResource ClassicBorder}" />
+                            <Image Width="80" Height="80"  Source="{Binding ArmorImage}"  HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" Stretch="Fill" Margin="10"/>
+                            <TextBlock Text="{Binding Quantity, StringFormat=x{0}}" Padding="5,5,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10" FontWeight="Bold" />
+                            <TextBlock Style="{StaticResource CommonTextBlock}" FontSize="16" Foreground="#FBF6E2" Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+
+
+
+                        <TextBlock Text="{Binding Name}" Padding="5,5,5,5" HorizontalAlignment="Center" />
+
+                        <StackPanel.ToolTip >
+                            <ToolTip Background="MediumPurple">
+                                <StackPanel >
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Armor, StringFormat={}Pancerz : {0}}"/>
+
+                                </StackPanel>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.Resources>
+        </ListView>
+        
     </Grid>
 </UserControl>

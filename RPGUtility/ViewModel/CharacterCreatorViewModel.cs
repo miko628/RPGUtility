@@ -3,6 +3,7 @@ using RPGUtility.Model;
 using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace RPGUtility.ViewModel
     {
         private readonly NavigationService _navigationService;
         private CharacterCreatorModel _characterCreatorModel;
+        private Character _character;
         private string _characterName;
         private string[] _race;
         private int _age;
@@ -51,6 +53,10 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged(nameof(Stats));
             }
         }
+
+        public ObservableCollection<SkillCategory> SkillsList { get; set; }
+
+        public ObservableCollection<TalentCategory> TalentList { get; set; }
 
         public string SelectedCharacterType { get; set; }
         public string[] CharacterType
@@ -317,32 +323,10 @@ namespace RPGUtility.ViewModel
 
         public CharacterCreatorViewModel(NavigationService navigation, Campaign? campaign,Character? character)
         {
-            if (character is not null)
-            {
-                //Image = character.CharacterImage;
-                CharacterName = character.Name;
-                PlayerName=character.Playername;
-                SelectedRace = character.Race;
-                Gender = character.Gender;
-                Age = character.Age;
-                Height = character.Height;
-                Weight=character.Weight;
-                Hair=character.Hair;
-                Eyes=character.Eyes;
-                Characteristics = character.Characteristics;
-                BirthPlace = character.PlaceBirth;
-                Star = character.StarSign;
-                Relatives = character.Relatives;
-                CashGold = character.GoldCrowns;
-                CashSilver = character.SilverShillings;
-                CashPennies = character.BrassPenniews;
-                //Stats[0] =sta.;
+            
+            SkillsList = new ObservableCollection<SkillCategory>();
+            TalentList = new ObservableCollection<TalentCategory>();
 
-            }
-            else
-            {
-
-            }
             _statsSource = new int[8];
             _nextstatsSource = new int[8];
             _charactertype = new string[] { "Gracz", "NPC" };
@@ -356,7 +340,40 @@ namespace RPGUtility.ViewModel
             Year = _campaignfull.Year;
             _navigationService = navigation;
             _characterCreatorModel = new CharacterCreatorModel(campaign);
-            SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
+
+            Load();
+            if (character is not null)
+            {
+                _character = character;
+                //BitmapImage pom=
+                Image = ImageEncoder.bytearraytoBitmap(character.CharacterImage);
+                CharacterName = _character.Name;
+                PlayerName = _character.Playername;
+                SelectedRace = _character.Race;
+                Gender = _character.Gender;
+                Age = _character.Age;
+                Height = _character.Height;
+                Weight = _character.Weight;
+                Hair = _character.Hair;
+                Eyes = _character.Eyes;
+                Characteristics = _character.Characteristics;
+                BirthPlace = _character.PlaceBirth;
+                Star = _character.StarSign;
+                Relatives = _character.Relatives;
+                CashGold = _character.GoldCrowns;
+                CashSilver = _character.SilverShillings;
+                CashPennies = _character.BrassPenniews;
+                //  Statistic pom = LoadStats(character);
+                LoadStats(_character);
+                SaveCommand = new RelayCommand(ExecuteUpdate, CanExecuteMyCommand);
+
+
+            }
+            else
+            {
+                SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
+
+            }
             CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             ImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
             RollStats = new RelayCommand(DiceRoll, CanExecuteMyCommand);
@@ -371,6 +388,43 @@ namespace RPGUtility.ViewModel
                 }
                 OnPropertyChanged(nameof(NextStats));
             }, CanExecuteMyCommand);
+        }
+        private async void LoadStats(Character character)
+        {
+            Statistic pom = await _characterCreatorModel.GetStats(character);
+            Stats[0] = pom.WeaponSkill;
+            Stats[1] = pom.BallisticSkill;
+            Stats[2] = pom.Strength;
+            Stats[3] = pom.Toughness;
+            Stats[4] = pom.Agility;
+            Stats[5] = pom.Intelligence;
+            Stats[6] = pom.Willpower;
+            Stats[7] = pom.Fellowship;
+            NextStats[0] = pom.Attacks;
+            NextStats[1] = pom.Wounds;
+            NextStats[2] = pom.StrengthBonus;
+            NextStats[3] = pom.ToughnessBonus;
+            NextStats[4] = pom.Movement;
+            NextStats[5] = pom.Magic;
+            NextStats[6] = pom.InsanityPoints;
+            NextStats[7] = pom.FatePoints;
+            OnPropertyChanged(nameof(Stats));
+            OnPropertyChanged(nameof(NextStats));
+        }
+        private async void Load()
+        {
+            SkillsList.Clear();
+            List<SkillCategory> categories=await _characterCreatorModel.GetAllSkills();
+            foreach (SkillCategory category in categories)
+            {
+                SkillsList.Add(category); 
+            }
+            TalentList.Clear();
+            List<TalentCategory> talents = await _characterCreatorModel.GetAllTalents();
+            foreach (TalentCategory talent in talents)
+            {
+                TalentList.Add(talent);
+            }
         }
         private void DiceRoll(object parameter)
         {
@@ -449,6 +503,13 @@ namespace RPGUtility.ViewModel
             //_navigationState.CurrentViewModel = new MenuViewModel(pom);
 
         }
+        public async void ExecuteUpdate(object parameter)
+        {
+            Statistic pom2 = await _characterCreatorModel.GetStats(_character);
+            Character pom = await _characterCreatorModel.Update(_character,pom2,Image, CharacterName, PlayerName, SelectedRace, Gender, Age, Height, Weight, Hair, Eyes, Characteristics, BirthPlace, Star, Relatives, Languages, CashGold, CashSilver, CashPennies, Stats, NextStats);
+
+            _navigationService.Navigate(() => new CharacterViewModel(_navigationService, pom, _campaignfull));
+        }
         private void ExecuteImage(object parameter)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -456,7 +517,7 @@ namespace RPGUtility.ViewModel
             if (openFileDialog.ShowDialog() == true)
             {
                 string ImagePath = openFileDialog.FileName;
-                Image = new BitmapImage(new System.Uri(ImagePath));
+                Image = new BitmapImage(new Uri(ImagePath));
                 
                 //Image = ImageEncoder.bytearraytoBitmap(ImageEncoder.BitmapImagetobytearray(pom));
                 //Image = new BitmapImage(new System.Uri(ImagePath));

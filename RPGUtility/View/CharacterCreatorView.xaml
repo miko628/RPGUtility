@@ -94,8 +94,8 @@
             <TextBlock  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Text="Rasa postaci:" FontSize="18" Margin="20,20,20,10"/>
             <!--TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Race}"/-->
             <ComboBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding Race}" SelectedValue="{Binding SelectedRace}" Text="Race" />
-            <TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Języki:" FontSize="18" Margin="20,20,20,10"/>
-                <TextBox Style="{StaticResource FormTextBox}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Languages}" />
+            <!--TextBlock  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Text="Języki:" FontSize="18" Margin="20,20,20,10"/-->
+                <!--TextBox Style="{StaticResource FormTextBox}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" Text="{Binding Languages}" /-->
                 <TextBlock  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Text="Typ postaci:" FontSize="18" Margin="20,20,20,10"/>
                 <ComboBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" FontSize="32" Margin="20,20,20,20" ItemsSource="{Binding CharacterType}" SelectedValue="{Binding SelectedCharacterType }" />
 
@@ -268,7 +268,15 @@
                 </Border.Resources>
             </Border>
             <TextBlock  Grid.Row="25" Grid.Column="1" Grid.ColumnSpan="5" Text="Umiejętności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
-
+                <ListView SelectionMode="Multiple" ItemsSource="{Binding SkillsList}" Grid.Row="26" Grid.Column="1" Grid.ColumnSpan="5">
+                    
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Definicja wyglądu elementu w liście -->
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListView>
 
 
                 <Border MinWidth="50" Grid.Column="1" Grid.Row="29" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
@@ -280,7 +288,15 @@
             </Border>
 
             <TextBlock  Grid.Row="29" Grid.Column="1" Grid.ColumnSpan="5" Text=" Zdolności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
+                <ListView SelectionMode="Multiple" ItemsSource="{Binding TalentList}" Grid.Row="30" Grid.Column="1" Grid.ColumnSpan="5" >
 
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Definicja wyglądu elementu w liście -->
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListView>
 
 
                 <Border MinWidth="50" Grid.Column="1" Grid.Row="33" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">

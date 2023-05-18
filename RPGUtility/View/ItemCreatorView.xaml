@@ -94,7 +94,7 @@
                 <TextBlock Text="Opis przedmiotu" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
                 <TextBox Style="{StaticResource FormTextBox}" Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="6" Grid.RowSpan="2" FontSize="24" Text="{Binding ItemDescription}" AcceptsReturn="True" />
                 <TextBlock Text="Liczba" Grid.Column="1" Grid.Row="16" Grid.ColumnSpan="8" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
-                <TextBox Style="{StaticResource FormTextBox}" Text="{Binding ItemQuantity}" MinWidth="50" Grid.Column="4" Grid.Row="17" Grid.ColumnSpan="2" FontSize="24" HorizontalContentAlignment="Center"   FontWeight="Black"/>
+                <TextBox Style="{StaticResource FormTextBox}" Text="{Binding ItemQuantity}" MinWidth="50" Grid.Column="4" Grid.Row="17" Grid.ColumnSpan="2" FontSize="24" HorizontalContentAlignment="Center"   FontWeight="Black" PreviewTextInput="NumberValidationTextBox"/>
 
                 <!-- zdjencie -->
                 <!-- nazwa -->
@@ -135,7 +135,7 @@
                     <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="0" Text="Typ Broni" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
                     <ComboBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" MinHeight="50" MaxHeight="100" ItemsSource="{Binding WeaponType}" SelectedValue="{Binding SelectedWeapon}"/>
                     <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Text="Wartość Obrażeń" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
-                    <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Text="{Binding AttackValue}"  MinWidth="50"  FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Text="{Binding AttackValue}"  MinWidth="50"  FontSize="24" HorizontalAlignment="Center" FontWeight="Black" PreviewTextInput="NumberValidationTextBox"/>
                     <!-- typ combobox -->
                     <!-- damage -->
 
@@ -175,7 +175,7 @@
                     <!-- typ 4 combobox chyba-->
                     <!-- leb obrona -->
                     <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Text="Wartość pancerzu" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
-                    <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Text="{Binding ArmorValue}" MinWidth="50" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" />
+                    <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Text="{Binding ArmorValue}" MinWidth="50" FontSize="24" HorizontalAlignment="Center" FontWeight="Black" PreviewTextInput="NumberValidationTextBox"/>
                     <!-- klata obrona -->
                     <!-- nogi obrona -->
                     <!-- buty obrona -->

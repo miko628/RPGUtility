@@ -43,6 +43,50 @@ namespace RPGUtility.Model
                 await context.SaveChangesAsync();
             }
         }
+
+        public async Task UpdateItem(Item item,BitmapImage image,string name,string description,int quantity)
+        {
+            byte[] data = ImageEncoder.BitmapImagetobytearray(image);
+            using (var context = new RpgutilityContext())
+            {
+                item.ItemImage = data;
+                item.Name=name;
+                item.Quantity=quantity;
+                item.Description=description;
+                context.Update(item);
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateWeapon(Weapon weapon, BitmapImage image, string name, string description, int quantity, double damage,string type)
+        {
+            byte[] data = ImageEncoder.BitmapImagetobytearray(image);
+            using (var context = new RpgutilityContext())
+            {
+                weapon.WeaponImage = data;
+                weapon.Name=name;
+                weapon.Quantity=quantity;
+                weapon.Description=description;
+                weapon.Damage=damage;
+                weapon.Type=type;
+                context.Update(weapon);
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateArmor(Armor armor, BitmapImage image, string name, string description, int quantity, string type, double armorvalue)
+        {
+            byte[] data = ImageEncoder.BitmapImagetobytearray(image);
+            using (var context = new RpgutilityContext())
+            {
+                armor.ArmorImage = data;
+                armor.Name=name;
+                armor.Quantity=quantity;
+                armor.Description=description;
+                armor.Type=type;
+                armor.Armor1=armorvalue;
+                context.Update(armor);
+                await context.SaveChangesAsync();
+            }
+        }
         public async Task AddArmor(BitmapImage bitimage, string name, int quantity, string description,string type,double armorvalue)
         {
             byte[] image = ImageEncoder.BitmapImagetobytearray(bitimage);

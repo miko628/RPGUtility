@@ -20,6 +20,7 @@ namespace RPGUtility.ViewModel
         private ObservableCollection<string> _type;
         private Campaign _campaign;
         private Character _character;
+        private dynamic _item;
         private string _selectedOption;
         private string _selectedWeapon;
         private string _selectedArmor;
@@ -89,24 +90,49 @@ namespace RPGUtility.ViewModel
             _type = new ObservableCollection<string> { "Przedmiot", "Broń", "Pancerz" };
             _weaponType = new ObservableCollection<string> { "Miecz", "Łuk" };
             _armorType = new ObservableCollection<string> { "Głowa", "Korpus", "Ręce", "Nogi", "Całe ciało" };
+            _selectedOption = _type[0];
+            _selectedWeapon = _weaponType[0];
+            _selectedArmor = _armorType[0];
+            ItemQuantity = 1;
             if (item is not null)
             {
+                _item = item;
                 //ItemImage = item.Image;
                 if(item is Item)
                 {
-                    
+                    ItemImage = ImageEncoder.bytearraytoBitmap(item.ItemImage);
+                    SelectedOption = _type[0];
+                    ItemName = item.Name;
+                    ItemDescription= item.Description;
+                    ItemQuantity=item.Quantity;
                 }   else if(item is Weapon)
                 {
-
+                    ItemImage = ImageEncoder.bytearraytoBitmap(item.WeaponImage);
+                    SelectedOption = _type[1];
+                    ItemName = item.Name;
+                    ItemDescription = item.Description;
+                    ItemQuantity = item.Quantity;
+                    SelectedWeapon = item.Type;
+                    AttackValue= item.Damage;
                 }
                 else if(item is Armor)
                 {
-
+                    ItemImage = ImageEncoder.bytearraytoBitmap(item.ArmorImage);
+                    SelectedOption = _type[2];
+                    ItemName = item.Name;
+                    ItemDescription = item.Description;
+                    ItemQuantity = item.Quantity;
+                    SelectedArmor = item.ArmorType;
+                    AttackValue= item.ArmorValue;
                 }
 
                 ItemName = item.Name;
                 ItemDescription = item.Description;
+
+                SaveCommand = new RelayCommand(ExecuteUpdate, CanExecuteMyCommand);
             }
+            else SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
+
             _itemModel = new ItemCreationModel(character);
             //_itemModel.ItemType[0];
             _campaign = campaign;
@@ -114,16 +140,12 @@ namespace RPGUtility.ViewModel
             //SelectedOption = _itemModel.ItemType[0];
             
             // _itemModel.ItemType = new ObservableCollection<String> { "Przedmiot","Broń","Pancerz"};   
-            _selectedOption = _type[0];
-            _selectedWeapon = _weaponType[0];
-            _selectedArmor = _armorType[0];
-            ItemQuantity = 1;
+            
             _navigationService = navigation;
             //_prev = _previousstate;
             SendImageCommand = new RelayCommand(ExecuteImage, CanExecuteMyCommand);
             //NavigateBackCommand = new RelayCommand(ExecuteBack, CanExecuteMyCommand);
             CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
-            SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
         }
         private void ExecuteImage(object parameter)
         {
@@ -145,21 +167,38 @@ namespace RPGUtility.ViewModel
                 {
                 case "Przedmiot":
                     await _itemModel.AddItem(ItemImage, ItemName, ItemQuantity, ItemDescription);
-                    _navigationService.Navigate(() => new CharacterViewModel(_navigationService, _character, _campaign));
+                    _navigationService.Navigate(() => new InventoryViewModel(_navigationService, _character, _campaign));
                     break;
                 case "Broń":
                     await _itemModel.AddWeapon(ItemImage, ItemName, SelectedWeapon ,ItemQuantity, ItemDescription,AttackValue);
-                    _navigationService.Navigate(() => new CharacterViewModel(_navigationService, _character, _campaign));
+                    _navigationService.Navigate(() => new InventoryViewModel(_navigationService, _character, _campaign));
                     break;
                 case "Pancerz":
                     await _itemModel.AddArmor(ItemImage, ItemName, ItemQuantity, ItemDescription, SelectedArmor, ArmorValue);
-                    _navigationService.Navigate(() => new CharacterViewModel(_navigationService, _character, _campaign));
+                    _navigationService.Navigate(() => new InventoryViewModel(_navigationService, _character, _campaign));
                     break;
 
             }
             Trace.WriteLine(_selectedOption);
             //_navigationService.Navigate(() => new InventoryViewModel(_navigationService, _character, _campaign)); 
             //_navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
+        }
+        private async void ExecuteUpdate(object parameter)
+        {
+            if (_item is Item)
+            {
+                await _itemModel.UpdateItem(_item, ItemImage, ItemName, ItemDescription, ItemQuantity);
+                _navigationService.Navigate(() => new CharacterViewModel(_navigationService, _character, _campaign));
+            } else if (_item is Weapon)
+            {
+                await _itemModel.UpdateWeapon(_item, ItemImage, ItemName, ItemDescription, ItemQuantity, AttackValue, SelectedWeapon);
+            }
+            else if (_item is Armor)
+            {
+                await _itemModel.UpdateArmor(_item, ItemImage, ItemName, ItemDescription, ItemQuantity, SelectedArmor, ArmorValue);
+            }
+            else Trace.WriteLine("błond");
+            _navigationService.Navigate(() => new InventoryViewModel(_navigationService, _character, _campaign));
         }
         private void ExecuteBack(object parameter)
         {

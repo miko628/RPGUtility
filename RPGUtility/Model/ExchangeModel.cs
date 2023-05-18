@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using RPGUtility.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,50 @@ namespace RPGUtility.Model
 {
     class ExchangeModel
     {
+        private Campaign _campaign;
+        private Character _character;
+        public ExchangeModel(Campaign campaign,Character character)
+        {
+
+            _campaign = campaign;
+            _character = character;
+
+        }
+        public async Task<List<Character>> GetAll()
+        {
+            List<Character> characters;
+            //  Thread.Sleep(10000);
+            //Campaigns.Clear();
+            using (var context = new RpgutilityContext())
+            {
+                characters = await context.Characters.Where(b => b.CampaignId == _campaign.CampaignId).Where(e=>e.CharacterId!=_character.CharacterId).ToListAsync();
+                return characters;
+            }
+
+        }
+        public async Task<List<Item>> GetAllItems(Character character)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                List<Item> Itemlist = await context.Items.Where(b => b.CharacterId == character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                return Itemlist;
+            }
+        }
+        public async Task<List<Weapon>> GetAllWeapons(Character character)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                List<Weapon> Weaponlist = await context.Weapons.Where(b => b.CharacterId == character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                return Weaponlist;
+            }
+        }
+        public async Task<List<Armor>> GetAllArmors(Character character)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                List<Armor> Armorlist = await context.Armors.Where(b => b.CharacterId == character.CharacterId).OrderBy(b => b.Name).ToListAsync();
+                return Armorlist;
+            }
+        }
     }
 }
