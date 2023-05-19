@@ -8,5 +8,9 @@ namespace RPGUtility.Model
 {
     internal class TestOpossedModel
     {
+        public TestOpossedModel()
+        {
+            
+        }
     }
 }

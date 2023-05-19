@@ -51,7 +51,6 @@
                     <Setter Property="Foreground" Value="#ECE8DF"/>
                     <Setter Property="FontSize" Value="68"/>
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Grid.Row" Value="3"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">

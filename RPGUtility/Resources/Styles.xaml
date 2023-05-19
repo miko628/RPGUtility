@@ -196,4 +196,11 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="HealthBar" TargetType="ProgressBar">
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
 </ResourceDictionary>

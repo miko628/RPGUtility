@@ -1,7 +1,7 @@
-﻿using ControlzEx.Standard;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using Newtonsoft.Json.Linq;
+
 using RPGUtility.Models;
 using System;
 using System.Collections.Generic;
@@ -31,12 +31,14 @@ namespace RPGUtility.Model
         public async Task<Character> Save(BitmapImage image, string name, string playername, string race, string gender, int age, double height, double weight, string hair, string eyes, string characteristics, string placebirth, string star, string relatives, string languages, double gold, double silver, double pennies, int[] stats, int[] stats2)
         {
             byte[] data = ImageEncoder.BitmapImagetobytearray(image);
+            languages = "kurwa";
+            try { 
             using (var context = new RpgutilityContext())
             {
                 var characters = context.Set<Character>();
                 var statistics = context.Set<Statistic>();
-                Statistic stat = new Statistic { WeaponSkill = stats[0], BallisticSkill = stats[1], Strength = stats[2], Toughness = stats[3], Agility = stats[4], Intelligence = stats[5], Willpower = stats[6], Fellowship = stats[7], Attacks = stats2[0], Wounds = stats2[1], Health = stats2[1], StrengthBonus = stats2[2], ToughnessBonus = stats2[3], Movement = stats2[4], Magic = stats2[5], InsanityPoints = stats2[6], FatePoints = stats2[7], CurrentFatePoints = stats2[7] };
                 Character pom = new Character { CharacterImage = data, Name = name, Playername = playername, Race = race, Gender = gender, Age = age, Height = height, Weight = weight, Hair = hair, Eyes = eyes, Characteristics = characteristics, PlaceBirth = placebirth, StarSign = star, Relatives = relatives, Languages = languages, GoldCrowns = gold, SilverShillings = silver, BrassPenniews = pennies, CampaignId = _campaign.CampaignId };
+                Statistic stat = new Statistic {WeaponSkill = stats[0], BallisticSkill = stats[1], Strength = stats[2], Toughness = stats[3], Agility = stats[4], Intelligence = stats[5], Willpower = stats[6], Fellowship = stats[7], Attacks = stats2[0], Wounds = stats2[1], Health = stats2[1], StrengthBonus = stats2[2], ToughnessBonus = stats2[3], Movement = stats2[4], Magic = stats2[5], InsanityPoints = stats2[6], FatePoints = stats2[7], CurrentFatePoints = stats2[7] };
 
                 await characters.AddAsync(pom);
                 await statistics.AddAsync(stat);
@@ -44,6 +46,13 @@ namespace RPGUtility.Model
                 await context.SaveChangesAsync();
                 return pom;
             }
+            }
+            catch (ArgumentNullException e)
+            {
+
+                // the exception above will not be caught here
+            }
+            return null;
         }
 
         public async Task<Character> Update(Character character,Statistic statistic,BitmapImage image, string name, string playername, string race, string gender, int age, double height, double weight, string hair, string eyes, string characteristics, string placebirth, string star, string relatives, string languages, double gold, double silver, double pennies, int[] stats, int[] stats2)

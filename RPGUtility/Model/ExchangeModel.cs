@@ -19,6 +19,34 @@ namespace RPGUtility.Model
             _character = character;
 
         }
+
+        public async Task UpdateItem(Character character,Item item)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                item.CharacterId = character.CharacterId;
+                context.Update(item);
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateWeapon(Character character,Weapon item)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                item.CharacterId = character.CharacterId;
+                context.Update(item);
+                await context.SaveChangesAsync();
+            }
+        }
+        public async Task UpdateArmor(Character character,Armor item)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                item.CharacterId = character.CharacterId;
+                context.Update(item);
+                await context.SaveChangesAsync();
+            }
+        }
         public async Task<List<Character>> GetAll()
         {
             List<Character> characters;

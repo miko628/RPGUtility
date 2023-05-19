@@ -5,7 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPGUtility.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#FBF6E2">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -35,15 +43,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Background="Black" Foreground="White" BorderBrush="Black" Command="{Binding NavigateBackCommand}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Label Background="LightBlue" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" />
-        <Button Content="Poprzedni" Command="{Binding NextCommand}" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="4"/>
-        <Button Content="Następny" Command="{Binding PreviousCommand}" Grid.Column="5" Grid.Row="12" Grid.ColumnSpan="4"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Style="{StaticResource CommonButtons}" Command="{Binding NavigateBackCommand}"/>
+
+
+        <Border Style="{StaticResource CommonBorder}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" />
+        <Button Style="{StaticResource CommonButtons}" Content="Poprzedni" Command="{Binding NextCommand}" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="4"/>
+        <Button Style="{StaticResource CommonButtons}" Content="Następny" Command="{Binding PreviousCommand}" Grid.Column="5" Grid.Row="12" Grid.ColumnSpan="4"/>
     </Grid>
 </UserControl>
