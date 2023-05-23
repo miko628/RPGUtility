@@ -5,12 +5,13 @@
     <TargetFramework>net6.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>hnet.com-image.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\d20.ico</ApplicationIcon>
     <StartupObject>RPGUtility.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\castle_background.jpg" />
+    <None Remove="ViewModel\CharacterCreatorViewModel.cs~RFd1b3b7.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="hnet.com-image.ico" />
+    <Content Include="Resources\d20.ico" />
   </ItemGroup>
 
   <ItemGroup>

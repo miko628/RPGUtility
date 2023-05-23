@@ -26,7 +26,7 @@ public partial class Character
     public string Race { get; set; } = null!;
 
     [Column("gender", TypeName = "character varying")]
-    public string? Gender { get; set; }
+    public string Gender { get; set; } = null!;
 
     [Column("age")]
     public int Age { get; set; }
@@ -54,9 +54,6 @@ public partial class Character
 
     [Column("relatives", TypeName = "character varying")]
     public string? Relatives { get; set; }
-
-    [Column("languages")]
-    public string Languages { get; set; } = null!;
 
     [Column("gold_crowns")]
     public double GoldCrowns { get; set; }

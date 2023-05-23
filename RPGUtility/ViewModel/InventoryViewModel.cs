@@ -17,7 +17,7 @@ namespace RPGUtility.ViewModel
     {
         private readonly NavigationService _navigationService;
         private readonly Character _character;
-        private readonly Campaign _campaign;
+        //private readonly Campaign _campaign;
         private dynamic _selectedItem;
         private InventoryModel _inventoryModel;
 

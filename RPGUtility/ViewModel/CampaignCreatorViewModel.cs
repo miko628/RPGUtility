@@ -28,7 +28,7 @@ namespace RPGUtility.ViewModel
             set
             {
                 _campaignCreatorModel.Name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -42,7 +42,7 @@ namespace RPGUtility.ViewModel
             set
             {
                 _campaignCreatorModel.Description = value;
-                OnPropertyChanged("Description");
+                OnPropertyChanged(nameof(Description));
             }
         }
 
@@ -56,7 +56,7 @@ namespace RPGUtility.ViewModel
             set
             {
                 _campaignCreatorModel.GameMaster = value;
-                OnPropertyChanged("GameMaster");
+                OnPropertyChanged(nameof(GameMaster));
             }
         }
 
@@ -70,7 +70,7 @@ namespace RPGUtility.ViewModel
             set
             {
                 _campaignCreatorModel.Year = value;
-                OnPropertyChanged("Year");
+                OnPropertyChanged(nameof(Year));
             }
         }
 
@@ -79,7 +79,7 @@ namespace RPGUtility.ViewModel
             _navigationService = navigation;
             _campaignCreatorModel = new CampaignCreatorModel();
             CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
-            SubmitCommand = new RelayCommand(async (object parameter) => { Campaign pom=await _campaignCreatorModel.save();  /*_navigationService.Navigate(() => new MenuViewModel(_navigationService));*/ _navigationService.Navigate(() => new StoryViewModel(_navigationService, pom)); }, CanExecuteMyCommand);
+            SubmitCommand = new RelayCommand(async (object parameter) => { Campaign pom=await _campaignCreatorModel.Save();  /*_navigationService.Navigate(() => new MenuViewModel(_navigationService));*/ _navigationService.Navigate(() => new StoryViewModel(_navigationService, pom)); }, CanExecuteMyCommand);
         }
         private bool CanExecuteMyCommand(object parameter)
         {

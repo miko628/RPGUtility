@@ -268,16 +268,25 @@
                 </Border.Resources>
             </Border>
             <TextBlock  Grid.Row="25" Grid.Column="1" Grid.ColumnSpan="5" Text="Umiejętności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
-                <ListView SelectionMode="Multiple" ItemsSource="{Binding SkillsList}" Grid.Row="26" Grid.Column="1" Grid.ColumnSpan="5">
-                    
-                    <ListBox.ItemTemplate>
+
+                <ListView Height="200"  ItemsSource="{Binding SkillsList}" SelectedItem="{Binding SelectedSkill}" Grid.Row="26" Grid.Column="1" Grid.ColumnSpan="5" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+                    <ListView.ItemTemplate>
                         <DataTemplate>
                             <!-- Definicja wyglądu elementu w liście -->
-                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Name}" Margin="5" Style="{StaticResource CommonTextBlock}" ToolTip="{Binding Description}"/>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
+                <ListView Height="200" ItemsSource="{Binding SelectedSkills}" SelectedItem="{Binding SelectedSkill2}" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="5" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
 
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Definicja wyglądu elementu w liście -->
+                            <TextBlock Text="{Binding Name}" Margin="5" Style="{StaticResource CommonTextBlock}" ToolTip="{Binding Description}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
                 <Border MinWidth="50" Grid.Column="1" Grid.Row="29" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
                 <Border.Resources>
@@ -288,16 +297,25 @@
             </Border>
 
             <TextBlock  Grid.Row="29" Grid.Column="1" Grid.ColumnSpan="5" Text=" Zdolności" FontSize="32" HorizontalAlignment="Center"  Margin="20,20,20,20"/>
-                <ListView SelectionMode="Multiple" ItemsSource="{Binding TalentList}" Grid.Row="30" Grid.Column="1" Grid.ColumnSpan="5" >
+                <ListView Height="200" ItemsSource="{Binding TalentList}" SelectedItem="{Binding SelectedTalent}" Grid.Row="30" Grid.Column="1" Grid.ColumnSpan="5" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
 
-                    <ListBox.ItemTemplate>
+                    <ListView.ItemTemplate>
                         <DataTemplate>
                             <!-- Definicja wyglądu elementu w liście -->
-                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Name}" Margin="5" Style="{StaticResource CommonTextBlock}" ToolTip="{Binding Description}"/>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
 
+                <ListView Height="200" ItemsSource="{Binding SelectedTalents}" SelectedItem="{Binding SelectedTalent2}" Grid.Row="31" Grid.Column="1" Grid.ColumnSpan="5" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Definicja wyglądu elementu w liście -->
+                            <TextBlock Text="{Binding Name}" Margin="5" Style="{StaticResource CommonTextBlock}" ToolTip="{Binding Description}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
                 <Border MinWidth="50" Grid.Column="1" Grid.Row="33" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="#E7DDB3">
                 <Border.Resources>
@@ -311,7 +329,7 @@
             <TextBox Style="{StaticResource NumberTextBox}" Grid.Row="34" Grid.Column="1" MaxLength="4" Text="{Binding CashGold}" PreviewTextInput="FloatValidationTextBox"/>
                 <TextBox Style="{StaticResource NumberTextBox}" Grid.Row="34" Grid.Column="2" MaxLength="4" Text="{Binding CashSilver}" PreviewTextInput="FloatValidationTextBox"/>
                 <TextBox Style="{StaticResource NumberTextBox}" Grid.Row="34" Grid.Column="4" MaxLength="4" Text="{Binding CashPennies}" PreviewTextInput="FloatValidationTextBox"/>
-            <Button Grid.Row="34" Grid.Column="5"/>
+                <Button Style="{StaticResource CommonButtons}" Grid.Row="34" Grid.Column="5" Content="+"  FontWeight="Bold" Command="{Binding RollCash}" Margin="5,0,0,0"/>
             </Grid>
         </ScrollViewer>
         

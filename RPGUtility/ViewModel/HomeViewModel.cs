@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RPGUtility.ViewModel
 {
@@ -30,7 +31,12 @@ namespace RPGUtility.ViewModel
             //NavigateMenuCommand = new RelayCommand(ExecuteMenu, CanExecuteMyCommand);
             NavigateSettingsCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new SettingsViewModel(_navigationService)); }, CanExecuteMyCommand);
             NavigateHowCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new HowViewModel(_navigationService)); }, CanExecuteMyCommand); 
-            ExitCommand = new RelayCommand((object parameter) => { System.Windows.Application.Current.Shutdown(); }, CanExecuteMyCommand);
+            ExitCommand = new RelayCommand((object parameter) => {
+                foreach (Window window in Application.Current.Windows)
+                {
+                    window.Close();
+                }
+            }, CanExecuteMyCommand);
         }
         private void ExecuteMenu(object parameter) 
         {// _navigationService.Navigate(()=>new MenuViewModel(_navigationService));

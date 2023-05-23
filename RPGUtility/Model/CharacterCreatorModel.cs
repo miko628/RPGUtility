@@ -12,6 +12,7 @@ using System.Net.NetworkInformation;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace RPGUtility.Model
@@ -28,16 +29,15 @@ namespace RPGUtility.Model
         public ObservableCollection<string> Race { get; set; }
 
 
-        public async Task<Character> Save(BitmapImage image, string name, string playername, string race, string gender, int age, double height, double weight, string hair, string eyes, string characteristics, string placebirth, string star, string relatives, string languages, double gold, double silver, double pennies, int[] stats, int[] stats2)
+        public async Task<Character> Save(BitmapImage image, string name, string playername, string race, string gender, int age, double height, double weight, string hair, string eyes, string characteristics, string placebirth, string star, string relatives, double gold, double silver, double pennies, int[] stats, int[] stats2)
         {
             byte[] data = ImageEncoder.BitmapImagetobytearray(image);
-            languages = "kurwa";
             try { 
             using (var context = new RpgutilityContext())
             {
                 var characters = context.Set<Character>();
                 var statistics = context.Set<Statistic>();
-                Character pom = new Character { CharacterImage = data, Name = name, Playername = playername, Race = race, Gender = gender, Age = age, Height = height, Weight = weight, Hair = hair, Eyes = eyes, Characteristics = characteristics, PlaceBirth = placebirth, StarSign = star, Relatives = relatives, Languages = languages, GoldCrowns = gold, SilverShillings = silver, BrassPenniews = pennies, CampaignId = _campaign.CampaignId };
+                Character pom = new Character { CharacterImage = data, Name = name, Playername = playername, Race = race, Gender = gender, Age = age, Height = height, Weight = weight, Hair = hair, Eyes = eyes, Characteristics = characteristics, PlaceBirth = placebirth, StarSign = star, Relatives = relatives, GoldCrowns = gold, SilverShillings = silver, BrassPenniews = pennies, CampaignId = _campaign.CampaignId };
                 Statistic stat = new Statistic {WeaponSkill = stats[0], BallisticSkill = stats[1], Strength = stats[2], Toughness = stats[3], Agility = stats[4], Intelligence = stats[5], Willpower = stats[6], Fellowship = stats[7], Attacks = stats2[0], Wounds = stats2[1], Health = stats2[1], StrengthBonus = stats2[2], ToughnessBonus = stats2[3], Movement = stats2[4], Magic = stats2[5], InsanityPoints = stats2[6], FatePoints = stats2[7], CurrentFatePoints = stats2[7] };
 
                 await characters.AddAsync(pom);
@@ -54,8 +54,111 @@ namespace RPGUtility.Model
             }
             return null;
         }
+        public async Task SaveSkill(Character character,List<SkillCategory> category)
+        {
+            using(var context=new RpgutilityContext())
+            {
+                var skills = context.Set<Skill>();
 
-        public async Task<Character> Update(Character character,Statistic statistic,BitmapImage image, string name, string playername, string race, string gender, int age, double height, double weight, string hair, string eyes, string characteristics, string placebirth, string star, string relatives, string languages, double gold, double silver, double pennies, int[] stats, int[] stats2)
+                foreach (var skill in category)
+                {
+                    Skill pom = new Skill { CharacterId = character.CharacterId, SkillcategoryId = skill.SkillId };
+                    await skills.AddAsync(pom);
+                    await context.SaveChangesAsync();
+
+                }
+
+
+                // return skill;
+            }
+        }
+
+        public async Task<List<Skill>> GetSkill(Character character)
+        {
+            List<Skill> skills;
+            using (var context = new RpgutilityContext())
+            {
+                skills = await context.Skills.Where(b => b.CharacterId == character.CharacterId).ToListAsync();
+                return skills;
+            }
+        }
+
+        public async Task<List<Talent>> GetTalent(Character character)
+        {
+            List<Talent> talents;
+            using (var context = new RpgutilityContext())
+            {
+                talents = await context.Talents.Where(b => b.CharacterId == character.CharacterId).ToListAsync();
+                return talents;
+            }
+        }
+        public async Task SaveTalent(Character character, List<TalentCategory> category)
+        {
+            using (var context = new RpgutilityContext())
+            {
+                var talents = context.Set<Talent>();
+
+                foreach (var talent in category)
+                {
+                    Talent pom = new Talent { CharacterId = character.CharacterId, TalentcategoryId = talent.TalentId };
+                    await talents.AddAsync(pom);
+                }
+
+                await context.SaveChangesAsync();
+
+               // return talent;
+            }
+        }
+
+        public async Task UpdateSkill(Character character,List<SkillCategory> category)
+        {
+
+            try
+            {
+                using (var context = new RpgutilityContext())
+                {
+                    //var pom = context.Campaigns.Where(k=>k.CampaignId==id).First();
+                    context.Skills.RemoveRange(context.Skills.Where(x=>x.CharacterId==character.CharacterId));
+                    var skills = context.Set<Skill>();
+                    foreach (var skill in category)
+                    {
+                        Skill pom = new Skill { CharacterId = character.CharacterId, SkillcategoryId = skill.SkillId };
+                        await skills.AddAsync(pom);
+                    }
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (ArgumentNullException e)
+            {
+
+                // the exception above will not be caught here
+            }
+        }
+        public async Task UpdateTalent(Character character,List<TalentCategory> category)
+        {
+            try
+            {
+                using (var context = new RpgutilityContext())
+                {
+                    //var pom = context.Campaigns.Where(k=>k.CampaignId==id).First();
+                    context.Talents.RemoveRange(context.Talents.Where(x => x.CharacterId == character.CharacterId));
+                    var talents = context.Set<Talent>();
+                    foreach (var talent in category)
+                    {
+                        Talent pom = new Talent { CharacterId = character.CharacterId, TalentcategoryId = talent.TalentId };
+                        await talents.AddAsync(pom);
+                    }
+                    await context.SaveChangesAsync();
+                }
+            }
+            catch (ArgumentNullException e)
+            {
+
+                // the exception above will not be caught here
+            }
+
+        }
+        public async Task Update(Character character,BitmapImage image, string name, string playername, string race, string gender, int age, double height, double weight, string hair, string eyes, string characteristics, string placebirth, string star, string relatives,  double gold, double silver, double pennies, int[] stats, int[] stats2)
         {
             byte[] data = ImageEncoder.BitmapImagetobytearray(image);
             using (var context = new RpgutilityContext())
@@ -76,11 +179,21 @@ namespace RPGUtility.Model
                 character.PlaceBirth = placebirth;
                 character.StarSign = star;
                 character.Relatives = relatives;
+
                 //character.Languages = languages;
-                character.Languages = "KURWA";
                 character.GoldCrowns = gold;
                 character.SilverShillings = silver;
-                character.BrassPenniews= pennies;
+                character.BrassPenniews = pennies;
+
+                context.Update(character);
+
+                await context.SaveChangesAsync();
+            }
+            using (var context = new RpgutilityContext())
+            {
+                Statistic statistic = await GetStats(character);
+
+                statistic.StatisticsId = character.CharacterId;
                 statistic.WeaponSkill = stats[0];
                 statistic.BallisticSkill = stats[1];
                 statistic.Strength = stats[2];
@@ -99,11 +212,12 @@ namespace RPGUtility.Model
                 statistic.InsanityPoints = stats2[6];
                 statistic.FatePoints = stats2[7];
                 statistic.CurrentFatePoints = stats2[7];
-                context.Update(character);
+                
+
                 context.Update(statistic);
                 await context.SaveChangesAsync();
 
-                return character;
+                //return character;
             }
         }
         public int[] HumanRoll()

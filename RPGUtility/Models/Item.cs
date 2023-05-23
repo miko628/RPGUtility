@@ -26,9 +26,9 @@ public partial class Item
     public string? Description { get; set; }
 
     [Column("character_id")]
-    public int? CharacterId { get; set; }
+    public int CharacterId { get; set; }
 
     [ForeignKey("CharacterId")]
     [InverseProperty("Items")]
-    public virtual Character? Character { get; set; }
+    public virtual Character Character { get; set; } = null!;
 }

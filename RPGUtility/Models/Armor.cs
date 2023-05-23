@@ -32,9 +32,9 @@ public partial class Armor
     public double Armor1 { get; set; }
 
     [Column("character_id")]
-    public int? CharacterId { get; set; }
+    public int CharacterId { get; set; }
 
     [ForeignKey("CharacterId")]
     [InverseProperty("Armors")]
-    public virtual Character? Character { get; set; }
+    public virtual Character Character { get; set; } = null!;
 }

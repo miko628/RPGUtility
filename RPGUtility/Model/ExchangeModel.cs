@@ -11,12 +11,10 @@ namespace RPGUtility.Model
     class ExchangeModel
     {
         private Campaign _campaign;
-        private Character _character;
-        public ExchangeModel(Campaign campaign,Character character)
+        public ExchangeModel(Campaign campaign)
         {
 
             _campaign = campaign;
-            _character = character;
 
         }
 
@@ -54,7 +52,7 @@ namespace RPGUtility.Model
             //Campaigns.Clear();
             using (var context = new RpgutilityContext())
             {
-                characters = await context.Characters.Where(b => b.CampaignId == _campaign.CampaignId).Where(e=>e.CharacterId!=_character.CharacterId).ToListAsync();
+                characters = await context.Characters.Where(b => b.CampaignId == _campaign.CampaignId).ToListAsync();
                 return characters;
             }
 

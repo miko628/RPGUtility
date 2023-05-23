@@ -64,7 +64,7 @@ namespace RPGUtility.ViewModel
                     RollResult = Dice.k30();
                 }
             }*/
-        private async Task Roll4()
+        private void Roll4()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -78,7 +78,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll6()
+        private void Roll6()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -92,7 +92,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll8()
+        private void Roll8()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -106,7 +106,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll10()
+        private void Roll10()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -120,7 +120,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll12()
+        private void Roll12()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -134,7 +134,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll20()
+        private void Roll20()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -148,7 +148,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll30()
+        private void Roll30()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;
@@ -162,7 +162,7 @@ namespace RPGUtility.ViewModel
                 Thread.Sleep(20);
             }
         }
-        private async Task Roll100()
+        private void Roll100()
         {
             // Random rnd = new Random(System.DateTime.Now.Millisecond);
             int attemps = Dice.k30() + 5;

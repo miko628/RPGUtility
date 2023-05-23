@@ -32,9 +32,9 @@ public partial class Weapon
     public double Damage { get; set; }
 
     [Column("character_id")]
-    public int? CharacterId { get; set; }
+    public int CharacterId { get; set; }
 
     [ForeignKey("CharacterId")]
     [InverseProperty("Weapons")]
-    public virtual Character? Character { get; set; }
+    public virtual Character Character { get; set; } = null!;
 }

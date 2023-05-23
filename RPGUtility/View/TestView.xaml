@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPGUtility.View"
         mc:Ignorable="d"
-        Title="TestView" MinHeight="500" MinWidth="500" Height="500" Width="500" Background="#333333">
+        Title="TestView" MinHeight="605" MinWidth="605" Height="605" Width="605" Background="#333333" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles.xaml" />
+                <!-- Dodaj odwołanie do pliku zasobów -->
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+        </ResourceDictionary>
+
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
@@ -25,37 +35,63 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
             
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="2" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="3" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="4" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="5" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="6" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="7" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="8" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="1" Grid.Column="9" Content="dupa" Style="{StaticResource CommonLabel}"/>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="10" Content="{Binding CharacterName}" Style="{StaticResource CommonLabel}" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"/>
+        <ListView Padding="0" Margin="0"  HorizontalAlignment="Center" ItemsSource="{Binding Stats}" SelectedItem="{Binding SelectedItem}" VerticalAlignment="Center"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="10" Grid.RowSpan="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
 
-        <Label Grid.Row="2" Grid.Column="2" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="3" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="4" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="5" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="6" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="7" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="8" Content="dupa" Style="{StaticResource CommonLabel}"/>
-        <Label Grid.Row="2" Grid.Column="9" Content="dupa" Style="{StaticResource CommonLabel}"/>
 
-        <Button Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}"/>
-        <Button Grid.Row="4" Grid.Column="3" Content="-10"  Style="{StaticResource CommonButtons}" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="2" Content="-20"  Style="{StaticResource CommonButtons}" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="-30"  Style="{StaticResource CommonButtons}" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="8" Content="+10"  Style="{StaticResource CommonButtons}" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="9" Content="+20"  Style="{StaticResource CommonButtons}" FontSize="20"/>
-        <Button Grid.Row="4" Grid.Column="10" Content="+30"  Style="{StaticResource CommonButtons}" FontSize="20"/>
+                </ItemsPanelTemplate>
+                
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Orientation="Vertical"  ToolTip="{Binding tooltip}">
+                        <Label Width="70" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource CommonLabel}"  Content="{Binding name}"/>
+                        <Label  Width="70" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource CommonLabel}" Content="{Binding value}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Border Style="{StaticResource ClassicBorder}" Background="#333333" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="6" Margin="5"></Border>
+        <ScrollViewer Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="6" Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ItemsControl  ItemsSource="{Binding SkillsList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}" ToolTip="{Binding Description}" Style="{StaticResource CommonLabel}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Button Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Content="{Binding Sum}" Command="{Binding Roll}"/>
+        <Button Grid.Row="7" Grid.Column="3" Content="-10"  Style="{StaticResource CommonButtons}" FontSize="20" Command="{Binding Sub10}"/>
+        <Button Grid.Row="7" Grid.Column="2" Content="-20"  Style="{StaticResource CommonButtons}" FontSize="20" Command="{Binding Sub20}"/>
+        <Button Grid.Row="7" Grid.Column="1" Content="-30"  Style="{StaticResource CommonButtons}" FontSize="20" Command="{Binding Sub30}"/>
+        <Button Grid.Row="7" Grid.Column="8" Content="+10"  Style="{StaticResource CommonButtons}" FontSize="20" Command="{Binding Add10}"/>
+        <Button Grid.Row="7" Grid.Column="9" Content="+20"  Style="{StaticResource CommonButtons}" FontSize="20" Command="{Binding Add20}"/>
+        <Button Grid.Row="7" Grid.Column="10" Content="+30"  Style="{StaticResource CommonButtons}" FontSize="20" Command="{Binding Add30}"/>
+        <Grid Grid.Row="5" Grid.Column="3" Grid.RowSpan="3" Grid.ColumnSpan="6" Background="#eeeeee" Visibility="{Binding ResultVisibility,Converter={StaticResource BoolToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding HeadText}" Foreground="{Binding Color}" FontSize="47" FontWeight="Bold" Margin="10"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Text="{Binding BodyText}" FontSize="38" FontWeight="SemiBold" Margin="10,40,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button  Grid.Row="2" Content="Ok" Style="{StaticResource CommonButtons}" Margin="10,40,10,10" Command="{Binding OkCommand}"></Button>
+        </Grid>
     </Grid>
 </Window>

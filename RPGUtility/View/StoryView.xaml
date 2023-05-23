@@ -75,28 +75,55 @@
             </Grid.RowDefinitions>
             <Border Background="#E7DDB3"  Style="{StaticResource HideBorder}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
             <Button Content="Edytuj" Style="{StaticResource HideButtons}" Grid.Row="0" Grid.Column="0"  Margin="5" Command="{Binding EditCampaignCommand}"/>
-            <ToggleButton x:Name="ToggleButton1" Content="Menu" Background="Black"  Grid.Row="0" Grid.Column="1" Margin="5">
+            <ToggleButton Style="{StaticResource HideToggle}"  x:Name="ToggleButton1" Grid.Row="0" Grid.Column="1" Margin="5" >
+               
                 <ToggleButton.Template>
                     
                     <ControlTemplate TargetType="ToggleButton">
-                        <Popup x:Name="Popup" IsOpen="{TemplateBinding IsChecked}" PlacementTarget="{Binding ElementName=ToggleButton1}"
+                        <Grid>
+                            <!--Button Style="{StaticResource HideButtons}" Content="Menu" /-->
+                            <Label Content="Menu" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Background" Value="#161815" />
+                                        <Setter Property="Foreground" Value="#FBF6E2"/>
+                                        <Setter Property="FontSize" Value="32"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#838D87" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                        <Style.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="15"/>
+                                            </Style>
+                                        </Style.Resources>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Popup x:Name="Popup" IsOpen="{TemplateBinding IsChecked}" PlacementTarget="{Binding ElementName=ToggleButton1}"
                        Placement="Bottom" StaysOpen="True">
                                 <Border Background="#E7DDB3" BorderBrush="Black" BorderThickness="1" CornerRadius="0">
-                                    <StackPanel>
-                                        <Button Style="{StaticResource HideButtons}" Content="Zarządzaj postaciami"/>
-                                        <Button Style="{StaticResource HideButtons}" Content="Opcja 2"/>
-                                        <Button Style="{StaticResource HideButtons}" Content="Opcja 3"/>
+                                    <StackPanel Margin="2">
+                                        <Button Style="{StaticResource CommonButtons}" Content="Wymiana" Margin="2" Command="{Binding NavigateExchangeCommand}"/>
+                                        <Button Style="{StaticResource CommonButtons}" Content="Test Przeciwstawny" Margin="2" Command="{Binding NavigateTestCommand}"/>
+                                        <Button Style="{StaticResource CommonButtons}" IsEnabled="False" Content="Walka" Margin="2" Command="{Binding NavigateExchangeCommand}"/>
                                     </StackPanel>
                                 </Border>
                             </Popup>
-                        
-                        <ControlTemplate.Triggers>
+                            </Grid>
+                                <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="Popup" Property="IsOpen" Value="True" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#838D87" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </ToggleButton.Template>
+                
             </ToggleButton>
             <Button Content="Rzut kością" Style="{StaticResource HideButtons}" Grid.Row="1" Grid.Column="0" Margin="5" Command="{Binding DiceRollCommand}"/>
             <Button Content="Zarządzaj postaciami" Style="{StaticResource HideButtons}" Grid.Row="1" Grid.Column="1" Margin="5"  Command="{Binding NavigateCharacterCommand}"/>

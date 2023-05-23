@@ -20,30 +20,44 @@ namespace RPGUtility.ViewModel
 
         private dynamic _selectedItem2;
 
-        private Character _character;
-        private Campaign _campaign;
+        private readonly Campaign _campaign;
         private dynamic _selectedTargetItem;
+        private bool _isComboBoxVisible2;
 
         private dynamic _selectedTargetItem2;
         private readonly NavigationService _navigationService;
 
-        private ExchangeModel _exchangeModel;
+        private readonly ExchangeModel _exchangeModel;
         public RelayCommand CancelCommand { get; }
         public RelayCommand SaveCommand { get; }
         public RelayCommand NavigateBackCommand { get; }
 
         private ObservableCollection<Character> _characters;
+        private ObservableCollection<Character> _characters2;
+
         private Character _selectedcharacter;
+        private Character _selectedcharacter2;
+
         private bool _isComboBoxVisible;
 
 
         public RelayCommand ChooseCharacterCommand { get; }
+        public RelayCommand ChooseCharacterCommand2 { get; }
 
         public ObservableCollection<Character> Characters
         {
             get { return _characters; }
             set { _characters = value;
                 OnPropertyChanged(nameof(Characters));
+            }
+        }
+        public ObservableCollection<Character> Characters2
+        {
+            get { return _characters2; }
+            set
+            {
+                _characters2 = value;
+                OnPropertyChanged(nameof(Characters2));
             }
         }
 
@@ -57,6 +71,15 @@ namespace RPGUtility.ViewModel
                 OnPropertyChanged(nameof(IsComboBoxVisible)); }
         }
 
+        public bool IsComboBoxVisible2
+        {
+            get { return _isComboBoxVisible2; }
+            set
+            {
+                _isComboBoxVisible2 = value;
+                OnPropertyChanged(nameof(IsComboBoxVisible2));
+            }
+        }
 
         public Character SelectedCharacter
         {
@@ -66,9 +89,22 @@ namespace RPGUtility.ViewModel
                 _selectedcharacter = value;
                 OnPropertyChanged(nameof(SelectedCharacter));
                 IsComboBoxVisible = false;
-                if (SelectedCharacter is not null) { CharacterName2 = SelectedCharacter.Name; }
+                if (SelectedCharacter is not null & SelectedCharacter!=SelectedCharacter2) { CharacterName1 = SelectedCharacter.Name; }
+                OnPropertyChanged(nameof(CharacterName1));
+                LoadInventory(_selectedcharacter);
+            }
+        }
+        public Character SelectedCharacter2
+        {
+            get { return _selectedcharacter2; }
+            set
+            {
+                _selectedcharacter2 = value;
+                OnPropertyChanged(nameof(SelectedCharacter2));
+                IsComboBoxVisible2 = false;
+                if (SelectedCharacter2 is not null & SelectedCharacter != SelectedCharacter2) { CharacterName2 = SelectedCharacter2.Name; }
                 OnPropertyChanged(nameof(CharacterName2));
-                LoadInventory2(_selectedcharacter);
+                LoadInventory2(_selectedcharacter2);
             }
         }
         public ObservableCollection<dynamic> Items { get; set; }
@@ -82,28 +118,30 @@ namespace RPGUtility.ViewModel
         public dynamic SelectedTargetItem { get { return _selectedTargetItem; } set { _selectedTargetItem = value; if (_selectedTargetItem is not null) { ItemsTarget.Remove(_selectedTargetItem); Items.Add(_selectedTargetItem); } _selectedTargetItem = null; OnPropertyChanged(nameof(SelectedItem)); /*OnPropertyChanged(nameof(ItemsTarget)); OnPropertyChanged(nameof(Items));*/ } }
         public dynamic SelectedTargetItem2 { get { return _selectedTargetItem2; } set { _selectedTargetItem2 = value; if (_selectedTargetItem2 is not null) { Items2Target.Remove(_selectedTargetItem2); Items2.Add(_selectedTargetItem2); } _selectedTargetItem2 = null; OnPropertyChanged(nameof(SelectedItem2)); /*OnPropertyChanged(nameof(Items2Target)); OnPropertyChanged(nameof(Items2));*/ } }
 
-        public ExchangeViewModel(NavigationService navigation,Campaign campaign,Character character)
+        public ExchangeViewModel(NavigationService navigation,Campaign campaign)
         {
-            _exchangeModel = new ExchangeModel(campaign,character);
+            _exchangeModel = new ExchangeModel(campaign);
             _navigationService = navigation;
             IsComboBoxVisible = false;
-
-            //IsComboBoxVisible2 = false;
-            _characters = new ObservableCollection<Character>();
+            IsComboBoxVisible2 = false;
+            Characters = new ObservableCollection<Character>();
+            Characters2 = new ObservableCollection<Character>();
             //SelectedCharacter= character;
-            _character = character;
+            //_character = character;
             _campaign = campaign;
-            CharacterName1=_character.Name;
+            //CharacterName1=_character.Name;
             Items = new ObservableCollection<dynamic>();
             Items2 = new ObservableCollection<dynamic>();
             ItemsTarget= new ObservableCollection<dynamic>();
             Items2Target= new ObservableCollection<dynamic>();
             Load();
-            LoadInventory(_character);
-            ChooseCharacterCommand = new RelayCommand( (object parameter) => { SelectedCharacter = null; SelectedTargetItem2 = null; SelectedItem2 = null; Items2Target.Clear(); IsComboBoxVisible = true;  }, CanExecuteMyCommand);
+            //LoadInventory(_character);
+            ChooseCharacterCommand = new RelayCommand( (object parameter) => { SelectedCharacter = null; SelectedTargetItem = null; SelectedItem = null; ItemsTarget.Clear(); IsComboBoxVisible = true;  }, CanExecuteMyCommand);
+            ChooseCharacterCommand2 = new RelayCommand((object parameter) => { SelectedCharacter2 = null; SelectedTargetItem2 = null; SelectedItem2 = null; Items2Target.Clear(); IsComboBoxVisible2 = true; }, CanExecuteMyCommand);
+
             //ChooseFirstCharacterCommand = new RelayCommand((object parameter) => { IsComboBoxVisible1 = true; }, CanExecuteMyCommand);
-            NavigateBackCommand =new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
-            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterViewModel(_navigationService,character,campaign)); }, CanExecuteMyCommand);
+            NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService,campaign)); }, CanExecuteMyCommand);
+            CancelCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new StoryViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
             SaveCommand = new RelayCommand(ExecuteSave, CanExecuteMyCommand);
         }
         //IsComboBoxVisible
@@ -114,9 +152,11 @@ namespace RPGUtility.ViewModel
             await App.Current.Dispatcher.BeginInvoke((Action)delegate ()
             {
                 Characters.Clear();
+                Characters2.Clear();
                 foreach (var item in camp)
                 {
                     Characters.Add(item);
+                    Characters2.Add(item);
                 }
             });
         }
@@ -176,16 +216,16 @@ namespace RPGUtility.ViewModel
                 // _selectedcharacter
                 if (item is Item)
                 {
-                    await _exchangeModel.UpdateItem(_selectedcharacter, item);
+                    await _exchangeModel.UpdateItem(_selectedcharacter2, item);
                 }
                 else if (item is Weapon)
                 {
-                    await _exchangeModel.UpdateWeapon(_selectedcharacter, item);
+                    await _exchangeModel.UpdateWeapon(_selectedcharacter2, item);
 
                 }
                 else if (item is Armor)
                 {
-                    await _exchangeModel.UpdateArmor(_selectedcharacter, item);
+                    await _exchangeModel.UpdateArmor(_selectedcharacter2, item);
 
                 }
                 else Trace.WriteLine("Błond");
@@ -195,17 +235,17 @@ namespace RPGUtility.ViewModel
                 //_character
                 if (item is Item)
                 {
-                    await _exchangeModel.UpdateItem(_character, item);
+                    await _exchangeModel.UpdateItem(_selectedcharacter, item);
 
                 }
                 else if (item is Weapon)
                 {
-                    await _exchangeModel.UpdateWeapon(_character, item);
+                    await _exchangeModel.UpdateWeapon(_selectedcharacter, item);
 
                 }
                 else if (item is Armor)
                 {
-                   await _exchangeModel.UpdateArmor(_character, item);
+                   await _exchangeModel.UpdateArmor(_selectedcharacter, item);
 
                 }
                 else Trace.WriteLine("Błond");
@@ -214,8 +254,8 @@ namespace RPGUtility.ViewModel
             SelectedTargetItem = null; SelectedItem = null;
             ItemsTarget.Clear();
             Items2Target.Clear();
-            await LoadInventory(_character);
-            await LoadInventory2(_selectedcharacter);
+            await LoadInventory(_selectedcharacter);
+            await LoadInventory2(_selectedcharacter2);
             //_navigationService.Navigate(() => new CharacterViewModel(_navigationService,_character,_campaign));
             // _navigationState.CurrentViewModel = new CharacterViewModel(_navigationState);
         }

@@ -100,14 +100,14 @@ namespace RPGUtility.ViewModel
                 //ItemImage = item.Image;
                 if(item is Item)
                 {
-                    ItemImage = ImageEncoder.bytearraytoBitmap(item.ItemImage);
+                    ItemImage = ImageEncoder.BytearraytoBitmap(item.ItemImage);
                     SelectedOption = _type[0];
                     ItemName = item.Name;
                     ItemDescription= item.Description;
                     ItemQuantity=item.Quantity;
                 }   else if(item is Weapon)
                 {
-                    ItemImage = ImageEncoder.bytearraytoBitmap(item.WeaponImage);
+                    ItemImage = ImageEncoder.BytearraytoBitmap(item.WeaponImage);
                     SelectedOption = _type[1];
                     ItemName = item.Name;
                     ItemDescription = item.Description;
@@ -117,7 +117,7 @@ namespace RPGUtility.ViewModel
                 }
                 else if(item is Armor)
                 {
-                    ItemImage = ImageEncoder.bytearraytoBitmap(item.ArmorImage);
+                    ItemImage = ImageEncoder.BytearraytoBitmap(item.ArmorImage);
                     SelectedOption = _type[2];
                     ItemName = item.Name;
                     ItemDescription = item.Description;

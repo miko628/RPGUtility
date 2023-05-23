@@ -124,7 +124,7 @@
                             <ToolTip Background="MediumPurple">
                                 <StackPanel >
                                     <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Description}"/>
-                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Armor, StringFormat={}Pancerz : {0}}"/>
+                                    <TextBlock FontWeight="Bold" FontSize="12"  Text="{Binding Armor1, StringFormat={}Pancerz : {0}}"/>
 
                                 </StackPanel>
                             </ToolTip>

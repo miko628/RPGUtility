@@ -27,7 +27,7 @@ namespace RPGUtility
             }
             return data;
         }
-        public static BitmapImage bytearraytoBitmap(byte[] data)
+        public static BitmapImage BytearraytoBitmap(byte[] data)
         {
             BitmapImage image;
             //JpegBitmapEncoder encoder = new JpegBitmapEncoder();

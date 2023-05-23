@@ -19,6 +19,6 @@ public partial class TalentCategory
     [Column("description", TypeName = "character varying")]
     public string? Description { get; set; }
 
-    [InverseProperty("TalentNavigation")]
-    public virtual Talent? Talent { get; set; }
+    [InverseProperty("Talentcategory")]
+    public virtual ICollection<Talent> Talents { get; set; } = new List<Talent>();
 }

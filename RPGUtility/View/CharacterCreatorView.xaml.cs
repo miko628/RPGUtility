@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGUtility.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,7 @@ namespace RPGUtility.View
             Regex regex = new Regex(@"^[0-9]*(?:\.[0-9]*)?$");
             e.Handled=!regex.IsMatch(e.Text);
         }
+
         public CharacterCreatorView()
         {
             InitializeComponent();

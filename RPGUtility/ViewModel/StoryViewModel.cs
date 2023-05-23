@@ -1,31 +1,27 @@
 ﻿using RPGUtility.Model;
 using RPGUtility.Models;
 using RPGUtility.View;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
 using System.Windows;
 
 namespace RPGUtility.ViewModel
 {
-    internal class StoryViewModel:ViewModelBase
+    internal class StoryViewModel : ViewModelBase
     {
         private readonly NavigationService _navigationService;
-        private StoryModel _storyModel;
-        private Campaign _campaign;
+        private readonly StoryModel _storyModel;
+        private readonly Campaign _campaign;
         private dynamic _selectedAct;
         private string _name;
         private string _description;
         private string _gamemaster;
         private string _year;
         private bool _canExecute = true;
-        private bool _isreadonly=true;
-        private bool _ishidden=true;
+        private bool _isreadonly = true;
+        private bool _ishidden = true;
         private dynamic _actlist;
         public bool ReadOnly
         {
@@ -52,37 +48,41 @@ namespace RPGUtility.ViewModel
         public RelayCommand DiceRollCommand { get; }
         public RelayCommand NewActCommand { get; }
 
-        public RelayCommand ShowCampaignCommand { get; }
         public RelayCommand DeleteActCommand { get; }
-
-        public dynamic SelectedAct {
-            get {
+        public RelayCommand EditCampaignCommand { get; }
+        public RelayCommand NavigateExchangeCommand { get; }
+        public RelayCommand NavigateTestCommand { get; }
+        public dynamic SelectedAct
+        {
+            get
+            {
                 if (_selectedAct != null)
                 {
                     Name = _selectedAct.Name;
                     Description = _selectedAct.Description;
-                    if(_selectedAct is Campaign)
+                    if (_selectedAct is Campaign)
                     {
                         Hide = true;
-                    GameMaster =_selectedAct.GameMaster;
-                    Year =_selectedAct.Year;
-                    }else
+                        GameMaster = _selectedAct.GameMaster;
+                        Year = _selectedAct.Year;
+                    }
+                    else
                     {
                         Hide = false;
                     }
                 }
-                
+
                 return _selectedAct;
             }
             set
             {
                 _selectedAct = value;
 
-               // _storyModel.ChangeStory(_selectedAct);
+                // _storyModel.ChangeStory(_selectedAct);
                 OnPropertyChanged(nameof(SelectedAct));
             }
         }
-        public RelayCommand EditCampaignCommand { get; }
+
         public ObservableCollection<dynamic> Acts
         {
             get { return _actlist; }
@@ -96,7 +96,7 @@ namespace RPGUtility.ViewModel
         {
             get
             {
-               // Trace.WriteLine("Name");
+                // Trace.WriteLine("Name");
                 return _name;
             }
             set
@@ -110,7 +110,7 @@ namespace RPGUtility.ViewModel
         {
             get
             {
-               // Trace.WriteLine("Description");
+                // Trace.WriteLine("Description");
                 return _description;
             }
             set
@@ -171,7 +171,7 @@ namespace RPGUtility.ViewModel
                 _storyModel = new StoryModel(campaign);
                 // Name = campaign_id.ToString();
                 _campaign = campaign;
-                
+
                 _actlist = new ObservableCollection<dynamic>();
                 //_storyModel._campaign = campaign;
                 // _storyModel.id=campaign_id.GetValueOrDefault();
@@ -183,9 +183,19 @@ namespace RPGUtility.ViewModel
                 //new ThreadPriorityLevel start=()=> Backgrou
                 NavigateBackCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CampaignViewModel(_navigationService)); }, CanExecuteMyCommand);
                 NewActCommand = new RelayCommand(async (object parameter) => { await _storyModel.AddAct(Acts.Count()); await Load();/*do tworzenia postaci*/ }, CanExecuteMyCommand);
-                DeleteActCommand = new RelayCommand(async (object parameter) => { if (_selectedAct is not null) { await _storyModel.Delete(_selectedAct); await Load(); } }, CanExecuteMyCommand);
+                DeleteActCommand = new RelayCommand(async (object parameter) =>
+                {
+                    if (_selectedAct is not null)
+                    {
+                        await _storyModel.Delete(_selectedAct); _selectedAct = _campaign;
+                        OnPropertyChanged(nameof(SelectedAct)); await Load();
+                    }
+                }, CanExecuteMyCommand);
                 NavigateCharacterCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new CharacterChooseViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
-                SaveEditCommand =new RelayCommand(async(object parameter) => {
+                NavigateExchangeCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new ExchangeViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+                NavigateTestCommand = new RelayCommand((object parameter) => { _navigationService.Navigate(() => new TestOpposedViewModel(_navigationService, campaign)); }, CanExecuteMyCommand);
+                SaveEditCommand = new RelayCommand(async (object parameter) =>
+                {
 
                     if (_selectedAct is Act)
                     {
@@ -198,7 +208,7 @@ namespace RPGUtility.ViewModel
                         await Task.Run(Load);
                     }
 
-                },CanExecuteMyCommand);
+                }, CanExecuteMyCommand);
 
                 EditCampaignCommand = new RelayCommand((object parameter) =>
                 {
@@ -206,7 +216,7 @@ namespace RPGUtility.ViewModel
                 }, CanExecuteMyCommand);
                 DiceRollCommand = new RelayCommand((object parameter) =>
                 {
-                    DiceView subWindow = new DiceView();
+                    DiceView subWindow = new();
                     subWindow.DataContext = new DiceViewModel();
                     subWindow.Closed += (sender, args) => { _canExecute = true; };
 
@@ -220,7 +230,7 @@ namespace RPGUtility.ViewModel
             {
                 //dodaj tu jeszcze message box ok ok
                 _navigationService.Navigate(() => new CampaignViewModel(_navigationService));
-            
+
             }
         }
 
@@ -232,7 +242,7 @@ namespace RPGUtility.ViewModel
             }
             else return false;
             //_canExecute = !_canExecute;
-           // return _canExecute;
+            // return _canExecute;
         }
         private bool CanExecuteMyCommand(object parameter)
         {

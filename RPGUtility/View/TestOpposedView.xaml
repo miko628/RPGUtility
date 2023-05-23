@@ -18,20 +18,20 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -48,7 +48,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Button Grid.Column="1" Grid.Row="1" Content="Cofnij" Style="{StaticResource CommonButtons}"  Command="{Binding NavigateBackCommand}"/>
 
@@ -70,11 +70,54 @@
 
         <TextBlock Text="{Binding CharacterName1}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
         <TextBlock Text="{Binding CharacterName2}" Grid.Column="9" Grid.Row="3" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center" FontWeight="Black"/>
-        <Button Style="{StaticResource CommonButtons}"  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" FontSize="20" Content="Wybierz postać" Command="{Binding ChooseCharacterCommand}"/>
-        <Button Style="{StaticResource CommonButtons}"  Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="2" FontSize="20" Content="Wybierz postać" Command="{Binding ChooseCharacter2Command}"/>
+        <Button Style="{StaticResource CommonButtons}"  Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" FontSize="20" Content="Wybierz postać" Command="{Binding ChooseCharacterCommand2}"/>
+        <Button Style="{StaticResource CommonButtons}"  Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="2" FontSize="20" Content="Wybierz postać" Command="{Binding ChooseCharacterCommand}"/>
 
-        <Button Style="{StaticResource CommonButtons}" Grid.Column="4" Grid.Row="14" Grid.RowSpan="2" Grid.ColumnSpan="6" Content="Losuj" Command="{Binding SaveCommand}" FontSize="20" Margin="2,5,2,2"/>
+        <Button Style="{StaticResource CommonButtons}" Grid.Column="5" Grid.Row="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Content="Losuj" Command="{Binding SaveCommand}" FontSize="20" Margin="10"/>
         
+        <!-- Umiejętności Prawe-->
+        <ScrollViewer Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="4" Grid.RowSpan="4" Margin="5">
+            <ItemsControl   ItemsSource="{Binding Skills2}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}" ToolTip="{Binding Description}" Style="{StaticResource CommonLabel}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <!-- Statystyki Prawe-->
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="4" Margin="10">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+                <StackPanel Orientation="Horizontal" Margin="5" Background="#161815" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <TextBlock Width="70" Foreground="#FBF6E2" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Walka Wręcz (WW): Cecha sprawności Bohatera w walce" />
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" />
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera"/>
+                    <StackPanel.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+                <!--Tutaj są statystyki postaci-->
+                <StackPanel Orientation="Horizontal" Margin="5"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <TextBlock Width="70"  Foreground="#000000" Text="{Binding Stats2[0]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[1]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[2]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"/>
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[3]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold" />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[4]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[5]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[6]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"/>
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats2[7]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold" />
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
         <ListView Style="{StaticResource CommonListView}"  Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="10" Background="#E7DDB3" ItemsSource="{Binding Characters}" SelectedItem="{Binding SelectedCharacter2}" Visibility="{Binding IsComboBoxVisible2, Converter={StaticResource BoolToVisibility}}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -110,6 +153,51 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <!-- Umiejetności Lewe-->
+        <ScrollViewer Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="4" Grid.RowSpan="4" Margin="5">
+        <ItemsControl  ItemsSource="{Binding Skills1}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}" ToolTip="{Binding Description}" Style="{StaticResource CommonLabel}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </ScrollViewer>
+        <!-- Statystyki Lewe-->
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="4" Margin="10">
+            <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+                <StackPanel Orientation="Horizontal" Margin="5" Background="#161815" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <TextBlock Width="70" Foreground="#FBF6E2" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Walka Wręcz (WW): Cecha sprawności Bohatera w walce" />
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" />
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera"/>
+                    <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera"/>
+                    <StackPanel.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+                <!--Tutaj są statystyki postaci-->
+                <StackPanel Orientation="Horizontal" Margin="5"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <TextBlock Width="70"  Foreground="#000000" Text="{Binding Stats1[0]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats1[1]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats1[2]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"/>
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats1[3]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold" />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats1[4]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000"  Text="{Binding Stats1[5]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"  />
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats1[6]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold"/>
+                    <TextBlock Width="70" Foreground="#000000" Text="{Binding Stats1[7]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="32" FontWeight="Bold" />
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
         <ListView Style="{StaticResource CommonListView}"  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="10" Background="#E7DDB3" ItemsSource="{Binding Characters}" SelectedItem="{Binding SelectedCharacter}" Visibility="{Binding IsComboBoxVisible, Converter={StaticResource BoolToVisibility}}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -145,5 +233,65 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <ListView  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4" Grid.RowSpan="8" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0" SelectedIndex="{Binding SelectedItem}">
+    
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Items >
+                <ListViewItem Padding="0">
+                    <Label Width="80" Height="80"  FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="WW" ToolTip="Walka Wręcz (WW): Cecha sprawności Bohatera w walce"  Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"  FontSize="32"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="US" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" Style="{StaticResource CommonLabel}"/>
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"  FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="4" Content="K"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera" Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"  FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Content="Odp"  ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera" Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"  FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="6" Content="Zr" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera" Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"   FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="7" Content="Int" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera" Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"   FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="8" Content="SW" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera" Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+                <ListViewItem Padding="0">
+                    <Label  Width="80" Height="80"   FontSize="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="9" Content="Ogd" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera" Style="{StaticResource CommonLabel}"/>
+
+
+                </ListViewItem>
+            </ListView.Items>
+        </ListView>
+        <Grid Grid.Row="3" Grid.Column="3" Grid.RowSpan="10" Grid.ColumnSpan="8" Background="#eeeeee" Visibility="{Binding ResultVisibility,Converter={StaticResource BoolToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding HeadText}" FontSize="47" FontWeight="Bold" Margin="10"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Text="{Binding BodyText}" FontSize="38" FontWeight="SemiBold" Margin="10,40,10,10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button  Grid.Row="2" Content="Ok" Style="{StaticResource CommonButtons}" Margin="10,40,10,10" Command="{Binding OkCommand}"></Button>
+        </Grid>
     </Grid>
+    
 </UserControl>

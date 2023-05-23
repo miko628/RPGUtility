@@ -59,12 +59,13 @@
 
         <Label Style="{StaticResource CommonLabel}" Content="{Binding CharacterName}" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Top"  HorizontalContentAlignment="Center"/>
 
-        <Label Content="Ilość życia 150/100 xD" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="4" Margin="10" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Bottom" Foreground="#FBF6E2"/>
-        <ProgressBar Style="{StaticResource HealthBar}"  Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4" Value="35" Minimum="0" Maximum="59"
-                     HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Margin="10"/>
-        
-        <Button Content="Punkt Szczęścia 15/10" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Style="{StaticResource CommonButtons}" FontSize="15" Command="{Binding FatePointCommand}"></Button>
-        
+        <Label Content="{Binding CurrentHealth}" ContentStringFormat="Ilość życia: {0}" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="10" FontSize="25" FontWeight="SemiBold" VerticalAlignment="Bottom" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Foreground="#FBF6E2"/>
+        <ProgressBar Style="{StaticResource HealthBar}"  Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2" Value="{Binding CurrentHealth}" Minimum="0" Maximum="{Binding MaximumHealth}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="160" Width="450" Margin="10"/>
+
+        <Button Content="{Binding FatePoints}" ContentStringFormat="Punkty Szczęścia: {0}" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Style="{StaticResource CommonButtons}" FontSize="15" Command="{Binding FatePointCommand}"></Button>
+        <Button Content="Resetuj Pkt Szcęścia" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Style="{StaticResource CommonButtons}" FontSize="15" Command="{Binding ResetFatePointCommand}"></Button>
+
         <Border MinWidth="50" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4" Background="#555A57">
             <Border.Resources>
                 <Style TargetType="Border">
@@ -73,67 +74,88 @@
             </Border.Resources>
         </Border>
         <Label Content="Statystyki" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Style="{StaticResource CommonLabel}"/>
-        <StackPanel Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="4" Orientation="Vertical" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" Margin="5" >
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="1" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Walka Wręcz (WW): Cecha sprawności Bohatera w walce" />
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" />
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera"/>
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera"/>
-                
+        <ScrollViewer Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="4" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+            <StackPanel Orientation="Horizontal" Margin="5" Background="#161815" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <TextBlock Width="70" Foreground="#FBF6E2" Text="WW" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Walka Wręcz (WW): Cecha sprawności Bohatera w walce" />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="US" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Umiejętności Strzeleckie (US): Cecha sprawności Bohatera w strzelaniu" />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="K" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  ToolTip="Krzepa (K): Cecha tężyzny fizycznej Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="Odp" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Odporność (Odp): Cecha odporności fizycznej Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera"/>
+                <StackPanel.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </StackPanel.Resources>
             </StackPanel>
             <!--Tutaj są statystyki postaci-->
-            <StackPanel Orientation="Horizontal" Margin="5" >
-                <TextBox IsReadOnly="True" MaxLength="2" Style="{StaticResource NumberTextBox}"  Text="{Binding Stats[0]}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-
-                <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="2" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[1]}"/>
-
-                <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="3" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[2]}"/>
-
-                <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="4" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[3]}"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" >
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="6" Text="Zr" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Zręczność (Zr): Cecha sprawności fizycznej Bohatera"/>
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="7" Text="Int" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Inteligencja (Int): Cecha sprawności intelektualnej Bohatera"/>
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="8" Text="SW" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Siła Woli (SW): Cecha umiejętności koncentracji Bohatera"/>
-                <TextBlock Foreground="#FBF6E2" Grid.Row="0" Grid.Column="9" Text="Ogd" TextAlignment="Center" Padding="5,5,20,5" FontSize="18" FontWeight="SemiBold" ToolTip="Ogłada (Ogd): Cecha charyzmy Bohatera"/>
+            <StackPanel Orientation="Horizontal" Margin="5"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <TextBlock Width="70"  Foreground="#FBF6E2" Text="{Binding Stats[0]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="{Binding Stats[1]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="{Binding Stats[2]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="{Binding Stats[3]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" />
+                <TextBlock Width="70" Foreground="#FBF6E2" Text="{Binding Stats[4]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="{Binding Stats[5]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="{Binding Stats[6]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="{Binding Stats[7]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" />     
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" >
-                <TextBox Grid.Row="1" Grid.Column="6" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[4]}" />
+            <StackPanel Orientation="Horizontal" Margin="5" Background="#161815" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="1" Text="A" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Ataki (A): Cecha szybkości ataku Bohatera" />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="2" Text="Żyw" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Żywotność (Żyw) Cecha witalności Bohatera" />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="3" Text="S" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  ToolTip="Siła (S): Cecha określająca obrażenia zadawane przez Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="4" Text="Wt" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Witalność (Wt): Cecha określająca zdloność ignorowania otrzymanych obrażeń Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="6" Text="Sz" TextAlignment="Center" Padding="5,5,20,0" FontSize="28" FontWeight="SemiBold" ToolTip="Szybkość (Sz): Cecha określąca prędkość poruszania się Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="7" Text="Mag" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Magia (Mag): Cecha określająca zdolności magiczne bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="8" Text="PO" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Punkty Obłędu (PO): Cecha określająca stan zdrowia psychicznego Bohatera"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="5" Grid.Column="9" Text="PP" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" ToolTip="Punkty Przeznaczenia (PP): Cecha określająca szczęście Bohatera"/>
+                <StackPanel.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </StackPanel.Resources>
+            </StackPanel>
 
-                <TextBox Grid.Row="1" Grid.Column="7" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[5]}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch" >
+                <TextBlock Width="70" Foreground="#FBF6E2" Text="{Binding NextStats[0]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="{Binding NextStats[1]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="{Binding NextStats[2]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="{Binding NextStats[3]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" />
+                <TextBlock Width="70" Foreground="#FBF6E2" Text="{Binding NextStats[4]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="2" Text="{Binding NextStats[5]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"  />
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="3" Text="{Binding NextStats[6]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold"/>
+                <TextBlock Width="70" Foreground="#FBF6E2" Grid.Row="0" Grid.Column="4" Text="{Binding NextStats[7]}" TextAlignment="Center" Padding="5,5,20,5" FontSize="28" FontWeight="SemiBold" />
 
-                <TextBox Grid.Row="1" Grid.Column="8" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[6]}"/>
-
-                <TextBox Grid.Row="1" Grid.Column="9" MaxLength="2" Style="{StaticResource NumberTextBox}" Text="{Binding Stats[7]}" />
             </StackPanel>
             
         </StackPanel>
+        </ScrollViewer>
         <!--/Tutaj są statystyki postaci-->
         <Button Content="Ekwipunek" Grid.Column="7" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Margin="10,0,10,0" Command="{Binding NavigationEquipmentCommand}"/>
 
 
-        <Button Content="Tworzenie przedmiotów" Style="{StaticResource CommonButtons}" Grid.Column="7" Grid.Row="6"  Grid.ColumnSpan="2" Command="{Binding NavigationItemCreationCommand}" />
+        <Button Content="Tworzenie przedmiotów" Style="{StaticResource CommonButtons}" Grid.Column="7" Grid.Row="7"  Grid.ColumnSpan="2" Command="{Binding NavigationItemCreationCommand}" />
 
 
 
-        <Button Content="Handel" Grid.Column="5" Grid.Row="7" Style="{StaticResource CommonButtons}"  Grid.ColumnSpan="2" Command="{Binding NavigationTradeCommand}"  />
+        <Button Content="Handel" Grid.Column="5" Grid.Row="8" Style="{StaticResource CommonButtons}" IsEnabled="False" Grid.ColumnSpan="2" Command="{Binding NavigationTradeCommand}"  />
 
 
-        <Button Content="Wymiana" Grid.Column="7" Grid.Row="7"  Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Command="{Binding NavigationExchangeCommand}" />
 
 
-        <Button Content="Edycja/Rozwój" Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Command="{Binding NavigationAdvancementCommand}"/>
+        <Button Content="Edycja/Rozwój" Grid.Column="5" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Command="{Binding NavigationAdvancementCommand}"/>
 
 
         <Button Content="Test Umiejętności" Grid.Column="5" Grid.Row="9"  Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Command="{Binding NavigationSkillTestCommand}"/>
 
 
-        <Button Content="Zaklęcia" Grid.Column="7" Grid.Row="8"  Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Command="{Binding NavigationSpellCommand}" />
+        <Button Content="Zaklęcia" Grid.Column="7" Grid.Row="8"  Grid.ColumnSpan="2" IsEnabled="False" Style="{StaticResource CommonButtons}" Command="{Binding NavigationSpellCommand}" />
 
 
-        <Button Content="Testy Przeciwstawne" Grid.Column="5" Grid.Row="8"  Grid.ColumnSpan="2" Style="{StaticResource CommonButtons}" Command="{Binding NavigationOpposedTestCommand}"/>
 
 
 

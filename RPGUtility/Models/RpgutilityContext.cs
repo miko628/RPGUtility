@@ -38,7 +38,7 @@ public partial class RpgutilityContext : DbContext
     public virtual DbSet<Weapon> Weapons { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Server=localhost; port=5433; userid=postgres; password=password; database=RPGUtility;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -58,9 +58,7 @@ public partial class RpgutilityContext : DbContext
 
             entity.Property(e => e.ArmorId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Character).WithMany(p => p.Armors)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Armor_character_id_fkey");
+            entity.HasOne(d => d.Character).WithMany(p => p.Armors).HasConstraintName("Armor_character_id_fkey");
         });
 
         modelBuilder.Entity<Campaign>(entity =>
@@ -85,24 +83,18 @@ public partial class RpgutilityContext : DbContext
 
             entity.Property(e => e.ItemId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Character).WithMany(p => p.Items)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Item_character_id_fkey");
+            entity.HasOne(d => d.Character).WithMany(p => p.Items).HasConstraintName("Item_character_id_fkey");
         });
 
         modelBuilder.Entity<Skill>(entity =>
         {
             entity.HasKey(e => e.SkillId).HasName("Skill_pkey");
 
-            entity.Property(e => e.SkillId)
-                .ValueGeneratedOnAdd()
-                .UseIdentityAlwaysColumn();
+            entity.Property(e => e.SkillId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Character).WithMany(p => p.Skills)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Skill_character_id_fkey");
+            entity.HasOne(d => d.Character).WithMany(p => p.Skills).HasConstraintName("Skill_character_id_fkey");
 
-            entity.HasOne(d => d.SkillNavigation).WithOne(p => p.Skill).HasConstraintName("Skill_skill_id_fkey");
+            entity.HasOne(d => d.Skillcategory).WithMany(p => p.Skills).HasConstraintName("Skill_skillcategory_id_fkey");
         });
 
         modelBuilder.Entity<SkillCategory>(entity =>
@@ -127,15 +119,11 @@ public partial class RpgutilityContext : DbContext
         {
             entity.HasKey(e => e.TalentId).HasName("Talent_pkey");
 
-            entity.Property(e => e.TalentId)
-                .ValueGeneratedOnAdd()
-                .UseIdentityAlwaysColumn();
+            entity.Property(e => e.TalentId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Character).WithMany(p => p.Talents)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Talent_character_id_fkey");
+            entity.HasOne(d => d.Character).WithMany(p => p.Talents).HasConstraintName("Talent_character_id_fkey");
 
-            entity.HasOne(d => d.TalentNavigation).WithOne(p => p.Talent).HasConstraintName("Talent_talent_id_fkey");
+            entity.HasOne(d => d.Talentcategory).WithMany(p => p.Talents).HasConstraintName("Talent_talentcategory_id_fkey");
         });
 
         modelBuilder.Entity<TalentCategory>(entity =>
@@ -151,9 +139,7 @@ public partial class RpgutilityContext : DbContext
 
             entity.Property(e => e.WeaponId).UseIdentityAlwaysColumn();
 
-            entity.HasOne(d => d.Character).WithMany(p => p.Weapons)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Weapon_character_id_fkey");
+            entity.HasOne(d => d.Character).WithMany(p => p.Weapons).HasConstraintName("Weapon_character_id_fkey");
         });
 
         OnModelCreatingPartial(modelBuilder);

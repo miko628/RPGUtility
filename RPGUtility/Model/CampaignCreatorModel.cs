@@ -15,7 +15,7 @@ namespace RPGUtility.Model
 {
     class CampaignCreatorModel
     {
-        private readonly Campaign? _campagin;
+        //private readonly Campaign? _campagin;
         
         public string Name
         {
@@ -40,7 +40,7 @@ namespace RPGUtility.Model
             set;
         }
 
-        public async Task<Campaign> save()
+        public async Task<Campaign> Save()
         {
             //_campagin = new Campaign(Name, Description, GameMaster, Year);
             //this._character.GetAll();
@@ -52,7 +52,7 @@ namespace RPGUtility.Model
             using (var context=new RpgutilityContext())
             {
                 var campaigns = context.Set<Campaign>();
-                Campaign pom = new Campaign { Name = this.Name, Description = this.Description, GameMaster = this.GameMaster, Year = this.Year };
+                Campaign pom = new() { Name = this.Name, Description = this.Description, GameMaster = this.GameMaster, Year = this.Year };
                 await campaigns.AddAsync(pom);
                  //context.Campaigns.AddAsync(campaign);
                 await context.SaveChangesAsync();

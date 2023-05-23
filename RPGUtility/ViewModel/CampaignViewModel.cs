@@ -21,7 +21,7 @@ namespace RPGUtility.ViewModel
     class CampaignViewModel : ViewModelBase
     {
         private readonly NavigationService _navigationService;
-        private CampaignModel _campaignModel;
+        private readonly CampaignModel _campaignModel;
         private Campaign _selectedItem;
         private ObservableCollection<Campaign> _campaigns;
        

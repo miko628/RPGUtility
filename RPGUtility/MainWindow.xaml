@@ -14,9 +14,6 @@
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
                 <Views:MainView/>
-                </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:MenuViewModel}">
-                <Views:MenuView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:SettingsViewModel}">
                 <Views:SettingsView/>
@@ -51,11 +48,11 @@
             <DataTemplate DataType="{x:Type ViewModels:CampaignCreatorViewModel}">
                 <Views:CampaignCreatorView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:DiceViewModel}">
-                <Views:DiceView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type ViewModels:CharacterChooseViewModel}">
                 <Views:CharacterChooseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:TestOpposedViewModel}">
+                <Views:TestOpposedView/>
             </DataTemplate>
         </ContentControl.Resources>
         </ContentControl>
